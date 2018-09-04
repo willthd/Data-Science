@@ -1,7 +1,40 @@
 # data challenge
 
-deep learning으로 xgboost 넘어보기
+>  Random Forest, XGboost 쓰더라도 알고 쓰자 !
 
-평가 방법 : cross val
 
-할 수 있으려나 ..?
+
+
+
+
+
+
+
+## Random Forest
+
+
+
+### 특징
+
+
+
+### hyperparameter
+
+
+
+
+
+
+
+## XGboost
+
+
+
+
+
+### 특징
+
+
+
+### hyperparameter
+
