@@ -1,9 +1,8 @@
-# machine learning algorithm
+# ML algorithm
 
-> 쓰더라도 기본적인 것은 알고 사용하자
-
-
+> Random Forest, XGboost 특징
 
 
 
 ![ml_algorithm](./ml_algorithm.jpg)
+
