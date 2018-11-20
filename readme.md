@@ -1,6 +1,10 @@
-# kaggle
+# Data Science
 
 > source code
+
+
+
+### Kaggle
 
 
 
@@ -9,5 +13,14 @@
 
 
 * [bike sharing demand](./bikeSharingDemand)
+
+
+
+### Competition
+
+
+
+* [data challenge](./dataChallenge)
+
 
 
