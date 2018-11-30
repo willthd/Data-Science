@@ -8,11 +8,15 @@
 
 
 
-* [titanic](./titanic)
+* [Titanic](./titanic)
 
 
 
-* [bike sharing demand](./bikeSharingDemand)
+* [Bike Sharing Demand](./bikeSharingDemand)
+
+
+
+* [House Prices: Advanced Regression Techniques](./housePrices)
 
 
 
@@ -20,7 +24,17 @@
 
 
 
-* [data challenge](./dataChallenge)
+* [Data Challenge by Samsung Research](./dataChallenge)
 
 
+
+* [Dacon by 직방](./daconByJikbang)
+
+
+
+### Additional
+
+
+
+* [seaborn](./seaborn)
 
