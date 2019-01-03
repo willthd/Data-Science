@@ -28,7 +28,7 @@
 
 
 
-* [Dacon by 직방](./daconByJikbang)
+* [Dacon by Funda](./daconByFunda)
 
 
 
