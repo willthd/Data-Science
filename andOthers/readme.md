@@ -14,7 +14,7 @@ XGboost는 categorical features를 따로 one-hot-encoding 해야 하지만, lig
 
 </br>
 
-###python, 기타 라이브러리들 중 자주 사용하는 code
+### python, 기타 라이브러리들 중 자주 사용하는 code
 
 #### 컬럼 지우기
 
