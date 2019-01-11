@@ -24,11 +24,11 @@
 
 
 
-* [Data Challenge by Samsung Research](./dataChallenge)
+* [Samsung Research, Data Challenge](./dataChallenge)
 
 
 
-* [Dacon by Funda](./daconByFunda)
+* [Dacon, Data Visualization Challgenge](./daconByFunda)
 
 
 
