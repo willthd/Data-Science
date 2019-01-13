@@ -20,7 +20,7 @@
 
 
 
-### Competition
+### Competitions
 
 
 
