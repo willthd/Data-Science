@@ -198,5 +198,15 @@ train["Age"].str.extract("(\d+)").astype(int)
 train.loc[train["Age"].isnull(), "Age"] = train["Age_temp"]
 ```
 
+</br>
+
+#### 컬럼 중 max, min, mean
+
+```python
+train["Age"].max()
+train["Age"].min()
+train["Age"].mean()
+```
+
 
 
