@@ -14,7 +14,17 @@ XGboost는 categorical features를 따로 one-hot-encoding 해야 하지만, lig
 
 </br>
 
+
+
 ### python, 기타 라이브러리들 중 자주 사용하는 code
+
+#### 임의 데이터 프레임 만들기
+
+```python
+df = pd.DataFrame([["11","2", "6"], ["12","4", "2"], ["13","3", "4"]], columns=["ix","a", "b"])
+```
+
+</br>
 
 #### 컬럼 지우기
 
@@ -143,6 +153,40 @@ idx = [idx for idx, value in enumerate(train["nextday_date"]) if value in holida
 # enumerate는 순서가 있는 자료형(리스트, 튜플, 문자열)을 입력으로 받아 인덱스 값을 포함하는 enumerate 객체를 리턴한다
 # idx 리스트는 결국 해당 조건이 맞는 경우의 idx들의 모음 의미한다
 
-train.loc[idx, "nextday_holiday"].apply(lambda x : 1)
+train.loc[idx, "nextday_holiday"] = 1
 ```
+
+```python
+# same but more concise
+
+train.loc[train["nextday_date"].isin(holiday_date_list), "nextday_holiday"] = 1
+train.loc[train["nextday_holiday"].isnull(), "nextday_holiday"] = 0
+
+# same but more concise
+
+train["check"] = train["Name"].isin(hoho).astype(int)
+```
+
+</br>
+
+#### "Name" 컬럼 내 해당 문자열 존재하는 경우, "Title" 컬럼을 "Mr"로 채워 두기
+
+```python
+train.loc[train["Name"].str.contains("Mr"), "Title"] = "Mr"
+```
+
+</br>
+
+#### column내 문자열 변경
+
+```python
+train["Name"] = train["Name"].str.replace("Mr", "아저씨")
+
+# 컬럼 값이 문자와 숫자로 혼합되어 있는 경우 통일 필요할 때
+# ex) 31세, 31 세, 31
+
+train
+```
+
+
 
