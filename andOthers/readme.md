@@ -181,11 +181,21 @@ train.loc[train["Name"].str.contains("Mr"), "Title"] = "Mr"
 
 ```python
 train["Name"] = train["Name"].str.replace("Mr", "아저씨")
+```
 
+</br>
+
+#### 컬럼에서 숫자만 추출할 경우
+
+```python
 # 컬럼 값이 문자와 숫자로 혼합되어 있는 경우 통일 필요할 때
-# ex) 31세, 31 세, 31
+# "(\d+)" 정규표현식 사용
+# ex) 31세, 31 세, 31 -> 31로 통일, NaN -> 0
 
-train
+train.loc[train["Age"].isnull(), "Age"] = 0
+train["Age_temp"] = train["Age"]
+train["Age"].str.extract("(\d+)").astype(int)
+train.loc[train["Age"].isnull(), "Age"] = train["Age_temp"]
 ```
 
 
