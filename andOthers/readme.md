@@ -83,8 +83,8 @@ def split_date(date):
 ```python
 train["year"], train["month"], train["day"] = zip(*train['date'].apply(lambda x: split_date(x)))
 
-# zip([1, 2, 3], [2, 3, 4], [3, 4, 5]) -> (1, 2, 3), (2, 3, 4), (3, 4, 5)
-# zip(*[[1, 2, 3], [2, 3, 4], [3, 4, 5]]) -> (1, 2, 3), (2, 3, 4), (3, 4, 5)
+# zip([1, 1, 1], [2, 4, 8], [3, 9, 27]) -> (1, 2, 3), (1, 4, 9), (1, 8, 27)
+# zip(*[[1, 2, 3], [2, 3, 4], [3, 4, 5]]) -> (1, 2, 3), (1, 4, 9), (1, 8, 27)
 # *은 unpack을 의미한다
 # .apply(lambda x : 함수)
 ```
@@ -132,6 +132,7 @@ my_array = train["column"].values
 #### array 내에 중복되는 값 없애기
 
 ```python
+# list에는 .unique() 함수 없다
 uniqueVals = np.unique(my_array)
 ```
 
@@ -158,13 +159,17 @@ train.loc[idx, "nextday_holiday"] = 1
 
 ```python
 # same but more concise
-
+# 방법 2
 train.loc[train["nextday_date"].isin(holiday_date_list), "nextday_holiday"] = 1
 train.loc[train["nextday_holiday"].isnull(), "nextday_holiday"] = 0
 
-# same but more concise
+# same but more simple
+# 방법 3
+train["nextday_holiday"] = train["nextday_date"].isin(holidat_date_list).astype(int)
 
-train["check"] = train["Name"].isin(hoho).astype(int)
+# same but more simple
+# 방법 4, 가장 좋다
+train["check"] = train["check"].apply(lambda x : 1 if x in holiday_date_list else 0)
 ```
 
 </br>
@@ -191,11 +196,30 @@ train["Name"] = train["Name"].str.replace("Mr", "아저씨")
 # 컬럼 값이 문자와 숫자로 혼합되어 있는 경우 통일 필요할 때
 # "(\d+)" 정규표현식 사용
 # ex) 31세, 31 세, 31 -> 31로 통일, NaN -> 0
+# 방법 1, 가장 좋다
 
 train.loc[train["Age"].isnull(), "Age"] = 0
+# 미리 str으로 전부 바꿔줘야한다. 아주 중요 !
+train["Age"] = train["Age"].astype(str)
+train["Age"] = train["Age"].str.extract("(\d+)").astype(int)
+
+# same but simple
+# 방법 2
+train.loc[train["Age"].isnull(), "Age"] = 0
 train["Age_temp"] = train["Age"]
-train["Age"].str.extract("(\d+)").astype(int)
+# replace는 저장해야한다
+train["Age"] = train["Age"].str.replace("세", "")
+train["Age"] = train["Age"].str.replace(" ", "")
+# 소수점으로 표현되어 있다면
+train["Age"] = train["Age"].str.replace(".0", "")
 train.loc[train["Age"].isnull(), "Age"] = train["Age_temp"]
+train["Age"].astype(int)
+
+
+# same but simple
+# 방법 3
+# 22.0은 220으로 바뀐다는 점 주의. 정수 표현일 때 사용
+train['Age'].replace(regex=True,inplace=True,to_replace=r'\D',value=r'')
 ```
 
 </br>
@@ -207,6 +231,14 @@ train["Age"].max()
 train["Age"].min()
 train["Age"].mean()
 ```
+
+</br>
+
+#### python, lambda
+
+https://wikidocs.net/64 참고
+
+map(), reduce(), filter()에 어떻게 적용하는지
 
 
 
