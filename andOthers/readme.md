@@ -134,6 +134,9 @@ my_array = train["column"].values
 ```python
 # list에는 .unique() 함수 없다
 uniqueVals = np.unique(my_array)
+
+# 바로 컬럼에 적용해서 사용할 수도 있다
+train["column"].unique()
 ```
 
 </br>
@@ -149,6 +152,7 @@ my_list = uniqueVals.tolist()
 #### case : "nextday_date"컬럼 값이 holiday_date_list에 포함 되어 있는 경우 "nextday_holiday"를 1로 채워넣기
 
 ```python
+# 방법 1
 idx = [idx for idx, value in enumerate(train["nextday_date"]) if value in holiday_date_list]
 
 # enumerate는 순서가 있는 자료형(리스트, 튜플, 문자열)을 입력으로 받아 인덱스 값을 포함하는 enumerate 객체를 리턴한다
@@ -168,6 +172,7 @@ train.loc[train["nextday_holiday"].isnull(), "nextday_holiday"] = 0
 train["nextday_holiday"] = train["nextday_date"].isin(holidat_date_list).astype(int)
 
 # same but more simple
+###############
 # 방법 4, 가장 좋다
 train["check"] = train["check"].apply(lambda x : 1 if x in holiday_date_list else 0)
 ```
@@ -196,8 +201,8 @@ train["Name"] = train["Name"].str.replace("Mr", "아저씨")
 # 컬럼 값이 문자와 숫자로 혼합되어 있는 경우 통일 필요할 때
 # "(\d+)" 정규표현식 사용
 # ex) 31세, 31 세, 31 -> 31로 통일, NaN -> 0
-# 방법 1, 가장 좋다
 
+# 방법 1, 가장 좋다
 train.loc[train["Age"].isnull(), "Age"] = 0
 # 미리 str으로 전부 바꿔줘야한다. 아주 중요 !
 train["Age"] = train["Age"].astype(str)
