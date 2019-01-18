@@ -8,11 +8,11 @@
 
 
 
-* [Titanic](./titanic)
+* [Titanic](./kaggle/titanic)
 
 
 
-* [Bike Sharing Demand](./bikeSharingDemand)
+* [Bike Sharing Demand](./kaggle/bikeSharingDemand)
 
 
 
