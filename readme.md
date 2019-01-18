@@ -20,6 +20,10 @@
 
 
 
+* [Elo Merchant Category Recommendation](./kaggle/elo)
+
+
+
 ### Competitions
 
 
