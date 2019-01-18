@@ -14,8 +14,6 @@ XGboost는 categorical features를 따로 one-hot-encoding 해야 하지만, lig
 
 </br>
 
-
-
 ### python, 기타 라이브러리들 중 자주 사용하는 code
 
 #### 임의 데이터 프레임 만들기
@@ -162,16 +160,13 @@ train.loc[idx, "nextday_holiday"] = 1
 ```
 
 ```python
-# same but more concise
 # 방법 2
 train.loc[train["nextday_date"].isin(holiday_date_list), "nextday_holiday"] = 1
 train.loc[train["nextday_holiday"].isnull(), "nextday_holiday"] = 0
 
-# same but more simple
 # 방법 3
 train["nextday_holiday"] = train["nextday_date"].isin(holidat_date_list).astype(int)
 
-# same but more simple
 ###############
 # 방법 4, 가장 좋다
 train["nextday_holiday"] = train["nextday_date"].apply(lambda x : 1 if x in holiday_date_list else 0)
@@ -202,13 +197,13 @@ train["Name"] = train["Name"].str.replace("Mr", "아저씨")
 # "(\d+)" 정규표현식 사용
 # ex) 31세, 31 세, 31 -> 31로 통일, NaN -> 0
 
+################
 # 방법 1, 가장 좋다
 train.loc[train["Age"].isnull(), "Age"] = 0
 # 미리 str으로 전부 바꿔줘야한다. 아주 중요 !
 train["Age"] = train["Age"].astype(str)
 train["Age"] = train["Age"].str.extract("(\d+)").astype(int)
 
-# same but simple
 # 방법 2
 train.loc[train["Age"].isnull(), "Age"] = 0
 train["Age_temp"] = train["Age"]
@@ -221,7 +216,6 @@ train.loc[train["Age"].isnull(), "Age"] = train["Age_temp"]
 train["Age"].astype(int)
 
 
-# same but simple
 # 방법 3
 # 22.0은 220으로 바뀐다는 점 주의. 정수 표현일 때 사용
 train['Age'].replace(regex=True,inplace=True,to_replace=r'\D',value=r'')
