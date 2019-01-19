@@ -40,6 +40,10 @@
 
 
 
+* [statistics](./statistics)
+
+
+
 * [seaborn](./seaborn)
 
 
