@@ -205,15 +205,11 @@ train["Age"] = train["Age"].astype(str)
 train["Age"] = train["Age"].str.extract("(\d+)").astype(int)
 
 # 방법 2
-train.loc[train["Age"].isnull(), "Age"] = 0
-train["Age_temp"] = train["Age"]
-# replace는 저장해야한다
-train["Age"] = train["Age"].str.replace("세", "")
-train["Age"] = train["Age"].str.replace(" ", "")
-# 소수점으로 표현되어 있다면
-train["Age"] = train["Age"].str.replace(".0", "")
-train.loc[train["Age"].isnull(), "Age"] = train["Age_temp"]
-train["Age"].astype(int)
+train.loc[train["Age"].isnull(), "Age"] = "0"
+train.loc[train["Age"].str.contains(" 세"), "Age"] = train["Age"].str.replace(" 세", "")
+train.loc[train["Age"].str.contains("세"), "Age"] = train["Age"].str.replace("세", "")
+train["train"] = train.["Age"].astype(float)
+train["train"] = train.["Age"].astype(int)
 
 
 # 방법 3
