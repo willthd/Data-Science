@@ -27,8 +27,10 @@ df = pd.DataFrame([["11","2", "6"], ["12","4", "2"], ["13","3", "4"]], columns=[
 ### Index column 설정
 
 ```python
+# 방법 1
 train = pd.read_csv("./train.csv", index_col="PassengerId")
 
+# 방법 2
 train.set_index("col_name")
 ```
 
