@@ -18,11 +18,15 @@ XGboost는 categorical features를 따로 one-hot-encoding 해야 하지만, lig
 
 ## Histogram, Distplot, Barplot, Countplot
 
-HIstogram, Distplot은 x축이 연속적인 경우
+HIstogram, Distplot은 x축이 연속적인 경우(숫자)
 
-* Histogram은 y축이 count. seaborn에 없어서 pyplot으로 그린다
+* Histogram은 y축이 count
 
 ```python
+# seaborn
+sns.displot(train["target"], kde=False, bins=200)
+
+# pyplot
 plt.hist(train["target"], bins=200)
 plt.title('Histogram target counts')
 plt.xlabel('Count')
@@ -58,6 +62,14 @@ train = pd.read_csv("./train.csv", index_col="PassengerId")
 # 방법 2
 # ()안에 inplace = True, 설정하면 train = 없어도 된다
 train = train.set_index("col_name")
+```
+
+</br>
+
+### 특정 column "Y"->1, "N"->0 으로 변경
+
+```python
+df["col_name"] = df["col_name"].map({'Y':1, 'N':0})
 ```
 
 </br>
