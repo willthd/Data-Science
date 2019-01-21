@@ -1,10 +1,12 @@
 #  and others
 
-> 카테고리 무시한 tips
+> 자주 쓰는 code 또는 필요한 개념들. 잡다하게 있음
 
+</br>
 
+</br>
 
-### Boosting Algorithms
+## Boosting Algorithms
 
 GBM, adaboost, XGboost, light BGM, catboost (순서)
 
@@ -14,9 +16,9 @@ XGboost는 categorical features를 따로 one-hot-encoding 해야 하지만, lig
 
 </br>
 
-### python, 기타 라이브러리들 중 자주 사용하는 code
+## python, 기타 라이브러리들 중 자주 사용하는 code
 
-#### 임의 데이터 프레임 만들기
+### 임의 데이터 프레임 만들기
 
 ```python
 df = pd.DataFrame([["11","2", "6"], ["12","4", "2"], ["13","3", "4"]], columns=["ix","a", "b"])
@@ -31,28 +33,21 @@ df = pd.DataFrame([["11","2", "6"], ["12","4", "2"], ["13","3", "4"]], columns=[
 train = pd.read_csv("./train.csv", index_col="PassengerId")
 
 # 방법 2
-train.set_index("col_name")
+# ()안에 inplace = True, 설정하면 train = 없어도 된다
+train = train.set_index("col_name")
 ```
 
 </br>
 
-#### 컬럼 지우기
+### column 이름 변경
 
 ```python
-del train["col_name"]
+df.rename(columns={"a" : "c", "b" : "d"}, inplace=True)
 ```
 
 </br>
 
-#### dictionary로 구성된 list -> dataFrame
-
-```python
-count_list = pd.DataFrame.from_dict(count_list)
-```
-
-</br>
-
-#### dataFrame, 컬럼 기준으로 정렬하기
+### dataFrame, 컬럼 기준으로 정렬하기
 
 ```python
 count_list = count_list.sort_values(by="a", ascending=False)
@@ -60,7 +55,32 @@ count_list = count_list.sort_values(by="a", ascending=False)
 
 </br>
 
-#### dataFrame에 index 입력하기
+### 백분위 수를 이용해 data 찾기
+
+```python
+# 50%에 위치하는 data, 중앙값
+np.percentile(train["col_name"], 50)
+```
+
+<br>
+
+### 컬럼 지우기
+
+```python
+del train["col_name"]
+```
+
+</br>
+
+### list -> dataFrame
+
+```python
+count_list = pd.DataFrame.from_dict(count_list)
+```
+
+</br>
+
+### dataFrame에 index 입력하기
 
 ```python
 count_list.index.name = "store_id"
@@ -68,7 +88,7 @@ count_list.index.name = "store_id"
 
 </br>
 
-#### 시계열 data 읽어오면서 date 인식. 연도, 월, 날짜, 시간, 분, 초 컬럼 생성
+### 시계열 data 읽어오면서 date 인식. 연도, 월, 날짜, 시간, 분, 초 컬럼 생성
 
 ```python
 test = pd.read_csv("data/bike/test.csv", parse_dates=["datetime"])
@@ -83,7 +103,7 @@ train["datetime-second"] = train["datetime"].dt.second
 
 </br>
 
-#### 시계열 data를 split해서 연도, 월, 날짜 관련 컬럼을 생성
+### 시계열 data를 split해서 연도, 월, 날짜 관련 컬럼을 생성
 
 ```python
 def split_date(date):
@@ -101,7 +121,7 @@ train["year"], train["month"], train["day"] = zip(*train['date'].apply(lambda x:
 
 </br>
 
-#### string 형태의 숫자를 int로 바꿀 때
+### string 형태의 숫자를 int로 바꿀 때
 
 ```python
 # train["year"] = int(train["year"])로 하면 안된다
@@ -112,7 +132,7 @@ train["year"] = train["year"].astype(int)
 
 </br>
 
-#### 그래프 모아서 보기
+### 그래프 모아서 보기
 
 ```python
 figure, (ax1, ax2) = plt.subplots(nrows=1, ncols=2)
@@ -123,7 +143,7 @@ sns.barplot(data=train, x="month", y="total", ax=ax2)
 
 </br>
 
-#### 그래프 사이즈 정하기
+### 그래프 사이즈 정하기
 
 ```python
 plt.figure(figsize=(10, 7))
@@ -131,7 +151,7 @@ plt.figure(figsize=(10, 7))
 
 </br>
 
-#### train["column"] 값 array로 만들기
+### train["column"] 값 array로 만들기
 
 ```python
 my_array = train["column"].values
@@ -139,7 +159,7 @@ my_array = train["column"].values
 
 </br>
 
-#### array 내에 중복되는 값 없애기
+### array 내에 중복되는 값 없애기
 
 ```python
 # list에는 .unique() 함수 없다
@@ -151,7 +171,7 @@ train["column"].unique()
 
 </br>
 
-#### array -> list
+### array -> list
 
 ```python
 my_list = uniqueVals.tolist()
@@ -159,7 +179,7 @@ my_list = uniqueVals.tolist()
 
 </br>
 
-#### case : "nextday_date"컬럼 값이 holiday_date_list에 포함 되어 있는 경우 "nextday_holiday"를 1로 채워넣기
+### case : "nextday_date"컬럼 값이 holiday_date_list에 포함 되어 있는 경우 "nextday_holiday"를 1로 채워넣기
 
 ```python
 # 방법 1
@@ -186,7 +206,7 @@ train["nextday_holiday"] = train["nextday_date"].apply(lambda x : 1 if x in holi
 
 </br>
 
-#### "Name" 컬럼 내 해당 문자열 존재하는 경우, "Title" 컬럼을 "Mr"로 채워 두기
+### "Name" 컬럼 내 해당 문자열 존재하는 경우, "Title" 컬럼을 "Mr"로 채워 두기
 
 ```python
 train.loc[train["Name"].str.contains("Mr"), "Title"] = "Mr"
@@ -194,7 +214,7 @@ train.loc[train["Name"].str.contains("Mr"), "Title"] = "Mr"
 
 </br>
 
-#### column내 문자열 변경
+### column내 문자열 변경
 
 ```python
 train["Name"] = train["Name"].str.replace("Mr", "아저씨")
@@ -202,7 +222,7 @@ train["Name"] = train["Name"].str.replace("Mr", "아저씨")
 
 </br>
 
-#### 컬럼에서 숫자만 추출할 경우
+### 컬럼에서 숫자만 추출할 경우
 
 ```python
 # 컬럼 값이 문자와 숫자로 혼합되어 있는 경우 통일 필요할 때
@@ -231,7 +251,7 @@ train['Age'].replace(regex=True,inplace=True,to_replace=r'\D',value=r'')
 
 </br>
 
-#### 컬럼 중 max, min, mean
+### 컬럼 중 max, min, mean
 
 ```python
 train["Age"].max()
@@ -241,7 +261,7 @@ train["Age"].mean()
 
 </br>
 
-#### python, lambda
+### python, lambda
 
 https://wikidocs.net/64 참고
 
