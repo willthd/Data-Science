@@ -16,6 +16,29 @@ XGboost는 categorical features를 따로 one-hot-encoding 해야 하지만, lig
 
 </br>
 
+## Histogram, Distplot, Barplot, Countplot
+
+HIstogram, Distplot은 x축이 연속적인 경우
+
+* Histogram은 y축이 count. seaborn에 없어서 pyplot으로 그린다
+
+```python
+plt.hist(train["target"], bins=200)
+plt.title('Histogram target counts')
+plt.xlabel('Count')
+plt.ylabel('Target')
+plt.show()
+```
+
+* displot은 y축이 비율
+
+Barplot, Countplot은 x축이 descrete한 경우
+
+* Barplot은 y축 설정 해줘야 한다. 편차 표시 있음
+* Countplot은 y축이 count
+
+</br>
+
 ## python, 기타 라이브러리들 중 자주 사용하는 code
 
 ### 임의 데이터 프레임 만들기
