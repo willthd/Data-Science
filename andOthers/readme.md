@@ -21,7 +21,7 @@ XGboost는 categorical features를 따로 one-hot-encoding 해야 하지만, lig
 ### 임의 데이터 프레임 만들기
 
 ```python
-df = pd.DataFrame([["11","2", "6"], ["12","4", "2"], ["13","3", "4"]], columns=["ix","a", "b"])
+df = pd.DataFrame([["11","2", "6"], ["12","4", "2"], ["13","3", "4"]], columns=["a","b", "c"])
 ```
 
 </br>
