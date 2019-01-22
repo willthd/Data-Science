@@ -48,7 +48,14 @@ Barplot, Countplot은 x축이 descrete한 경우
 ### 임의 데이터 프레임 만들기
 
 ```python
+# 방법 1
 df = pd.DataFrame([["11","2", "6"], ["12","4", "2"], ["13","3", "4"]], columns=["a","b", "c"])
+
+# 방법 2
+df = pd.DataFrame({
+          'A':['a','b','a'],
+          'B':['b','a','c']
+        })
 ```
 
 </br>
@@ -86,6 +93,14 @@ df.rename(columns={"a" : "c", "b" : "d"}, inplace=True)
 
 ```python
 count_list = count_list.sort_values(by="a", ascending=False)
+```
+
+</br>
+
+### null값 채우기
+
+```python
+train["Age"].fillna(0, inplace=True)
 ```
 
 </br>
@@ -142,6 +157,14 @@ train["datetime-second"] = train["datetime"].dt.second
 
 ```python
 train["Pclass"] = train["Pclass"].apply(lambda x: "A" if x == 1 else ("B" if x == 2 else "C"))
+```
+
+</br>
+
+### 특정 column, one-hot-encoding 한번에
+
+```python
+pd.get_dummies(historical_transactions, columns=['category_2', 'category_3']
 ```
 
 </br>
