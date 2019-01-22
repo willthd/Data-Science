@@ -45,6 +45,14 @@ Barplot, Countplot은 x축이 descrete한 경우
 
 ## python, 기타 라이브러리들 중 자주 사용하는 code
 
+### warning message "ignore"이면 없애기
+
+```python
+warnings.filterwarnings("ignore")
+```
+
+</br>
+
 ### 임의 데이터 프레임 만들기
 
 ```python
