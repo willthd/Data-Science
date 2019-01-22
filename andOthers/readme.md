@@ -53,10 +53,15 @@ warnings.filterwarnings("ignore")
 
 </br>
 
-### np.random.seed(n)
+### np.random
 
 ```python
+# np.random.seed(x)
 # seed를 사람이 수동으로 설정한다면 그 다음에 만들어지는 난수들은 예측할 수 있다.
+# np.random.rand(x)
+# 0부터 1사이의 균일 분포에서 x개 난수 생성
+# np.random.shuffle(x)
+# 배열 값 shuffle
 np.random.seed(9)
 np.random.rand(5)
 # array([0.01037415, 0.50187459, 0.49577329, 0.13382953, 0.14211109])
@@ -360,6 +365,20 @@ train["Age"].mean()
 https://wikidocs.net/64 참고
 
 map(), reduce(), filter()에 어떻게 적용하는지
+
+</br>
+
+### groupby()
+
+그룹별 통계
+
+https://datascienceschool.net/view-notebook/76dcd63bba2c4959af15bec41b197e7c/
+
+아주 잘 설명되어 있다
+
+</br>
+
+
 
 
 
