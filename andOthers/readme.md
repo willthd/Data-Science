@@ -138,6 +138,14 @@ train["datetime-second"] = train["datetime"].dt.second
 
 </br>
 
+### Lambda 에서 elif 사용하고 싶을 때, else 여러번
+
+```python
+train["Pclass"] = train["Pclass"].apply(lambda x: "A" if x == 1 else ("B" if x == 2 else "C"))
+```
+
+</br>
+
 ### 시계열 data를 split해서 연도, 월, 날짜 관련 컬럼을 생성
 
 ```python
@@ -236,7 +244,8 @@ train["nextday_holiday"] = train["nextday_date"].isin(holidat_date_list).astype(
 
 ###############
 # 방법 4, 가장 좋다
-train["nextday_holiday"] = train["nextday_date"].apply(lambda x : 1 if x in holiday_date_list else 0)
+train["nextday_holiday"] = train["nextday_date"].
+(lambda x : 1 if x in holiday_date_list else 0)
 ```
 
 </br>
