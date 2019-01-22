@@ -45,10 +45,29 @@ Barplot, Countplot은 x축이 descrete한 경우
 
 ## python, 기타 라이브러리들 중 자주 사용하는 code
 
-### warning message "ignore"이면 없애기
+### warning message "ignore"일 경우, 없애기
 
 ```python
 warnings.filterwarnings("ignore")
+```
+
+</br>
+
+### np.random.seed(n)
+
+```python
+# seed를 사람이 수동으로 설정한다면 그 다음에 만들어지는 난수들은 예측할 수 있다.
+np.random.seed(9)
+np.random.rand(5)
+# array([0.01037415, 0.50187459, 0.49577329, 0.13382953, 0.14211109])
+np.random.rand(5)
+# array([0.21855868, 0.41850818, 0.24810117, 0.08405965, 0.34549864])
+np.random.seed(10)
+np.random.rand(5)
+# array([0.77132064, 0.02075195, 0.63364823, 0.74880388, 0.49850701])
+np.random.seed(9)
+np.random.rand(5)
+# array([0.01037415, 0.50187459, 0.49577329, 0.13382953, 0.14211109])
 ```
 
 </br>
