@@ -378,6 +378,14 @@ https://datascienceschool.net/view-notebook/76dcd63bba2c4959af15bec41b197e7c/
 
 </br>
 
+### index 없애서 일반 colum으로 변경
+
+```python
+train.reset_index(inplace=True)
+```
+
+</br>
+
 
 
 
