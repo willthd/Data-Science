@@ -345,6 +345,8 @@ train["train"] = train.["Age"].astype(int)
 
 # 방법 3
 # 22.0은 220으로 바뀐다는 점 주의. 정수 표현일 때 사용
+# 1과의 차이는 1의 경우 앞의 숫자만 나옴. 예를 들어 7,000,000 이 str으로 저장되어 있을 경우 7만 추출
+# 3의 경우, 7000000 모두 추출
 train['Age'].replace(regex=True,inplace=True,to_replace=r'\D',value=r'')
 ```
 
