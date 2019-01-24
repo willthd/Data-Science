@@ -195,7 +195,11 @@ count_list.index.name = "store_id"
 ### 시계열 data 읽어오면서 date 인식. 연도, 월, 날짜, 시간, 분, 초 컬럼 생성
 
 ```python
-test = pd.read_csv("data/bike/test.csv", parse_dates=["datetime"])
+# 방법 1
+train = pd.read_csv("data/bike/test.csv", parse_dates=["datetime"])
+
+# 방법 2
+train['first_active_month'] = pd.to_datetime(train['first_active_month'])
 
 train["datetime-year"] = train["datetime"].dt.year
 train["datetime-month"] = train["datetime"].dt.month
