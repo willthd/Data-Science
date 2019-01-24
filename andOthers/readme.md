@@ -12,6 +12,10 @@ GBM, adaboost, XGboost, light BGM, catboost (순서)
 
 XGboost는 categorical features를 따로 one-hot-encoding 해야 하지만, light BGM, catboost는 그럴 필요 없다
 
+**catboost, lightGBM, XGboost 비교**
+
+https://towardsdatascience.com/catboost-vs-light-gbm-vs-xgboost-5f93620723db
+
 </br>
 
 </br>
@@ -387,6 +391,14 @@ train.reset_index(inplace=True)
 ```
 
 </br>
+
+### 전체 data에서 train, test data 분류
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(iris_dataset["data"], iris_dataset["target"], random_state=0, test_size=0.2)
+```
+
+
 
 
 
