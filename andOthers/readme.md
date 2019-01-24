@@ -57,6 +57,15 @@ warnings.filterwarnings("ignore")
 
 </br>
 
+### method 설명보기
+
+```python
+# helf(method)
+help(method)
+```
+
+</br>
+
 ### jupyter notebook에서 라이브러리내 method 확인하기
 
 ```python
