@@ -57,6 +57,15 @@ warnings.filterwarnings("ignore")
 
 </br>
 
+### jupyter notebook에서 라이브러리내 method 확인하기
+
+```python
+# method??
+mglearn.plots.plot_knn_classification??
+```
+
+</br>
+
 ### np.random
 
 ```python
