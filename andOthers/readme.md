@@ -6,6 +6,12 @@
 
 </br>
 
+### 높은 확률로로 test, train validation score 나왔지만 비슷하다
+
+둘의 score값이 비슷하다면, 높은 확률이어도 underfitting되었을 수 있다
+
+</br>
+
 ## Boosting Algorithms
 
 GBM, adaboost, XGboost, light GBM, catboost (순서)
