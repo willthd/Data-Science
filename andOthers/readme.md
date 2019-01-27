@@ -6,6 +6,12 @@
 
 </br>
 
+### Feature Importance
+
+값이 낮다고 해서 이 특성이 유용하지 않다는 뜻은 아니다. 단지 트리ㅏㄱ 그 특성을 선택하지 않았을 뿐이며 다른 특성이 돌일한 정보를 지니고 있어서일 수 있다
+
+</br>
+
 ### 높은 확률로로 test, train validation score 나왔지만 비슷하다
 
 둘의 score값이 비슷하다면, 높은 확률이어도 underfitting되었을 수 있다
