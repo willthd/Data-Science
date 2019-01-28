@@ -187,3 +187,33 @@ linear model보다 많은 메모리를 사용하며 훈련과 예측이 보다 �
 
 ## Gradient Boosting Tree(Decision Tree Ensemble)
 
+이전에 만든 tree의 예측과 타깃값 사이의 오차를 줄이는 방향으로 새로운 tree를 추가하는 알고리즘. 이를 위해 손실 함수를 정의하고 경사 하강법을 사용해 다음에 추가될 tree가 예측해야 할 값을 보정해나간다
+
+랜덤포레스트와 달리 무작위성이 없다. 대신 강력한 사전 가지치기가 사용된다. 보통 하나에서 다섯 정도의 깊지 않은 tree를 사용하므로 메모리를 적게 사용하고 예측도 빠르다. 이런 얕은 tree같은 간단한 model(weak learner)을 많이 연결하는 것이 근본 아이디어이며, tree는 많을 수록 좋다
+
+</br>
+
+### 주요 매개변수
+
+n_estimator : 트리 개수. n_estimator의 크기 커지면 model 복잡해지기 때문에 정확도는 높아질 수 있지만 overfitting될 가능성 있다
+
+learning_rate : 이전 tree의 오차를 얼마나 강하게 보정할 것인지 제어. 낮추면 비슷한 복잡도의 모델을 만들기 위해서 더 많은 tree를 추가한다. 따라서 n_estimator와 연관성이 크다
+
+일반적으로 시간과 메모리 한도내에서 n_estimator를 맞추고, 적절한 learning_rate찾는다
+
+max_depth : 일반적으로 작게 설정하며, tree의 깊이가 5보다 깊어지지 않게 한다
+
+</br>
+
+### 특징
+
+random forest보다 hyperparameter tuning에 민감하다
+
+훈련시간이 길다
+
+random forest보다 메모리를 적게 사용하고 예측도 빠르다
+
+data scaling에 구애받지 않는다. 정규화나 표준화 같은 전처리 과정 필요없다
+
+희소한 고차원 데이터에는 잘 작동하지 않는다
+
