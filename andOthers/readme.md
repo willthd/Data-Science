@@ -6,6 +6,14 @@
 
 </br>
 
+### DataSet이 크다?
+
+sample이 크거나, feature가 많다
+
+feature가 3개면 3차원 dataSet
+
+</br>
+
 ### Feature Importance
 
 이 값은 0과 1사이의 숫자로, 각 feature에 대해 0은 전혀 사용되지 않았다는 뜻이며, 1은 완벽하게 target class를 예측했다는 뜻이다. 값이 낮다고 해서 이 특성이 유용하지 않다는 뜻은 아니다. 단지 트리가 그 특성을 선택하지 않았을 뿐이며 다른 특성이 동일한 정보를 지니고 있어서일 수 있다.
