@@ -23,7 +23,7 @@ n_neighbors : 이웃 수
 
 ### 특징
 
-dataSet의 shape(sampe, feature)이 너무 큰 경우 예측이 느리다
+dataSet의 shape(sampe, feature)이 너무 큰 경우 잘 작동하지 않고 느리다
 
 전처리 과정 중요하다
 
@@ -53,11 +53,15 @@ solver(regression) : "sag", 더 빠르게 학습한다
 
 ### 특징
 
+첫 번째로 시도할 알고리즘
+
 학습속도 및 예측 빠르다
 
 훈련과정 이해하기 쉽다
 
-매우 큰 dataSet에서 잘 작동한다
+대용량 dataSet에서 잘 작동한다
+
+고차원 data에서도 잘 작동한다
 
 희소한 dataSet에서 잘 작동한다
 
@@ -75,6 +79,8 @@ ElasticNet()은 Ridge()와 Lasso()의 조합. L1, L2 매개변수 정해줘야�
 
 ## Naive Bayes Classifier
 
+분류만 있다
+
 classifier : GaussianNB()(연속적인 data), BernoulliNB()(이진 data), MultinomialNB()(카운트 data)
 
 </br>
@@ -87,15 +93,21 @@ classifier : GaussianNB()(연속적인 data), BernoulliNB()(이진 data), Multin
 
 ### 특징
 
+분류만 가능하다
+
+linear model보다 훨씬 빠르지만 덜 정확하다(선형 분류보다 훈련 속도가 빠른 편이지만, 일반화 성능은 조금 뒤진다)
+
 훈련과 예측 속도 빠르다
 
 훈련 과정 이해하기 쉽다
 
+대용량 dataSet 가능하다
+
+고차원 dataSet 가능하다
+
 희소한 고차원 dataSet에서 잘 작동한다
 
 비교적 매개변수에 민감하지 않다
-
-선형 분류보다 훈련 속도가 빠른 편이지만, 일반화 성능은 조금 뒤진다
 
 GaussianNB()는 대부분 고차원 dataSet
 
@@ -129,6 +141,8 @@ min_samples_split : 매개변수를 사용해 node가 분기할 수 있는 최�
 </br>
 
 ### 특징
+
+매우 빠르다
 
 시각화 수월하다
 
@@ -169,13 +183,15 @@ max_features : feature 개수 제한. 작을 수록 overfitting 줄어든다. �
 
 ### 특징
 
+decision tree보다 거의 항상 좋은 성능을 낸다
+
 hyperparameter tuning을 많이 하지 않아도 된다
 
 data scaling에 구애받지 않는다. 정규화나 표준화 같은 전처리 과정 필요없다
 
 의사 결정 과정을 간소하게 표현할 경우 Decision Tree가 더 낫다
 
-차원이 높고, 희소한 dataSet에서 잘 작동하지 **않는다**
+고차원 희소 dataSet에서 잘 작동하지 **않는다**
 
 매우 큰 dataSet에서도 잘 작동한다
 
@@ -193,6 +209,12 @@ linear model보다 많은 메모리를 사용하며 훈련과 예측이 보다 �
 
 </br>
 
+* regression : GradientBoostingRegressor()
+
+* classification : GradientBoostingClassifier() 
+
+</br>
+
 ### 주요 매개변수
 
 n_estimator : 트리 개수. n_estimator의 크기 커지면 model 복잡해지기 때문에 정확도는 높아질 수 있지만 overfitting될 가능성 있다
@@ -201,19 +223,55 @@ learning_rate : 이전 tree의 오차를 얼마나 강하게 보정할 것인지
 
 일반적으로 시간과 메모리 한도내에서 n_estimator를 맞추고, 적절한 learning_rate찾는다
 
-max_depth : 일반적으로 작게 설정하며, tree의 깊이가 5보다 깊어지지 않게 한다
+max_depth : 일반적으로 작게 설정하며, tree의 깊이가 **5**보다 깊어지지 않게 한다
 
 </br>
 
 ### 특징
 
+random forest보다 성능이 좋다
+
 random forest보다 hyperparameter tuning에 민감하다
 
-훈련시간이 길다
-
-random forest보다 메모리를 적게 사용하고 예측도 빠르다
+random forest보다 메모리를 적게 사용하고 예측도 빠르다 하지만 학습시간은 더 길다
 
 data scaling에 구애받지 않는다. 정규화나 표준화 같은 전처리 과정 필요없다
 
 희소한 고차원 데이터에는 잘 작동하지 않는다
+
+</br>
+
+</br>
+
+## SVM(kernerlized Support Vector Machines)
+
+각 support vector와의 거리를 측정해 margin을 넓히는 방식. support vector의 중요도는 훈련 과정에서 학습한다
+
+</br>
+
+### 주요 매개변수
+
+gamma : 가우시안 커널 폭의 역수. 훈련 샘플이 미치는 영향의 범위를 결정(분류되는 영역). 작은 값은 넓은 영역을 뜻하며 큰 값이라면 영향이 미치는 범위가 제한적이기 때문에 값이 커지면 model이 그만큼 복잡해짐
+
+C : 각 포인트의 중요도를 제한. 값이 클수록 model이 복잡해짐
+
+</br>
+
+### 특징
+
+hyperparameter tuning에 민감하다
+
+data scaling에 민감하다. 특히 입력 feature의 범위가 비슷해야 한다. 따라서 0과 1사이의 값으로 맞추는 방법을 주로 사용한다(MinMaxScaler())
+
+feature가 적어도 복잡한 결정 경계를 만들 수 있다
+
+저차원, 고차원 dataSet 모두 잘 작동한다
+
+sample이 많을 경우 잘 작동하지 않는다. 시간과 메모리 관점에서도 힘들다
+
+
+
+
+
+
 
