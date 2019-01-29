@@ -56,7 +56,7 @@
 
 
 
-* [models](./models)
+* [machine learning](./machineLearning)
 
 
 
