@@ -2,6 +2,8 @@
 
 > 각 model의 특징을 이해하고, dataSet에 따라 적합한 model을 찾는 것이 목표
 
+</br>
+
 새로운 dataSet으로 작업할 때는 linear model이나 naibe bayes 또는 knn과 같은 간단한 model로 시작해서 성능이 얼마나 나오는지 가늠해보는 것이 좋다. data를 충분히 이해한 뒤에 random forest나 gradient boosting decision tree, SVM, nn같은 복잡한 model을 고려한다
 
 </br>
@@ -277,6 +279,9 @@ random forest보다 학습시간은 더 길다
 각 support vector와의 거리를 측정해 margin을 넓히는 방식. support vector의 중요도는 훈련 과정에서 학습한다
 
 </br>
+
+* regression : SVR()
+* classification : SVC()
 
 ### 주요 매개변수
 
