@@ -43,7 +43,7 @@ sparse dataSet의 경우 잘 안맞는다
 
 ### 주요 매개변수
 
-알파(regression) :  regularization 강도. 클 수록 regularization 크다, model 단순하다
+alpha(regression) :  regularization 강도. 클 수록 regularization 크다, model 단순하다
 
 C(classification) : regularization 강도. 클 수록 regularization 적다, model 단순하다
 
@@ -87,7 +87,7 @@ classifier : GaussianNB()(연속적인 data), BernoulliNB()(이진 data), Multin
 
 ### 주요 매개변수
 
-알파 : regularization 강도. 클 수록 regularization 크다, model 단순하다
+alph : regularization 강도. 클 수록 regularization 크다, model 단순하다
 
 </br>
 
@@ -269,9 +269,46 @@ feature가 적어도 복잡한 결정 경계를 만들 수 있다
 
 sample이 많을 경우 잘 작동하지 않는다. 시간과 메모리 관점에서도 힘들다
 
+</br>
 
+</br>
 
+## Deep Learning
 
+충분히 overfintting되어 문제를 해결할 수 있는 큰 model을 설계한다. 이후 다음 훈련 data가 충분히 학습될 수 있다고 생각될 때 신경망 구조를 줄이거나 규제 강화를 위해 alpha 값을 증가시켜 일반화 성능을 향상시킨다
 
+매끄러운 결정 경계를 원한다면 hidden layer output을 늘리거나, hidden layer를 늘리거나, tanh 함수를 사용할 수 있다
 
+weight 초기값에 따라 model이 크게 달라질 수 있다
+
+</br>
+
+* regression : MLPRegressor(), Dense()
+* classification : MLPClassifier(), Dense()
+
+</br>
+
+### 주요 매개변수
+
+hidden_layer_sizes : hidden layer의 개수와 각 layer의 output. 보통 입력 feature의 수와 비슷하게 설정. 수천 초중반을 넘는 일은 거의 없다
+
+activation : hidden layer의 활성화 함수
+
+alpha : 클 수록 regularization(L2 페널티) 심하다. 기본값은 매우 낮다
+
+random_state : weight 초기값 설정
+
+max_iter : warning 뜨면 늘려줘야한다. default는 200
+
+solver : 매개변수 학습에 사용하는 알고리즘 지정. default는 adam
+
+</br>
+
+### 특징
+
+data scaling 영향 크다. 평균은 0, 분산은 1이 되도록 변형하는 것이 좋다
+
+대량의 data에 내재된 정보를 잡아내고 매우 복잡한 model을 만들 수 있다
+
+종종 학습시간이 오래 걸린다
 
