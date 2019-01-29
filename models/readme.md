@@ -2,6 +2,8 @@
 
 > 각 model의 특징을 이해하고, dataSet에 따라 적합한 model을 찾는 것이 목표
 
+새로운 dataSet으로 작업할 때는 linear model이나 naibe bayes 또는 knn과 같은 간단한 model로 시작해서 성능이 얼마나 나오는지 가늠해보는 것이 좋다. data를 충분히 이해한 뒤에 random forest나 gradient boosting decision tree, SVM, nn같은 복잡한 model을 고려한다
+
 </br>
 
 </br>
@@ -21,7 +23,13 @@ n_neighbors : 이웃 수
 
 </br>
 
-### 특징
+### 장점
+
+이해하기 쉽다
+
+</br>
+
+### 단점
 
 dataSet의 shape(sampe, feature)이 너무 큰 경우 잘 작동하지 않고 느리다
 
@@ -35,8 +43,13 @@ sparse dataSet의 경우 잘 안맞는다
 
 ## Linear model
 
-* regression : linearRegression(), Ridge()(L2), Lasso()(L1), ElasticNet(), SGDRegressor()(dataSet 대용량 일 때)
+regression의 경우, 보통 Ridge()를 선호하지만 특성이 많고, 그 중 일부 feature만 중요하다면 Lasso()
 
+ElasticNet()은 Ridge()와 Lasso()의 조합. L1, L2 매개변수 정해줘야한다
+
+</br>
+
+* regression : linearRegression(), Ridge()(L2), Lasso()(L1), ElasticNet(), SGDRegressor()(dataSet 대용량 일 때)
 * classification : LogisticRegression(), LinearSVC(), SGDClassifier()(dataSet 대용량 일 때)
 
 </br>
@@ -51,7 +64,7 @@ solver(regression) : "sag", 더 빠르게 학습한다
 
 </br>
 
-### 특징
+### 장점
 
 첫 번째로 시도할 알고리즘
 
@@ -61,17 +74,15 @@ solver(regression) : "sag", 더 빠르게 학습한다
 
 대용량 dataSet에서 잘 작동한다
 
-고차원 data에서도 잘 작동한다
+고차원 data에서도 잘 작동한다(특히 sample보다 feature 개수가 더 많은 경우는 완벽하게 예측)
 
-희소한 dataSet에서 잘 작동한다
+sparse dataSet에서 잘 작동한다
+
+</br>
+
+### 단점
 
 저차원의 dataSet에서는 **다른 model의 일반화 성능이 더 좋다**
-
-feature가 많은 dataSet의 경우 성능 매우 우수(특히 sample보다 feature 개수가 더 많은 경우는 완벽하게 예측)
-
-regression의 경우, 보통 Ridge()를 선호하지만 특성이 많고, 그 중 일부 feature만 중요하다면 Lasso()
-
-ElasticNet()은 Ridge()와 Lasso()의 조합. L1, L2 매개변수 정해줘야한다
 
 </br>
 
@@ -81,25 +92,27 @@ ElasticNet()은 Ridge()와 Lasso()의 조합. L1, L2 매개변수 정해줘야�
 
 분류만 있다
 
-classifier : GaussianNB()(연속적인 data), BernoulliNB()(이진 data), MultinomialNB()(카운트 data)
+GaussianNB()는 대부분 고차원 dataSet
+
+MNB()는 보통 0이 아닌 feature가 비교적 많은 dataSet에서 BNB()보다 성능이 좋다
+
+classification : GaussianNB()(연속적인 data), BernoulliNB()(이진 data), MultinomialNB()(카운트 data)
 
 </br>
 
 ### 주요 매개변수
 
-alph : regularization 강도. 클 수록 regularization 크다, model 단순하다
+alpha : regularization 강도. 클 수록 regularization 크다, model 단순하다
 
 </br>
 
-### 특징
-
-분류만 가능하다
-
-linear model보다 훨씬 빠르지만 덜 정확하다(선형 분류보다 훈련 속도가 빠른 편이지만, 일반화 성능은 조금 뒤진다)
+### 장점
 
 훈련과 예측 속도 빠르다
 
 훈련 과정 이해하기 쉽다
+
+linear model보다 훨씬 빠르다 덜 정확하다
 
 대용량 dataSet 가능하다
 
@@ -109,9 +122,11 @@ linear model보다 훨씬 빠르지만 덜 정확하다(선형 분류보다 훈�
 
 비교적 매개변수에 민감하지 않다
 
-GaussianNB()는 대부분 고차원 dataSet
+</br>
 
-MNB()는 보통 0이 아닌 feature가 비교적 많은 dataSet에서 BNB()보다 성능이 좋다
+### 단점
+
+linear model보다 덜 정확하다(일반화 성능 조금 뒤진다)
 
 </br>
 
@@ -140,13 +155,17 @@ min_samples_split : 매개변수를 사용해 node가 분기할 수 있는 최�
 
 </br>
 
-### 특징
+### 장점
 
 매우 빠르다
 
 시각화 수월하다
 
 data scaling에 구애받지 않는다. 정규화나 표준화 같은 전처리 과정 필요없다
+
+</br>
+
+### 단점
 
 overfitting 가능성 다분하다 -> Decision Tree Ensemble
 
@@ -181,7 +200,7 @@ max_features : feature 개수 제한. 작을 수록 overfitting 줄어든다. �
 
 </br>
 
-### 특징
+### 장점
 
 decision tree보다 거의 항상 좋은 성능을 낸다
 
@@ -189,11 +208,15 @@ hyperparameter tuning을 많이 하지 않아도 된다
 
 data scaling에 구애받지 않는다. 정규화나 표준화 같은 전처리 과정 필요없다
 
+매우 큰 dataSet에서도 잘 작동한다
+
+</br>
+
+### 단점
+
 의사 결정 과정을 간소하게 표현할 경우 Decision Tree가 더 낫다
 
 고차원 희소 dataSet에서 잘 작동하지 **않는다**
-
-매우 큰 dataSet에서도 잘 작동한다
 
 linear model보다 많은 메모리를 사용하며 훈련과 예측이 보다 느리다
 
@@ -227,15 +250,21 @@ max_depth : 일반적으로 작게 설정하며, tree의 깊이가 **5**보다 �
 
 </br>
 
-### 특징
+### 장점
+
+</br>
 
 random forest보다 성능이 좋다
 
-random forest보다 hyperparameter tuning에 민감하다
-
-random forest보다 메모리를 적게 사용하고 예측도 빠르다 하지만 학습시간은 더 길다
+random forest보다 메모리를 적게 사용하고 예측도 빠르다 
 
 data scaling에 구애받지 않는다. 정규화나 표준화 같은 전처리 과정 필요없다
+
+### 단점
+
+random forest보다 hyperparameter tuning에 좀 더 민감하다
+
+random forest보다 학습시간은 더 길다
 
 희소한 고차원 데이터에는 잘 작동하지 않는다
 
@@ -257,15 +286,19 @@ C : 각 포인트의 중요도를 제한. 값이 클수록 model이 복잡해짐
 
 </br>
 
-### 특징
-
-hyperparameter tuning에 민감하다
-
-data scaling에 민감하다. 특히 입력 feature의 범위가 비슷해야 한다. 따라서 0과 1사이의 값으로 맞추는 방법을 주로 사용한다(MinMaxScaler())
+### 장점
 
 feature가 적어도 복잡한 결정 경계를 만들 수 있다
 
 저차원, 고차원 dataSet 모두 잘 작동한다
+
+</br>
+
+### 단점
+
+hyperparameter tuning에 민감하다
+
+data scaling에 민감하다. 특히 입력 feature의 범위가 비슷해야 한다. 따라서 0과 1사이의 값으로 맞추는 방법을 주로 사용한다(MinMaxScaler())
 
 sample이 많을 경우 잘 작동하지 않는다. 시간과 메모리 관점에서도 힘들다
 
@@ -304,11 +337,17 @@ solver : 매개변수 학습에 사용하는 알고리즘 지정. default는 ada
 
 </br>
 
-### 특징
-
-data scaling 영향 크다. 평균은 0, 분산은 1이 되도록 변형하는 것이 좋다
+### 장점
 
 대량의 data에 내재된 정보를 잡아내고 매우 복잡한 model을 만들 수 있다
 
-종종 학습시간이 오래 걸린다
+<br>
+
+### 단점
+
+hyperparameter tuning에 민감하다
+
+data scaling 영향 크다. 평균은 0, 분산은 1이 되도록 변형하는 것이 좋다
+
+큰 model은 학습시간이 오래 걸린다
 
