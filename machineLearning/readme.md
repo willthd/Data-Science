@@ -360,6 +360,20 @@ data scaling 영향 크다. 평균은 0, 분산은 1이 되도록 변형하는 �
 
 </br>
 
+# 전처리
+
+**StandardScaler()** : 각 feature의 평균을 0, 분산을 1로 변경해 모든 feature가 같은 크기를 가지게 한다
+
+**RobustScaler()** : StandardScaler()와 비슷하지만 평균을 중간값, 분산을 사분위 값을 사용한다. outlier에 영향을 받지 않게 한다
+
+**MinMaxScaler()** : 모든 feature가 정확하게 0과 1 사이에 위치하도록 데이터를 변경한다. X_test의 경우 X_train으로 fit된 scaler를 이용해 transform하기 때문에 0과 1 사이에 위치하지 않을 수 있다
+
+**Normalizer()** : feature 벡터의 유클리디안 길이가 1이 되도록 데이터 포인트를 조정한다. 다른 scaler는 feature의 통계치를 이용하지만 normalizer는 sample마다 각기 정규화 된다
+
+</br>
+
+</br>
+
 # 비지도 학습
 
 > 출력값이나 정보 없이 학습 알고리즘을 가르쳐야 하는 모든 종류의 머신러닝
@@ -376,7 +390,13 @@ data scaling 영향 크다. 평균은 0, 분산은 1이 되도록 변형하는 �
 
 feature들의 선형 결합을 통해 feature들이 가지고 있는 전체 정보를 최대한 설명할 수 있는 서로 독립적인 새로운 feature(주성분)를 유도하여 해석하는 방법
 
+산점도로 시각화 할 수 있다
+
 feature의 scale값이 서로 다르면 올바른 주성분 방향을 찾을 수 없다. 따라서 PCA를 사용할 때는 StandardScaler()를 feature의 분산이 1이 되도록 data의 스케일을 조정한다
+
+일반적으로 원본 특성 개수만큼의 주성분이 있다
+
+PCA의 주성분의 특성 개수는 항상 입력 데이터의 특성 개수(차원)와 같다
 
 ```python
 from sklearn.decomposition import PCA
@@ -392,38 +412,39 @@ print("원본 데이터 형태: {}".format(str(X_scaled.shape)))
 print("축소된 데이터 형태: {}".format(str(X_pca.shape)))
 # (569, 2)
 
-# 새로운 feature 값들 아래에 저장되어 있다
+# 주성분은 아래에 저장되어 있다
 pca.components_
+print("축소된 데이터 형태: {}".format(str(pca.components_.shape)))
+# (2, 30), 원본 데이터의 feature수와 주성분의 feature 수는 동일하다
 ```
 
 </br>
 
-### NMF(non-negative matrix factorization, 비음수 행렬 분해) - 특성 추출
+### NMF(non-negative matrix factorization, 비음수 행렬 분해) - 차원 축소, 특성 추출
 
+PCA에서는 데이터의 분산이 가장 크고 수직인 성분을 찾았다면 NMF에서는 음수가 아닌 성분과 계수 값을 찾는다. 즉, 주성분과 계수가 모두 0보다 크거나 같아야 한다. 따라서 음수가 아닌 feature를 가진 데이터에만 적용할 수 있다
 
-
-</br>
-
-### t-SNE(t-distributed stochastic neighbor embedding) - 특성 추출
-
-
+데이터를 인코딩하거나 재구성하는 용도로 사용하기보다는 주로 데이터에 있는 유용한 패턴을 추출하는데 사용된다(특히 소리, 유전자 표현, 텍스트처럼 덧붙이는 구조를 가진 데이터)
 
 </br>
 
-## 군집 알고리즘
+### t-SNE(t-distributed stochastic neighbor embedding) - manifold learning
+
+데이터 포인트 사이의 거리를 가장 잘 보존하는 2차원 표현을 찾는 것이다
+
+시각화가 목적이기 때문에 3개 이상의 특성을 뽑는 경우는 거의 없다
+
+테스트 세트에는 적용할 수 없고, 단지 훈련했던 데이터만 변환할 수 있다. 따라서 manifold learning은 탐색적 데이터 분석에 유용하지만 지도 학습용으로는 거의 사용하지 않는다
+
+trainsform() 메소드가 따로 없으므로 fit_transform()을 사용한다
+
+</br>
+
+## 군집
 
 > 데이터를 비슷한 것끼리 그룹으로 묶는 것
 
 </br>
 
-</br>
+### k-means
 
-# 전처리
-
-**StandardScaler()** : 각 feature의 평균을 0, 분산을 1로 변경해 모든 feature가 같은 크기를 가지게 한다
-
-**RobustScaler()** : StandardScaler()와 비슷하지만 평균을 중간값, 분산을 사분위 값을 사용한다. outlier에 영향을 받지 않게 한다
-
-**MinMaxScaler()** : 모든 feature가 정확하게 0과 1 사이에 위치하도록 데이터를 변경한다. X_test의 경우 X_train으로 fit된 scaler를 이용해 transform하기 때문에 0과 1 사이에 위치하지 않을 수 있다
-
-**Normalizer()** : feature 벡터의 유클리디안 길이가 1이 되도록 데이터 포인트를 조정한다. 다른 scaler는 feature의 통계치를 이용하지만 normalizer는 sample마다 각기 정규화 된다
