@@ -356,3 +356,74 @@ data scaling 영향 크다. 평균은 0, 분산은 1이 되도록 변형하는 �
 
 큰 model은 학습시간이 오래 걸린다
 
+</br>
+
+</br>
+
+# 비지도 학습
+
+> 출력값이나 정보 없이 학습 알고리즘을 가르쳐야 하는 모든 종류의 머신러닝
+
+</br>
+
+## 비지도 변환
+
+>  데이터를 새롭게 표현해 사람이나 다른 머신러닝 알고리즘이 원래 데이터보다 쉽게 해석할 수 있도록 만드는 알고리즘. 시각화, data 압축, 지도 학습 등을 위해 정보가 더 잘 드러나는 feature를 찾기 위한 것
+
+</br>
+
+### PCA(주성분 분석) - 차원 축소
+
+feature들의 선형 결합을 통해 feature들이 가지고 있는 전체 정보를 최대한 설명할 수 있는 서로 독립적인 새로운 feature(주성분)를 유도하여 해석하는 방법
+
+feature의 scale값이 서로 다르면 올바른 주성분 방향을 찾을 수 없다. 따라서 PCA를 사용할 때는 StandardScaler()를 feature의 분산이 1이 되도록 data의 스케일을 조정한다
+
+```python
+from sklearn.decomposition import PCA
+# 데이터의 처음 두 개 주성분만 유지시킵니다
+pca = PCA(n_components=2)
+# 유방암 데이터로 PCA 모델을 만듭니다
+pca.fit(X_scaled)
+
+# 처음 두 개의 주성분을 사용해 데이터를 변환합니다
+X_pca = pca.transform(X_scaled)
+print("원본 데이터 형태: {}".format(str(X_scaled.shape)))
+# (596, 30)
+print("축소된 데이터 형태: {}".format(str(X_pca.shape)))
+# (569, 2)
+
+# 새로운 feature 값들 아래에 저장되어 있다
+pca.components_
+```
+
+</br>
+
+### NMF(non-negative matrix factorization, 비음수 행렬 분해) - 특성 추출
+
+
+
+</br>
+
+### t-SNE(t-distributed stochastic neighbor embedding) - 특성 추출
+
+
+
+</br>
+
+## 군집 알고리즘
+
+> 데이터를 비슷한 것끼리 그룹으로 묶는 것
+
+</br>
+
+</br>
+
+# 전처리
+
+**StandardScaler()** : 각 feature의 평균을 0, 분산을 1로 변경해 모든 feature가 같은 크기를 가지게 한다
+
+**RobustScaler()** : StandardScaler()와 비슷하지만 평균을 중간값, 분산을 사분위 값을 사용한다. outlier에 영향을 받지 않게 한다
+
+**MinMaxScaler()** : 모든 feature가 정확하게 0과 1 사이에 위치하도록 데이터를 변경한다. X_test의 경우 X_train으로 fit된 scaler를 이용해 transform하기 때문에 0과 1 사이에 위치하지 않을 수 있다
+
+**Normalizer()** : feature 벡터의 유클리디안 길이가 1이 되도록 데이터 포인트를 조정한다. 다른 scaler는 feature의 통계치를 이용하지만 normalizer는 sample마다 각기 정규화 된다
