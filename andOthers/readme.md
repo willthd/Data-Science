@@ -239,10 +239,14 @@ train["Pclass"] = train["Pclass"].apply(lambda x: "A" if x == 1 else ("B" if x =
 
 </br>
 
-### 특정 column, one-hot-encoding 한번에
+### one-hot-encoding 한번에
 
 ```python
-pd.get_dummies(historical_transactions, columns=['category_2', 'category_3']
+# 특정 column만
+train = pd.get_dummies(historical_transactions, columns=['category_2', 'category_3'])
+
+# 범주형 컬럼 중 값이 문자열로 되어진 것만 전부 바꿔준다. 값이 숫자로 되어 있는 범주형 컬럼은 위와 같이 컬럼명을 따로 명시해줘야하거나, 그 값을 str으로 변환한 후 get_dummies()함수를 사용해야 한다
+train = pd.get_dummies(train)
 ```
 
 </br>
@@ -452,5 +456,27 @@ X_train, X_test, y_train, y_test = train_test_split(iris_dataset["data"], iris_d
 
 ```python
 train["column"].value_counts()
+```
+
+</br>
+
+### column indexing
+
+```python
+# numpy는 마지막 원소를 포함하지 않지만, pandas는 포함한다
+# a컬럼에서 b컬럼까지
+X_train = train.loc[:, "a":"b"]
+```
+
+</br>
+
+### 구간분할(binding, 이산화)
+
+```python
+# -3부터 3까지 11개의 point로 분할. 구간은 10
+bins = np.linspace(-3, 3, 11)
+
+# X를 각 구간에 맞게 1~10으로 표시
+which_bin = np.digitize(X, bins=bins)
 ```
 
