@@ -478,3 +478,67 @@ k-means 알고리즘을 사용한 벡터 양자화의 흥미로운 면은 입력
 
 # 데이터 표현과 feature engineering
 
+### one-hot-encoding
+
+pandas의 get_dummies()를 이용해 만들 수 있다
+
+주의 할 점은, train과 test의 feature column순서가 동일해야 한다는 점이다. 따라서 train과 test가 합쳐진 전체 dataSet에서 get_dummies()를 이용해 one-hot-encoding을 처리하던지, 따로 할 경우 feature column의 순서가 동일한지 확인해봐야 한다
+
+column값이 숫자인 범주형 feature는 그 값을 str으로 변환 후, get_dummies()를 활용하거나, get_dummies()함수에 컬럼명을 따로 명시해줘야 한다
+
+</br>
+
+### 구간 분할(binding, 이산화)
+
+용량이 매우 크고 고차원 데이터셋이라 **선형 모델**을 사용해야 한다면 연속형 데이터를 구간 분할하는 것이 모델 성능을 높이는 데 아주 좋은 방법이다
+
+</br>
+
+### 상호작용과 다항식
+
+특별히 feature를 풍부하게 나타내는 또 하나의 방법은 원본 데이터에 상호작용(interaction)과 다항식을 추가하는 것이다
+
+ex)
+
+```python
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+
+boston = load_boston()
+X_train, X_test, y_train, y_test = train_test_split(boston.data, boston.target,
+                                                    random_state=0)
+
+# 데이터 스케일 조정
+scaler = MinMaxScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+
+poly = PolynomialFeatures(degree=2).fit(X_train_scaled)
+X_train_poly = poly.transform(X_train_scaled)
+X_test_poly = poly.transform(X_test_scaled)
+
+from sklearn.linear_model import Ridge
+ridge = Ridge().fit(X_train_scaled, y_train)
+print("상호작용 특성이 없을 때 점수: {:.3f}".format(ridge.score(X_test_scaled, y_test)))
+# 0.621
+ridge = Ridge().fit(X_train_poly, y_train)
+print("상호작용 특성이 있을 때 점수: {:.3f}".format(ridge.score(X_test_poly, y_test)))
+# 0.753
+
+from sklearn.ensemble import RandomForestRegressor
+rf = RandomForestRegressor(n_estimators=100, random_state=0).fit(X_train_scaled, y_train)
+print("상호작용 특성이 없을 때 점수: {:.3f}".format(rf.score(X_test_scaled, y_test)))
+# 0.795
+rf = RandomForestRegressor(n_estimators=100, random_state=0).fit(X_train_poly, y_train)
+print("상호작용 특성이 있을 때 점수: {:.3f}".format(rf.score(X_test_poly, y_test)))
+# 0.773
+```
+
+random forest 같이 더 복잡한 model을 사용하면 결과는 다르다. feature를 추가하지 않아도 Ridge보다 성능이 좋다. 오히려 feature를 추가한 경우 성능이 조금 줄어든다. 따라서 항상 feature추가가 더 좋은 결론을 만드는 것은 아니다
+
+</br>
+
+### 일변량 비선형 변환
+
