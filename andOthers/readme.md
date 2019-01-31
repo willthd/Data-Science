@@ -446,3 +446,11 @@ X_train, X_test, y_train, y_test = train_test_split(iris_dataset["data"], iris_d
 
 전체 data를 메모리에 모두 적재할 수 없을 때난 fit() 메서드 대신에 학습된 것을 유지하면서 반복하여 학습할 수 있는 partial_fit() 메서드를 사용한다. 이는 mini-batch를 사용해 model을 점진적으로 학습시킨 경우와 유사하다
 
+</br>
+
+### 범주형 데이터 문자열 확인하기
+
+```python
+train["column"].value_counts()
+```
+
