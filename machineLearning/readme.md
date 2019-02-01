@@ -639,3 +639,57 @@ score = LogisticRegression(solver='liblinear').fit(X_train_rfe, y_train).score(X
 
 # 모델의 평가와 성능 향상
 
+### 교차 검증(cross validation)
+
+sklearn에 있는 cross_cal_score() 함수에서 fold를 나눌 때 기본적으로 분류에는 StratifiedKFold(계층 별 교차 검증)를 사용해 훈련 세트와 테스트 세트를 나누고, 회귀에는 단순한 KFold를 적용한다. dataSet이 클래스 0, 1, 2 이렇게 순서대로 있는 경우 학습이 안되는 것을 막기 위함이다. KFold에서 매개변수 shuffle을 True로 설정하면 되지만 cross_val_score에서 이를 조정할 수는 없다. 예를 들어 샘플의 90%가 클래스 A이고, 10%가 클래스 B에 속한다면, 계층별 교차 검증은 각 fold에 클래스 A 샘플이 90%, 클래스 B샘플이 10%가 되도록 만든다. 따라서 **분류**의 경우 일반화 성능을 측정할 때는 계층별 교차 검증을 이용한다
+
+#### k-fold
+
+순서대로 fold 나눠준다. shuffle=true 할 경우 무작위로 섞고, 섞을 때 random_state를 고정해서 똑같은 작업을 재현할 수 있다
+
+```python
+from sklearn.model_selection import KFold
+
+kfold = KFold()
+scores = cross_val_score(logreg, iris.data, iris.target, cv=kfold)
+```
+
+### stratified k-fold
+
+데이터셋에 담겨 있는 클래스별 비율에 맞게 fold를 설정해준다. 분류에 사용된다
+
+```python
+skf = StratifiedKFold()
+scores = corss_val_score(logreg, iris.data, iris.target, cv=skf)
+```
+
+#### LOOCV
+
+fold 하나에 샘플 하나만 들어 있는 k-fold cross validation. 각 반복에서 하나의 데이터 포인트를 선택해 테스트 세트로 사용한다. 데이터셋이 작을 경우 더 좋은 결과를 만들기도 한다
+
+```python
+loo = LeaveOut()
+scores = cross_val_score(logreg, iris.data, iris.target, cv=loo) v
+```
+
+#### 임의 분할 교차 검증
+
+전체 dataSet에서 비율 또는 개수 만큼 train과 test를 임의로 split해 만들고(random_state 고정) n_splits 값 만큼 반복 검증한다. 따라서 특정 data sample이 여러번 포함 될 수 있다(train, test 둘다). 대규모 데이터셋에서 작업할 때 유용
+
+```python
+suffle_split = ShuffleSplit(test_size=.5, train_size=.5, n_splits=10)
+scores = cross_val_score(logreg, iris.data, iris.target, cv=shuffle_split)
+
+# 분류의 경우
+StratifiedShuffleSplit() 사용한다
+```
+
+### Group CV
+
+한 그룹 전체가 훈련 세트 아니면 테스트 세트에 있게 분할 하는 방법이다
+
+```python
+groups = [0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 3]
+scores = cross_val_score(logreg, X, y, groups, cv=GroupKFold(n_splits=3))
+```
+
