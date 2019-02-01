@@ -49,6 +49,10 @@ regression의 경우, 보통 Ridge()를 선호하지만 특성이 많고, 그 �
 
 ElasticNet()은 Ridge()와 Lasso()의 조합. L1, L2 매개변수 정해줘야한다
 
+범주형 변수가 정수로 표기되어 있는 경우 연속형 변수로 해석한다. 따라서 이 경우 one-hot-encodig을 사용한다
+
+구간 분할이나 다항식과 상호작용 특성을 새로 추가해 큰 이득을 볼 수 있다
+
 </br>
 
 * regression : linearRegression(), Ridge()(L2), Lasso()(L1), ElasticNet(), SGDRegressor()(dataSet 대용량 일 때)
@@ -140,6 +144,10 @@ Decision Tree를 학습한다는 것은 정답에 가장 빨리 도달하는 yes
 
 완전한 tree : 모든 leaf node가 순수 node인 tree(train dataSet 100% 정확도. overfitting)
 
+tree model은 feature의 순서에도 영향을 받는다
+
+tree model은 훈련 세트에 있는 특성의 범위 밖으로 외삽(extrapolation)할 능력이 없다. 이런 경우 테스트 세트와 가자아 가까이 있는 마지막 훈련 세트 데이터의 타깃값을 예측으로 사용한다(예를 들어 시계열 data처럼 훈련 세트는 yy/mm/dd까지의 data이고, 테스트 세트는 그 이후의 경우)
+
 </br>
 
 * regression : DecisionTreeRegressor()(최종 영역의 타깃값의 평균값을 예측 결과로 한다)
@@ -198,7 +206,7 @@ n_estimators : 생성할 tree의 개수. 이 값이 크면 tree들은 서로 매
 
 n_jobs : 사용할 core 개수(-1 모든 core, default값은 1)
 
-max_features : feature 개수 제한. 작을 수록 overfitting 줄어든다. 기본값을 사용하는 것이 좋다(regressiong의 경우 max_features = n_features, classification의 경우 max_features = sqrt(n_features))
+max_features : feature 개수 제한. 작을 수록 overfitting 줄어든다. 기본값을 사용하는 것이 좋다(regressiong의 경우 max_features = n_features, classification의 경우 max_features = sqrt(n_features). decision tree나 gradient boosting tree의 경우 기본값 "None")
 
 </br>
 
@@ -478,6 +486,8 @@ k-means 알고리즘을 사용한 벡터 양자화의 흥미로운 면은 입력
 
 # 데이터 표현과 feature engineering
 
+선형 모델은 구간 분하링나 다항식과 상호작용 특성을 새로 추가해 큰 이득을 볼수 있다. 반면에 랜덤 포레스트나 SVM같은 비선형 모델은 특성을 늘지 않고서도 복잡한 문제를 학습할 수 있다. 실제로 feature와 모델의 궁합이 가장 중요하다
+
 ### one-hot-encoding
 
 pandas의 get_dummies()를 이용해 만들 수 있다
@@ -541,4 +551,91 @@ random forest 같이 더 복잡한 model을 사용하면 결과는 다르다. fe
 </br>
 
 ### 일변량 비선형 변환
+
+**tree기반 모델은 feature의 순서에만 영향을 받지만**, 선형 모델과 신경망은 각 특성의 스케일과 분포에 밀접하게 연관되어 있기 때문에 비선형 변환이 유용하다
+
+대부분의 모델은 각 feature가(회귀에서는 target도) 정규분포와 비슷할 때 최고의 성능을 낸다. 확률적 요소를 가진 많은 알고리즘의 이론이 정규분포를 근간으로 하고 있기 때문이다
+
+tree기반 model은 스스로 중요한 상호작용을 찾아낼 수 있고 대부분의 경우 데이터를 명시적으로 변환하지 않아도 된다
+
+sin(), cos() 함수는 주기적인 패턴이 들어 있는 데이터를 다룰 때 편리하다
+
+카운트(예를 들어 주문 횟수)를 예측하는 경우가 전형적인 예로 log(y + 1)를 사용해 변환하면 도움이 된다
+
+</br>
+
+### 특성 자동 선택
+
+보통 새로운 특성을 추가할 때나 고차원 데이터셋을 사용할 때, 가장 유용한 특성만 선택하고 나머지는 무시해서 특성의 수를 줄이는 것이 좋다. 이렇게 하면 모델이 간단해지고 일반화 성능이 올라간다
+
+feature 중 가장 좋다고 판단되는 feature만 선택한다
+
+결과는 보통 항상 더 좋다고 할 수는 없다. 하지만 feature가 너무 많을 경우 고려해볼 필요 있다
+
+선택된 feature 그래프로 확인할 수 있다
+
+```python
+mask = select.get_support()
+plt.matshow(mask.reshape(1, -1), cmap="gray_r")
+plt.xlabel("faeture_number")
+```
+
+#### 일변량 통계(univariate statistics)
+
+개개의 feature와 target 사이에 중요한 통계적 관계가 있는지 계산한다
+
+```python
+# %로 선택
+from sklearn.feature_selection import SelectPercentile
+# 개수로 선택
+from sklearn.feature_selection import SeleckKBest
+
+select = SelectPercentile(percentile=50)
+select.fit(X_train, y_train)
+X_train_selected = select.transform(X_train)
+X_test_seleceted = select.transform(X_test)
+
+score = LogisticRegression()fit(X_train_selected, y_train).score(X_test_l1, y_test)
+```
+
+</br>
+
+#### 모델 기반 선택(model-based selection)
+
+모델을 사용해 feature의 중요도를 평가해서 가장 중요한 feature들만 선택한다
+
+```python
+from sklearn.feature_selection import SelectFromModel
+
+# median이니까 feature 절반 가량 선택한다. "1.2*median" 이런식으로 사용할 수 있다
+select = SelectFromModel(RandomForestClassfier(n_estimators=100, random_state=42, threshold="median"))
+select.fit(X_train, y_train)
+X_train_l1 = select.transform(X_train)
+X_test_l1 = select.transform(X_test)
+
+score = LogisticRegression().fit(X_train_l1, y_train).score(X_test_l1, y_test)
+```
+
+</br>
+
+#### 반복적 선택(iterative selection)
+
+두 가지 방법 있다. 첫번째는 feature를 하나도 선택하지 않은 상태로 시작해서 어떤 종료 조건에 도달할 때까지 하나씩 추가하는 방법이고, 두번째는 모든 feature를 가지고 시작해서 어떤 종료 조건이 될 때까지 feature를 하나씩 제거해가는 방법이다(RFE, recursive feature elimination, 재귀적 특성 제거). 따라서 앞서 소개한 방법들보다 계산 비용이 훨씬 많이 든다
+
+```python
+from sklearn.feature_selection import RFE
+select = RFE(RandomForestClassifier(n_estimators=100, random_state=42),
+             n_features_to_select=40)
+select.fit(X_train, y_train)
+X_train_rfe = select.transform(X_train)
+X_test_rfe = select.transform(X_test)
+
+score = LogisticRegression(solver='liblinear').fit(X_train_rfe, y_train).score(X_test_rfe, y_test)
+```
+
+</br>
+
+</br>
+
+# 모델의 평가와 성능 향상
 
