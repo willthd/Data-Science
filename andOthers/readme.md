@@ -6,6 +6,8 @@
 
 </br>
 
+대부분의 model은 각 feature가(회귀에서는 target도) 정규분포와 비슷할 때 최고의 성능을 낸다. 확률적 요소를 가진 많은 알고리즘의 이론이 정규분포를 근간으로 하고 있기 때문이다
+
 ### DataSet이 크다?
 
 sample이 크거나, feature가 많다
@@ -479,4 +481,16 @@ bins = np.linspace(-3, 3, 11)
 # X를 각 구간에 맞게 1~10으로 표시
 which_bin = np.digitize(X, bins=bins)
 ```
+
+</br>
+
+### reshape()
+
+![reshape_0](/Users/PJS/Desktop/reshape_0.jpg)
+
+![re_1](./reshape_1.jpg)
+
+![re_2](./reshape_2.jpg)
+
+![re_1](./reshape_3.jpg)
 
