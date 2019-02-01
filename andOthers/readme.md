@@ -486,11 +486,11 @@ which_bin = np.digitize(X, bins=bins)
 
 ### reshape()
 
-![reshape_0](/Users/PJS/Desktop/reshape_0.jpg)
+원소의 개수가 n개 일 때(차원은 중요하지 않다), 이를 원하는 shape으로 변형한다
 
-![re_1](./reshape_1.jpg)
+reshape(-1, 1) : 열의 개수를 1로 유지하면서 행을 그에 맞게 변형한다 -> shape은 (n, 1)
 
-![re_2](./reshape_2.jpg)
+reshape(1, -1) : 행의 개수를 1로 유지하면서 열을 그에 맞게 변형한다 -> shape은 (1, n)
 
-![re_1](./reshape_3.jpg)
+reshape(-1) : 하나의 행렬로 존재한다 -> shape : (n, )
 
