@@ -641,7 +641,9 @@ score = LogisticRegression(solver='liblinear').fit(X_train_rfe, y_train).score(X
 
 ### 교차 검증(cross validation)
 
-sklearn에 있는 cross_cal_score() 함수에서 fold를 나눌 때 기본적으로 분류에는 StratifiedKFold(계층 별 교차 검증)를 사용해 훈련 세트와 테스트 세트를 나누고, 회귀에는 단순한 KFold를 적용한다. dataSet이 클래스 0, 1, 2 이렇게 순서대로 있는 경우 학습이 안되는 것을 막기 위함이다. KFold에서 매개변수 shuffle을 True로 설정하면 되지만 cross_val_score에서 이를 조정할 수는 없다. 예를 들어 샘플의 90%가 클래스 A이고, 10%가 클래스 B에 속한다면, 계층별 교차 검증은 각 fold에 클래스 A 샘플이 90%, 클래스 B샘플이 10%가 되도록 만든다. 따라서 **분류**의 경우 일반화 성능을 측정할 때는 계층별 교차 검증을 이용한다
+sklearn에 있는 cross_cal_score() 함수에서 fold를 나눌 때 기본적으로 분류에는 StratifiedKFold(계층 별 교차 검증)를 사용해 훈련 세트와 테스트 세트를 나누고, 회귀에는 단순한 KFold를 적용한다
+
+</br>
 
 #### k-fold
 
@@ -654,14 +656,18 @@ kfold = KFold()
 scores = cross_val_score(logreg, iris.data, iris.target, cv=kfold)
 ```
 
+</br>
+
 ### stratified k-fold
 
-데이터셋에 담겨 있는 클래스별 비율에 맞게 fold를 설정해준다. 분류에 사용된다
+분류에 사용된다. 데이터셋에 담겨 있는 클래스별 비율에 맞게 fold를 설정해준다.  dataSet이 클래스 0, 1, 2 이렇게 순서대로 있는 경우 학습이 안되는 것을 막기 위함이다. 예를 들어 샘플의 90%가 클래스 A이고, 10%가 클래스 B에 속한다면, 계층별 교차 검증은 각 fold에 클래스 A 샘플이 90%, 클래스 B샘플이 10%가 되도록 만든다
 
 ```python
 skf = StratifiedKFold()
 scores = corss_val_score(logreg, iris.data, iris.target, cv=skf)
 ```
+
+</br>
 
 #### LOOCV
 
@@ -671,6 +677,8 @@ fold 하나에 샘플 하나만 들어 있는 k-fold cross validation. 각 반�
 loo = LeaveOut()
 scores = cross_val_score(logreg, iris.data, iris.target, cv=loo) v
 ```
+
+</br>
 
 #### 임의 분할 교차 검증
 
@@ -683,6 +691,8 @@ scores = cross_val_score(logreg, iris.data, iris.target, cv=shuffle_split)
 # 분류의 경우
 StratifiedShuffleSplit() 사용한다
 ```
+
+</br>
 
 ### Group CV
 
