@@ -639,13 +639,21 @@ score = LogisticRegression(solver='liblinear').fit(X_train_rfe, y_train).score(X
 
 # 모델의 평가와 성능 향상
 
-### 교차 검증(cross validation)
+훈련 세트로는 모델을 만들고, 검증 세트로는 모델의 매개변수를 선택하고, 테스트 세트로는 선택된 매개변수의 성능을 평가한다
+
+검증 세트를 사용해 최적의 매개변수를 선택한 후, 그 매개변수에서 **훈련 세트와 검증 세트 데이터를 모두** 이용해 모델을 다시 만든다. 이렇게 하는 이유는 모델을 만들 때 가능한 한 많은 데이터를 이용하기 위함이다
+
+테스트 세트 정확도이 기초해 어떤 선택을 했다면 테스트 세트의 정보를 모델에 누설한 것이다. 그렇기 때문에 최종 평가에만 사용하도록 테스트 세트를 분리해 유지하는 것이 중요하다
+
+</br>
+
+## 교차 검증(cross validation)
 
 sklearn에 있는 cross_cal_score() 함수에서 fold를 나눌 때 기본적으로 분류에는 StratifiedKFold(계층 별 교차 검증)를 사용해 훈련 세트와 테스트 세트를 나누고, 회귀에는 단순한 KFold를 적용한다
 
 </br>
 
-#### k-fold
+### k-fold
 
 순서대로 fold 나눠준다. shuffle=true 할 경우 무작위로 섞고, 섞을 때 random_state를 고정해서 똑같은 작업을 재현할 수 있다
 
@@ -669,7 +677,7 @@ scores = corss_val_score(logreg, iris.data, iris.target, cv=skf)
 
 </br>
 
-#### LOOCV
+### LOOCV
 
 fold 하나에 샘플 하나만 들어 있는 k-fold cross validation. 각 반복에서 하나의 데이터 포인트를 선택해 테스트 세트로 사용한다. 데이터셋이 작을 경우 더 좋은 결과를 만들기도 한다
 
@@ -680,7 +688,7 @@ scores = cross_val_score(logreg, iris.data, iris.target, cv=loo) v
 
 </br>
 
-#### 임의 분할 교차 검증
+### 임의 분할 교차 검증
 
 전체 dataSet에서 비율 또는 개수 만큼 train과 test를 임의로 split해 만들고(random_state 고정) n_splits 값 만큼 반복 검증한다. 따라서 특정 data sample이 여러번 포함 될 수 있다(train, test 둘다). 대규모 데이터셋에서 작업할 때 유용
 
@@ -703,3 +711,69 @@ groups = [0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 3]
 scores = cross_val_score(logreg, X, y, groups, cv=GroupKFold(n_splits=3))
 ```
 
+</br>
+
+</br>
+
+## Grid Search
+
+```python
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import SVC
+
+param_grid = {'C': [0.001, 0.01, 0.1, 1, 10, 100],
+              'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
+grid_search = GridSearchCV(SVC(), param_grid, cv=5, return_train_score=True, iid=True)
+
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target,
+                                                    random_state=0)
+grid_search.fit(X_train, y_train)
+
+print("최적 매개변수: {}".format(grid_search.best_params_))
+print("최고 교차 검증 점수: {:.2f}".format(grid_search.best_score_))
+print("테스트 세트 점수: {:.2f}".format(grid_search.score(X_test, y_test)))
+```
+
+</br>
+
+grid_search 잘하고 있는지 확인해 볼 필요 있다. parameter가 두 개의 경우 heatmap으로 보면 수월하다
+
+**good case**
+
+![gs_0](./gs_0.jpg)
+
+**bad cases**
+
+![gs_1](./gs_1.jpg)
+
+첫 번째는 변화가 아예 없다
+
+두 번째는 gamma에 의해서만 영향을 받고 있다. 따라서 C의 범위가 변경 되어야 할 필요 있다
+
+세 번째는 최적치가 그래프의 경계에 있으니 이 경계 너머에 더 나은 값이 있다고 생각할 수 있다
+
+</br>
+
+### 다양한 교차 검증 적용
+
+특별히 훈련 세트와 검증 세트로 한 번만 분할하려면 n_splits=1로 하고 ShuffleSplit이나 StratifiedShuffleSplit을 사용한다. 이런 방법은 데이터셋이 매우 크거나 모델 구축에 시간이 오래 걸릴 때 유용하다
+
+#### 중첩 교차 검증(nested CV)
+
+평균 교차 검증 정확도를 파악하기 위함이다. 미래의 데이터에 적용하기 위한 예측 모델을 찾는 데는 거의 사용하지 않는다. 그러나 특정 데이터셋에서 주어진 모델이 얼마나 잘 이반화되는지 평가하는 데 유용한 방법이다. 하지만 매우 비싼 작업이다. 결국 이것은 훈련 세트와 테스트 세트를 한 번 나누는 것이 아니라, 여러번 나눠서 각각 GridSearchCV를 해보고 그 평균을 알아 보는 방법이다
+
+```python
+param_grid = {'C': [0.001, 0.01, 0.1, 1, 10, 100],
+              'gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
+scores = cross_val_score(GridSearchCV(SVC(), param_grid, cv=5),
+                         iris.data, iris.target, cv=5)
+print("교차 검증 점수: ", scores)
+print("교차 검증 평균 점수: ", scores.mean())
+print(param_grid)
+```
+
+</br>
+
+#### 교차 검증과 grid search 병렬화
+
+model에서 n_jobs옵션을 사용하면 이 모델을 이용하는 GridSearchCV에서는 병렬화 옵션을 사용할 수 없다. cross_val_score와 GridSearchCV역시 함께 쓸 때 n_jobs 옵션이 중첩될 수 없다. 작업 프로세스가 고아 프로세스가 되는 것을 방지하기 위해 막고 경고 메세지와 함께 n_jobs를 1(default)로 변경한다
