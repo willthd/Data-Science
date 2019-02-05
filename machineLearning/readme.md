@@ -366,6 +366,18 @@ data scaling 영향 크다. 평균은 0, 분산은 1이 되도록 변형하는 �
 
 </br>
 
+## 분류 예측의 불확실성 추정
+
+어떤 테스트 포인트에 대해 분류기가 예측한 클래스가 무엇인지 뿐만 아니라 정확한 클래스임을 얼마나 확신하는지가 중요하다
+
+분류기에서 불확실성을 추정할 수 있는 함수가 두 개 있다
+
+decision_function()
+
+predict_proba()
+
+</br>
+
 </br>
 
 # 전처리
@@ -754,11 +766,11 @@ grid_search 잘하고 있는지 확인해 볼 필요 있다. parameter가 두 �
 
 </br>
 
-### 다양한 교차 검증 적용
+## 다양한 교차 검증 적용
 
 특별히 훈련 세트와 검증 세트로 한 번만 분할하려면 n_splits=1로 하고 ShuffleSplit이나 StratifiedShuffleSplit을 사용한다. 이런 방법은 데이터셋이 매우 크거나 모델 구축에 시간이 오래 걸릴 때 유용하다
 
-#### 중첩 교차 검증(nested CV)
+### 중첩 교차 검증(nested CV)
 
 평균 교차 검증 정확도를 파악하기 위함이다. 미래의 데이터에 적용하기 위한 예측 모델을 찾는 데는 거의 사용하지 않는다. 그러나 특정 데이터셋에서 주어진 모델이 얼마나 잘 이반화되는지 평가하는 데 유용한 방법이다. 하지만 매우 비싼 작업이다. 결국 이것은 훈련 세트와 테스트 세트를 한 번 나누는 것이 아니라, 여러번 나눠서 각각 GridSearchCV를 해보고 그 평균을 알아 보는 방법이다
 
@@ -774,6 +786,85 @@ print(param_grid)
 
 </br>
 
-#### 교차 검증과 grid search 병렬화
+### 교차 검증과 grid search 병렬화
 
 model에서 n_jobs옵션을 사용하면 이 모델을 이용하는 GridSearchCV에서는 병렬화 옵션을 사용할 수 없다. cross_val_score와 GridSearchCV역시 함께 쓸 때 n_jobs 옵션이 중첩될 수 없다. 작업 프로세스가 고아 프로세스가 되는 것을 방지하기 위해 막고 경고 메세지와 함께 n_jobs를 1(default)로 변경한다
+
+</br>
+
+## 평가 지표와 측정
+
+### 불균형 데이터셋(Imbalanced DataSet)
+
+한 클래스가 다른 것보다 훨씬 많은 데이터셋
+
+불균형 데이터셋의 경우 모델이 정확히 예측을 못할 경우가 많기 때문에 평가 지표가 필요하다
+
+이진 분류 평가 결과를 나타낼 때 가장 널리 사용하는 방법은 오차 행렬을 이용한 방법이다
+
+```python
+print("빈도 기반 더미 모델:")
+print(confusion_matrix(y_test, pred_most_frequent))
+print("\n무작위 더미 모델:")
+print(confusion_matrix(y_test, pred_dummy))
+print("\n결정 트리:")
+print(confusion_matrix(y_test, pred_tree))
+print("\n로지스틱 회귀")
+print(confusion_matrix(y_test, pred_logreg))
+```
+
+#### 정확도
+
+(TP + TN) / (TP + TN + FP + FN)
+
+#### 정밀도(양성 예측도)
+
+(TP) / (TP + FP)
+
+거짓 양성의 수를 줄이는 것이 목표일 때 사용한다
+
+#### 재현율
+
+(TP) / (TP + FN)
+
+모든 양성 샘플을 식별해야 할 때 사용한다. 즉 거짓 음성을 피하는 것이 중요한 경우로서 암 진단 사례가 하나의 예이다
+
+재현율 최적화와 정밀도 최적화는 서로 상충한다
+
+#### f-점수
+
+2 * (정밀도 * 재현율) / (정밀도 + 재현율)
+
+정밀도와 재현율의 조화 평균이다
+
+```python
+from sklearn.metrics import f1_score
+print("빈도 기반 더미 모델의 f1 score: {:.2f}".format(
+    f1_score(y_test, pred_most_frequent)))
+print("무작위 더미 모델의 f1 score: {:.2f}".format(f1_score(y_test, pred_dummy)))
+print("트리 모델의 f1 score: {:.2f}".format(f1_score(y_test, pred_tree)))
+print("로지스틱 회귀 모델의 f1 score: {:.2f}".format(f1_score(y_test, pred_logreg)))
+```
+
+정밀도 재현율 f-점수를 한번에 확인하는 방법으로 classification_report가 있다
+
+```python
+from sklearn.metrics import classification_report
+classification_report(t_test, pred_most_frequent, target_names=["9 아님", "9"]))
+```
+
+</br>
+
+### 불확실성 고려
+
+임계값을 바꿔 재현율을 높이도록 예측을 조정할 수 있다. 기본적으로 이진 분류에서 decision_function()의 값이 0보다 큰 포인트는 클래스 1로 분류된다. 더 많은 포인트가 클래스 1로 분류되려면 임계값을 낮춘다
+
+```python
+y_pred_lower_threshold = svc.decision_function(X_test) > -.8
+print(classification_report(y_test, y_pred_lower_threshold))
+```
+
+</br>
+
+### 정밀도-재현율 곡선과 ROC 곡선
+
