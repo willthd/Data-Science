@@ -804,7 +804,9 @@ model에서 n_jobs옵션을 사용하면 이 모델을 이용하는 GridSearchCV
 
 ## 평가 지표와 측정
 
-### 불균형 데이터셋(Imbalanced DataSet)
+### 이진 분류의 평가 지표
+
+#### 불균형 데이터셋(Imbalanced DataSet)
 
 한 클래스가 다른 것보다 훨씬 많은 데이터셋
 
@@ -825,21 +827,46 @@ print(confusion_matrix(y_test, pred_logreg))
 
 </br>
 
-### 오차 행렬(confusion matrix)
+#### 오차 행렬(confusion matrix)
+
+```python
+from sklearn.metrics import confusion_matrix
+
+confusion = confusion_matrix(y_test, pred_logreg)
+print("오차 행렬:\n{}".format(confusion))
+```
+
+
 
 ![err_mat](./err_mat.jpg)
 
-#### 정확도
+![conf_mat](./conf_mat.jpg)
+
+</br>
+
+거짓 양성 : 음성을 양성으로 예측한 경우
+
+거짓 음성 : 양성을 음성으로 예측한 경우
+
+</br>
+
+**정확도**
 
 (TP + TN) / (TP + TN + FP + FN)
 
-#### 정밀도(양성 예측도)
+</br>
+
+**정밀도(양성 예측도)**
 
 (TP) / (TP + FP)
 
 거짓 양성의 수(FP)를 줄이는 것이 목표일 때 사용한다
 
-#### 재현율
+거짓 양성 없다(다른 클래스가 9로 예측하지 않았다) = 정밀도 1
+
+</br>
+
+**재현율**
 
 (TP) / (TP + FN)
 
@@ -847,7 +874,11 @@ print(confusion_matrix(y_test, pred_logreg))
 
 재현율 최적화와 정밀도 최적화는 서로 상충한다
 
-#### f-점수
+거짓 음성 없다(다른 클래스)
+
+</br>
+
+**f-점수**
 
 2 * (정밀도 * 재현율) / (정밀도 + 재현율)
 
@@ -869,9 +900,11 @@ from sklearn.metrics import classification_report
 classification_report(t_test, pred_most_frequent, target_names=["9 아님", "9"]))
 ```
 
-#### 평균 정밀도
+</br>
 
-정밀도-재현율 곡선의 아랫부분 면적을 계산한다
+**평균 정밀도**
+
+정밀도-재현율 곡선의 아랫부분 면적을 계산한다(0 ~ 1)
 
 ```python
 from sklearn.metrics import average_precision_score
@@ -883,7 +916,21 @@ print("svc의 평균 정밀도: {:.3f}".format(ap_svc))
 
 </br>
 
-### 불확실성 고려
+**AUC**
+
+ROC 곡선의 아랫부분 면적을 계산한다(0 ~ 1). 불균형한 데이터셋에서는 정확도보다 AUC가 훨씬 좋은 지표이다. 우선 여러 모델을 비교해 AUC가 높은 모델을 찾고, 임계값을 조정한다
+
+```python
+from sklearn.metrics import roc_auc_score
+rf_auc = roc_auc_score(y_test, rf.predict_proba(X_test)[:, 1])
+svc_auc = roc_auc_score(y_test, svc.decision_function(X_test))
+print("랜덤 포레스트의 AUC: {:.3f}".format(rf_auc))
+print("SVC의 AUC: {:.3f}".format(svc_auc))
+```
+
+</br>
+
+#### 불확실성 고려
 
 임계값을 바꿔 재현율을 높이도록 예측을 조정할 수 있다. 기본적으로 이진 분류에서 decision_function()의 값이 0보다 큰 포인트는 클래스 1로 분류된다. 더 많은 포인트가 클래스 1로 분류되려면 임계값을 낮춘다. decision_function()은 임의의 범위를 가지고 있으므로 임계점을 고르는 일반적인 방법을 제시하기는 어렵기 때문에 predict_proba()를 사용한다. 아래에서는 테스트 세트의 결과를 바탕으로 임계값을 선택했지만, 실전에서는 검증 세트나 교차 검증을 사용해야 한다
 
@@ -894,9 +941,11 @@ print(classification_report(y_test, y_pred_lower_threshold))
 
 </br>
 
-### 정밀도-재현율 곡선
+#### 정밀도-재현율 곡선
 
 모델의 분류 작업을 결정하는 임계값을 바꾸는 것은 해당 분류기의 정밀도와 재현율의 상충 관계를 조정하는 일이다. 이런 결정은 애플리케이션에 따라 다르며 비즈니스 목표에 따라 결정된다. 다시 말해 90% 재현율과 같은 특정 목적을 충족하는 임계값을 설정하는 것은 언제든 가능하다. 어려운 부분은 이 임계값을 유지하면서 적절한 적절한 정밀도를 내는 모델을 만드는 일이다. 이를 위해 정밀도-재현율 곡선을 사용한다
+
+오차가 없으면 정밀도와 재현율 모두 1이다
 
 ```python
 from sklearn.metrics import precision_recall_curve
@@ -958,5 +1007,57 @@ plt.legend(loc="best")
 
 </br>
 
-### ROC와 AUC
+#### ROC와 AUC
+
+여러 임계값에서 분류기의 특성을 분석하는 데 널리 사용하는 도구로서 진짜 양성 비율(TPR) - 거짓 양성 비율(FPR)을 나타낸다. 진짜 양성 비율은 재현율의 다른 이름이며, 거짓 양성 비율은 전체 음성 샘플 중에서 거짓 양성으로 잘못 분류한 비율이다
+
+FPR = (FP) / (FP + TN)
+
+ROC 곡선은 왼쪽 위에 가까울수록 이상적이다
+
+AUC값이 1인 경우, 결정 함수에 의해서 모든 양성 포인트는 어떤 음성 포인트보다 더 높은 점수를 가진다. 이는 적절한 임계값에서 모델이 데이터를 완벽하게 분류 할 수 있다는 뜻이다
+
+```python
+from sklearn.metrics import roc_curve
+fpr, tpr, thresholds = roc_curve(y_test, svc.decision_function(X_test))
+
+plt.plot(fpr, tpr, label="ROC 곡선")
+plt.xlabel("FPR")
+plt.ylabel("TPR (재현율)")
+# 0 근처의 임계값을 찾습니다
+close_zero = np.argmin(np.abs(thresholds))
+plt.plot(fpr[close_zero], tpr[close_zero], 'o', markersize=10,
+         label="임계값 0", fillstyle="none", c='k', mew=2)
+plt.legend(loc=4)
+```
+
+</br>
+
+### 다중 분류의 평가 지표
+
+다중 분류에서 불균형 데이터셋을 위해 가장 널리 사용하는 평가 지표는 f-score의 다중 분류 버전이다. 매개변수 average를 적절하게 변형한다
+
+**micro** : 각 클래스를 동일한 비중으로 고려하는 경우
+
+**macro** : 각 샘플을 똑같이 간주하는 경우
+
+**weighted** : 클래스별 샘플 수로 가중치를 두는 경우
+
+```python
+print("micro 평균 f1 점수: {:.3f}".format(f1_score(y_test, pred, average="micro")))
+print("macro 평균 f1 점수: {:.3f}".format(f1_score(y_test, pred, average="macro")))
+print("macro 평균 f1 점수: {:.3f}".format(f1_score(y_test, pred, average="weighted")))
+```
+
+</br>
+
+### 회귀의 평가 지표
+
+가끔 평균 제곱 에러나 평균 절댓값 에러를 사용해 모델을 튜닝할 때 이런 지표를 기반으로 결정할 수 있다. 그러나 일반적으로 R squre(결정계수)를 사용하는 것이 더 나은 지표이다
+
+```python
+from sklearn.metrics import r2_score
+
+print("점수: {:.3f}".format(r2_score(y_test, pred)))
+```
 
