@@ -823,6 +823,12 @@ print("\n로지스틱 회귀")
 print(confusion_matrix(y_test, pred_logreg))
 ```
 
+</br>
+
+### 오차 행렬(confusion matrix)
+
+![err_mat](./err_mat.jpg)
+
 #### 정확도
 
 (TP + TN) / (TP + TN + FP + FN)
@@ -831,13 +837,13 @@ print(confusion_matrix(y_test, pred_logreg))
 
 (TP) / (TP + FP)
 
-거짓 양성의 수를 줄이는 것이 목표일 때 사용한다
+거짓 양성의 수(FP)를 줄이는 것이 목표일 때 사용한다
 
 #### 재현율
 
 (TP) / (TP + FN)
 
-모든 양성 샘플을 식별해야 할 때 사용한다. 즉 거짓 음성을 피하는 것이 중요한 경우로서 암 진단 사례가 하나의 예이다
+모든 양성 샘플을 식별해야 할 때 사용한다. 즉 거짓 음성(FN)을 피하는 것이 중요한 경우로서 암 진단 사례가 하나의 예이다
 
 재현율 최적화와 정밀도 최적화는 서로 상충한다
 
@@ -863,11 +869,23 @@ from sklearn.metrics import classification_report
 classification_report(t_test, pred_most_frequent, target_names=["9 아님", "9"]))
 ```
 
+#### 평균 정밀도
+
+정밀도-재현율 곡선의 아랫부분 면적을 계산한다
+
+```python
+from sklearn.metrics import average_precision_score
+ap_rf = average_precision_score(y_test, rf.predict_proba(X_test)[:, 1])
+ap_svc = average_precision_score(y_test, svc.decision_function(X_test))
+print("랜덤 포레스트의 평균 정밀도: {:.3f}".format(ap_rf))
+print("svc의 평균 정밀도: {:.3f}".format(ap_svc))
+```
+
 </br>
 
 ### 불확실성 고려
 
-임계값을 바꿔 재현율을 높이도록 예측을 조정할 수 있다. 기본적으로 이진 분류에서 decision_function()의 값이 0보다 큰 포인트는 클래스 1로 분류된다. 더 많은 포인트가 클래스 1로 분류되려면 임계값을 낮춘다
+임계값을 바꿔 재현율을 높이도록 예측을 조정할 수 있다. 기본적으로 이진 분류에서 decision_function()의 값이 0보다 큰 포인트는 클래스 1로 분류된다. 더 많은 포인트가 클래스 1로 분류되려면 임계값을 낮춘다. decision_function()은 임의의 범위를 가지고 있으므로 임계점을 고르는 일반적인 방법을 제시하기는 어렵기 때문에 predict_proba()를 사용한다. 아래에서는 테스트 세트의 결과를 바탕으로 임계값을 선택했지만, 실전에서는 검증 세트나 교차 검증을 사용해야 한다
 
 ```python
 y_pred_lower_threshold = svc.decision_function(X_test) > -.8
@@ -876,5 +894,69 @@ print(classification_report(y_test, y_pred_lower_threshold))
 
 </br>
 
-### 정밀도-재현율 곡선과 ROC 곡선
+### 정밀도-재현율 곡선
+
+모델의 분류 작업을 결정하는 임계값을 바꾸는 것은 해당 분류기의 정밀도와 재현율의 상충 관계를 조정하는 일이다. 이런 결정은 애플리케이션에 따라 다르며 비즈니스 목표에 따라 결정된다. 다시 말해 90% 재현율과 같은 특정 목적을 충족하는 임계값을 설정하는 것은 언제든 가능하다. 어려운 부분은 이 임계값을 유지하면서 적절한 적절한 정밀도를 내는 모델을 만드는 일이다. 이를 위해 정밀도-재현율 곡선을 사용한다
+
+```python
+from sklearn.metrics import precision_recall_curve
+precision, recall, thresholds = precision_recall_curve(
+    y_test, svc.decision_function(X_test))
+```
+
+```python
+# 부드러운 곡선을 위해 데이터 포인트 수를 늘립니다
+X, y = make_blobs(n_samples=(4000, 500), centers=2, cluster_std=[7.0, 2],
+                  random_state=22)
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
+
+svc = SVC(gamma=.05).fit(X_train, y_train)
+
+precision, recall, thresholds = precision_recall_curve(
+    y_test, svc.decision_function(X_test))
+# 0에 가까운 임계값을 찾습니다
+close_zero = np.argmin(np.abs(thresholds))
+plt.plot(precision[close_zero], recall[close_zero], 'o', markersize=10,
+         label="임계값 0", fillstyle="none", c='k', mew=2)
+
+plt.plot(precision, recall, label="정밀도-재현율 곡선")
+plt.xlabel("정밀도")
+plt.ylabel("재현율")
+plt.legend(loc="best")
+```
+
+곡선은 오른쪽 위로 갈수록 더 좋은 분류기이다. 임계값이 높아지면서 정밀도는 높아지고, 재현율은 낮아진다
+
+</br>
+
+decision_function()없는 분류기는 predict_proba()를 사용해야 하며 code는 아래와 같다
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+
+rf = RandomForestClassifier(n_estimators=100, random_state=0, max_features=2)
+rf.fit(X_train, y_train)
+
+# RandomForestClassifier는 decision_function 대신 predict_proba를 제공합니다.
+precision_rf, recall_rf, thresholds_rf = precision_recall_curve(
+    y_test, rf.predict_proba(X_test)[:, 1])
+
+plt.plot(precision, recall, label="svc")
+
+plt.plot(precision[close_zero], recall[close_zero], 'o', markersize=10,
+         label="svc: 임계값 0", fillstyle="none", c='k', mew=2)
+
+plt.plot(precision_rf, recall_rf, label="rf")
+
+close_default_rf = np.argmin(np.abs(thresholds_rf - 0.5))
+plt.plot(precision_rf[close_default_rf], recall_rf[close_default_rf], '^', c='k',
+         markersize=10, label="rf: 임계값 0.5", fillstyle="none", mew=2)
+plt.xlabel("정밀도")
+plt.ylabel("재현율")
+plt.legend(loc="best")
+```
+
+</br>
+
+### ROC와 AUC
 
