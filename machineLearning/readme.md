@@ -776,11 +776,28 @@ grid_search 잘하고 있는지 확인해 볼 필요 있다. parameter가 두 �
 
 </br>
 
-## 다양한 교차 검증 적용
+</br>
+
+### 비대칭 매개변수 그리드 탐색
+
+리스트에 있는 각 딕셔너리는 독립적인 그리드로 적용된다
+
+```python
+param_grid = [{'kernel': ['rbf'],
+               'C': [0.001, 0.01, 0.1, 1, 10, 100],
+               'gamma': [0.001, 0.01, 0.1, 1, 10, 100]},
+              {'kernel': ['linear'],
+               'C': [0.001, 0.01, 0.1, 1, 10, 100]}]
+print("그리드 목록:\n{}".format(param_grid))
+```
+
+</br>
+
+### 다양한 교차 검증 적용
 
 특별히 훈련 세트와 검증 세트로 한 번만 분할하려면 n_splits=1로 하고 ShuffleSplit이나 StratifiedShuffleSplit을 사용한다. 이런 방법은 데이터셋이 매우 크거나 모델 구축에 시간이 오래 걸릴 때 유용하다
 
-### 중첩 교차 검증(nested CV)
+#### 중첩 교차 검증(nested CV)
 
 평균 교차 검증 정확도를 파악하기 위함이다. 미래의 데이터에 적용하기 위한 예측 모델을 찾는 데는 거의 사용하지 않는다. 그러나 특정 데이터셋에서 주어진 모델이 얼마나 잘 이반화되는지 평가하는 데 유용한 방법이다. 하지만 매우 비싼 작업이다. 결국 이것은 훈련 세트와 테스트 세트를 한 번 나누는 것이 아니라, 여러번 나눠서 각각 GridSearchCV를 해보고 그 평균을 알아 보는 방법이다
 
@@ -796,9 +813,11 @@ print(param_grid)
 
 </br>
 
-### 교차 검증과 grid search 병렬화
+#### 교차 검증과 grid search 병렬화
 
 model에서 n_jobs옵션을 사용하면 이 모델을 이용하는 GridSearchCV에서는 병렬화 옵션을 사용할 수 없다. cross_val_score와 GridSearchCV역시 함께 쓸 때 n_jobs 옵션이 중첩될 수 없다. 작업 프로세스가 고아 프로세스가 되는 것을 방지하기 위해 막고 경고 메세지와 함께 n_jobs를 1(default)로 변경한다
+
+</br>
 
 </br>
 
@@ -1060,4 +1079,71 @@ from sklearn.metrics import r2_score
 
 print("점수: {:.3f}".format(r2_score(y_test, pred)))
 ```
+
+</br>
+
+</br>
+
+# 알고리즘 체인과 파이프라인
+
+파이프라인은 여러 처리 단계를 하나의 sklearn 추정기 형태로 묶어주는 파이썬 클래스이다(캡슐화). fit, predict, score 메서드를 제공하고 다른 모델들과 유사하게 작동한다. pipeline을 사용하는 가장 일반적인 경우는 분류기 같은 지도 학습 모델과 전처리 단계를 연결할 때이다. 각 단계는 추정기의 객체와 임의의 이름으로 구성된 튜플이다
+
+</br>
+
+## 그리드 서치에 파이프라인 적용하기
+
+파이프라인용 매개변수 그리드는 다단계 이름과 매개변수 이름을 "__"(밑줄 문자 2개)로 연결해 만든다
+
+```python
+param_grid = {'svm__C': [0.001, 0.01, 0.1, 1, 10, 100],
+              'svm__gamma': [0.001, 0.01, 0.1, 1, 10, 100]}
+```
+
+```python
+grid = GridSearchCV(pipe, param_grid=param_grid, cv=5)
+grid.fit(X_train, y_train)
+print("최상의 교차 검증 정확도: {:.2f}".format(grid.best_score_))
+print("테스트 세트 점수: {:.2f}".format(grid.score(X_test, y_test)))
+print("최적의 매개변수: {}".format(grid.best_params_))
+```
+
+</br>
+
+</br>
+
+## 파이프라인 인터페이스
+
+파이프라인에 들어갈 추정기는 마지막 단계를 제외하고는 모두 transform메서드를 가지고 있어야 한다(마지막 단계가 예측하는 경우. 그렇지 않은 경우에는 전부 스케일 변환이나 PCA만 포함해 transform메서드를 가지고 있는 파이프라인을 만들 수 있다. 다만 마지막 단계에는 최소한 럇 메서드는 있어야 한다)
+
+### make_pipeline을 사용한 파이프라인 생성
+
+아래의 두 과정을 똑같은 작업을 수행하지만 간소화된 방법은 이름을 자동적으로 만들어주며 단계의 이름은 파이썬 클래스 이름의 소문자 버전이다. 같은 파이썬 클래스를 여러 단계에서 사용할 경우 이름 뒤에 숫자가 추가로 붙는다
+
+```python
+from sklearn.pipeline import make_pipeline
+# 표준적인 방법
+pipe_long = Pipeline([("scaler", MinMaxScaler()), ("svm", SVC(C=100))])
+# 간소화된 방법
+pipe_short = make_pipeline(MinMaxScaler(), SVC(C=100))
+```
+
+각 step을 확인할 수 있다
+
+```python
+print("파이프라인 단계:\n{}".format(pipe_short.steps))
+```
+
+</br>
+
+</br>
+
+## 전처리와 모델의 매개변수를 위한 그리드 서치
+
+파이프라인 구성 -> param_grid 정의 -> 그리드 서치 -> 최적의 매개변수 및 테스트 점수 확인
+
+</br>
+
+</br>
+
+## 모델 선택을 위한 그리드 서치
 
