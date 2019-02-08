@@ -1147,3 +1147,33 @@ print("파이프라인 단계:\n{}".format(pipe_short.steps))
 
 ## 모델 선택을 위한 그리드 서치
 
+파이프라인을 먼저 정의한다. 이 때 단계 이름을 직접 지정한다. 비대칭 매개변수 그리드 탐색에서 소개한 매개변수 그리드의 리스트를 사용한다. 파이프라인의 단계를 건너뛰어야 할 때는 단계에 None을 할당한다
+
+```python
+pipe = Pipeline([('preprocessing', StandardScaler()), ('classifier', SVC())])
+```
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+
+param_grid = [
+    {'classifier': [SVC()], 'preprocessing': [StandardScaler()],
+     'classifier__gamma': [0.001, 0.01, 0.1, 1, 10, 100],
+     'classifier__C': [0.001, 0.01, 0.1, 1, 10, 100]},
+    {'classifier': [RandomForestClassifier(n_estimators=100)],
+     'preprocessing': [None], 'classifier__max_features': [1, 2, 3]}]
+```
+
+```python
+
+X_train, X_test, y_train, y_test = train_test_split(
+    cancer.data, cancer.target, random_state=0)
+
+grid = GridSearchCV(pipe, param_grid, cv=5)
+grid.fit(X_train, y_train)
+
+print("최적의 매개변수:\n{}\n".format(grid.best_params_))
+print("최상의 교차 검증 점수: {:.2f}".format(grid.best_score_))
+print("테스트 세트 점수: {:.2f}".format(grid.score(X_test, y_test)))
+```
+
