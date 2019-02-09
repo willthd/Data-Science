@@ -12,8 +12,9 @@
 
 ## K-NN(K Nearest Neighbors)
 
-* regression : KNeighborsRegressor()
-* classification : KNeighborsClassifier()
+regression : KNeighborsRegressor()
+
+classification : KNeighborsClassifier()
 
 </br>
 
@@ -55,8 +56,9 @@ ElasticNet()은 Ridge()와 Lasso()의 조합. L1, L2 매개변수 정해줘야�
 
 </br>
 
-* regression : linearRegression(), Ridge()(L2), Lasso()(L1), ElasticNet(), SGDRegressor()(dataSet 대용량 일 때)
-* classification : LogisticRegression(), LinearSVC(), SGDClassifier()(dataSet 대용량 일 때)
+regression : linearRegression(), Ridge()(L2), Lasso()(L1), ElasticNet(), SGDRegressor()(dataSet 대용량 일 때)
+
+classification : LogisticRegression(), LinearSVC(), SGDClassifier()(dataSet 대용량 일 때)
 
 </br>
 
@@ -150,8 +152,9 @@ tree model은 훈련 세트에 있는 특성의 범위 밖으로 외삽(extrapol
 
 </br>
 
-* regression : DecisionTreeRegressor()(최종 영역의 타깃값의 평균값을 예측 결과로 한다)
-* classifiacaton : DecisionTreeClassifier()(최종 영역의 타깃값 중 다수인 것을 예측 결과로 한다)
+regression : DecisionTreeRegressor()(최종 영역의 타깃값의 평균값을 예측 결과로 한다)
+
+classifiacaton : DecisionTreeClassifier()(최종 영역의 타깃값 중 다수인 것을 예측 결과로 한다)
 
 </br>
 
@@ -195,8 +198,9 @@ bootstrap sampling은 tree가 조금씩 다른 dataSet을 이용해 만들어지
 
 </br>
 
-* regression : RandomForestRegressor()
-* classifier : RandomForestClassifier()
+regression : RandomForestRegressor()
+
+classifier : RandomForestClassifier()
 
 </br>
 
@@ -242,9 +246,9 @@ linear model보다 많은 메모리를 사용하며 훈련과 예측이 보다 �
 
 </br>
 
-* regression : GradientBoostingRegressor()
+regression : GradientBoostingRegressor()
 
-* classification : GradientBoostingClassifier() 
+classification : GradientBoostingClassifier() 
 
 </br>
 
@@ -288,8 +292,9 @@ random forest보다 학습시간은 더 길다
 
 </br>
 
-* regression : SVR()
-* classification : SVC()
+regression : SVR()
+
+classification : SVC()
 
 ### 주요 매개변수
 
@@ -329,8 +334,9 @@ weight 초기값에 따라 model이 크게 달라질 수 있다
 
 </br>
 
-* regression : MLPRegressor(), Dense()
-* classification : MLPClassifier(), Dense()
+regression : MLPRegressor(), Dense()
+
+classification : MLPClassifier(), Dense()
 
 </br>
 
