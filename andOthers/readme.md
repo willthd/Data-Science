@@ -494,3 +494,19 @@ reshape(1, -1) : 행의 개수를 1로 유지하면서 열을 그에 맞게 변�
 
 reshape(-1) : 하나의 행렬로 존재한다 -> shape : (n, )
 
+</br>
+
+### Feature의 종류
+
+**categorical**
+
+ex) Sex - Male, Female
+
+**ordinal**
+
+ex) Height - Tall, Medium, Short
+
+**continuous**
+
+ex) Age
+
