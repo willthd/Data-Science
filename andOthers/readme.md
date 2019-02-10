@@ -44,16 +44,20 @@ https://towardsdatascience.com/catboost-vs-light-gbm-vs-xgboost-5f93620723db
 
 ## Histogram, Distplot, Barplot, Countplot
 
-HIstogram, Distplot은 x축이 연속적인 경우(숫자)
+**Histogram, Distplot은 coutinuous feature 일때**
 
 * Histogram은 y축이 count
 
 ```python
 # seaborn
-sns.displot(train["target"], kde=False, bins=200)
+# null있으면 안된다
+sns.distplot(train["target"], kde=False, bins=200)
+# null있어도 된다
+sns.kdeplot(train["taget"])
 
 # pyplot
 plt.hist(train["target"], bins=200)
+# train["tageret"].hist(bins=200) 가능
 plt.title('Histogram target counts')
 plt.xlabel('Count')
 plt.ylabel('Target')
@@ -62,10 +66,22 @@ plt.show()
 
 * displot은 y축이 비율
 
-Barplot, Countplot은 x축이 descrete한 경우
+
+
+**Barplot, Countplot은 categorical feature 일 때**
 
 * Barplot은 y축 설정 해줘야 한다. 편차 표시 있음
 * Countplot은 y축이 count
+
+</br>
+
+### factorplot과 pointplot의 차이
+
+f는 hue describe가 그래프 밖
+
+p는 hue describe가 그래프 안
+
+f가 더 낫다
 
 </br>
 
@@ -502,11 +518,29 @@ reshape(-1) : 하나의 행렬로 존재한다 -> shape : (n, )
 
 ex) Sex - Male, Female
 
+-> ont hot encoding, frequency encoding, mean encoding
+
+barplot
+
 **ordinal**
 
 ex) Height - Tall, Medium, Short
 
+-> label encoding
+
 **continuous**
 
 ex) Age
+
+histogram, scatterplot, distplot
+
+</br>
+
+### crossTab
+
+```python
+pd.crosstab([train["Sex"], train["Survived"]], train["Pclass"], margins=True).style.background_gradient(cmap='summer_r')
+```
+
+</br>
 
