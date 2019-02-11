@@ -8,6 +8,12 @@
 
 대부분의 model은 각 feature가(회귀에서는 target도) 정규분포와 비슷할 때 최고의 성능을 낸다. 확률적 요소를 가진 많은 알고리즘의 이론이 정규분포를 근간으로 하고 있기 때문이다
 
+</br>
+
+### 대회 초반에는 cs score이 leader board score와 어느정도 linear하게 움직이는지를 잘 살펴보아야 한다. lbs에 overfit되지 않게 조심
+
+</br>
+
 ### DataSet이 크다?
 
 sample이 크거나, feature가 많다
