@@ -62,6 +62,7 @@ sns.distplot(train["target"], kde=False, bins=200)
 sns.kdeplot(train["taget"])
 
 # pyplot
+# bins = 막대 개수
 plt.hist(train["target"], bins=200)
 # train["tageret"].hist(bins=200) 가능
 plt.title('Histogram target counts')
