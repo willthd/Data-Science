@@ -308,8 +308,8 @@ train["year"] = train["year"].astype(int)
 ### 그래프 모아서 보기
 
 ```python
-figure, (ax1, ax2) = plt.subplots(nrows=1, ncols=2)
-figure.set_size_inches(18, 4)
+figure, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 18))
+# figure.set_size_inches(18, 4)
 sns.barplot(data=train, x="year", y="total", ax=ax1)
 sns.barplot(data=train, x="month", y="total", ax=ax2)
 ```
