@@ -560,3 +560,21 @@ pd.crosstab([train["Sex"], train["Survived"]], train["Pclass"], margins=True).st
 plt.close(2)
 ```
 
+</br>
+
+### pandas.qcut()
+
+```python
+# 샘플 수를 비슷하게 맞춰준다
+train["Fare_Range"] = pd.qcut(train["Fare"], 4)
+```
+
+</br>
+
+### pandas.cut()
+
+```python
+# range를 일정하게 해서 4등분
+train["Fare_Range"] = pd.qcut(train["Fare"], 4)
+```
+
