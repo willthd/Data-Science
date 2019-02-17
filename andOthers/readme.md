@@ -392,6 +392,8 @@ train.loc[train["Name"].str.contains("Mr"), "Title"] = "Mr"
 
 ```python
 train["Name"] = train["Name"].str.replace("Mr", "아저씨")
+
+train['Initial'].replace(['Mlle','Mme','Ms','Dr','Major','Lady','Countess','Jonkheer','Col','Rev','Capt','Sir','Don'],['Miss','Miss','Miss','Mr','Mr','Mrs','Mrs','Other','Other','Other','Mr','Mr','Mr'],inplace=True)
 ```
 
 </br>
@@ -550,4 +552,11 @@ pd.crosstab([train["Sex"], train["Survived"]], train["Pclass"], margins=True).st
 ```
 
 </br>
+
+### subplot에서 그래프 불필요하게 더 나올 때 제거하기
+
+```python
+# 그래프 번호. 0부터 시작
+plt.close(2)
+```
 
