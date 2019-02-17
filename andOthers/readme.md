@@ -309,7 +309,7 @@ train["year"] = train["year"].astype(int)
 
 ```python
 figure, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 18))
-# figure.set_size_inches(18, 4)
+# fplt.figure(figsize=(10, 7))
 sns.barplot(data=train, x="year", y="total", ax=ax1)
 sns.barplot(data=train, x="month", y="total", ax=ax2)
 ```
@@ -576,5 +576,33 @@ train["Fare_Range"] = pd.qcut(train["Fare"], 4)
 ```python
 # range를 일정하게 해서 4등분
 train["Fare_Range"] = pd.qcut(train["Fare"], 4)
+```
+
+</br>
+
+### drop()
+
+```python
+train.drop(["Name", "Age", "Ticket", "Fare", "Cabin", "Fare_Range", "PassengerId"], axis=1, inplace=True)
+```
+
+</br>
+
+### LabelEncoder()
+
+```python
+# String -> 숫자로 변경
+from sklearn.preprocessing import LabelEncoder
+
+for col in ["Sex", "Embarked", "Initial"]:
+    train[col] = LabelEncoder.fit_transform(train[col])
+```
+
+```python
+# factorize도 label encoding 하는 것. label encoder보다 빠르다
+indexer = {}
+
+for col in ["Sex", "Embarked", "Initial"]:
+    _, index[col] = pd.factorize(train[col])
 ```
 
