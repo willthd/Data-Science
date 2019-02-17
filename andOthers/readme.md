@@ -603,6 +603,7 @@ for col in ["Sex", "Embarked", "Initial"]:
 indexer = {}
 
 for col in ["Sex", "Embarked", "Initial"]:
-    _, index[col] = pd.factorize(train[col])
+    _, indexer[col] = pd.factorize(train[col])
+    train[col] = indexer[col].get_indexer(train[col])
 ```
 
