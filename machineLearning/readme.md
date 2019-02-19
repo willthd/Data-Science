@@ -953,6 +953,10 @@ print("랜덤 포레스트의 AUC: {:.3f}".format(rf_auc))
 print("SVC의 AUC: {:.3f}".format(svc_auc))
 ```
 
+참조
+
+https://newsight.tistory.com/53
+
 </br>
 
 #### 불확실성 고려
