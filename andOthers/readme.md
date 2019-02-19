@@ -607,3 +607,11 @@ for col in ["Sex", "Embarked", "Initial"]:
     train[col] = indexer[col].get_indexer(train[col])
 ```
 
+</br>
+
+### sns font scale
+
+```python
+sns.set(font_scale=4)
+```
+
