@@ -2,8 +2,6 @@
 
 > source code
 
-testest2222dsfds
-
 ### Kaggle
 
 
