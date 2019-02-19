@@ -62,6 +62,7 @@ sns.distplot(train["target"], kde=False, bins=200)
 sns.kdeplot(train["taget"])
 
 # pyplot
+# bins = 막대 개수
 plt.hist(train["target"], bins=200)
 # train["tageret"].hist(bins=200) 가능
 plt.title('Histogram target counts')
@@ -307,8 +308,8 @@ train["year"] = train["year"].astype(int)
 ### 그래프 모아서 보기
 
 ```python
-figure, (ax1, ax2) = plt.subplots(nrows=1, ncols=2)
-figure.set_size_inches(18, 4)
+figure, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 18))
+# fplt.figure(figsize=(10, 7))
 sns.barplot(data=train, x="year", y="total", ax=ax1)
 sns.barplot(data=train, x="month", y="total", ax=ax2)
 ```
@@ -391,6 +392,8 @@ train.loc[train["Name"].str.contains("Mr"), "Title"] = "Mr"
 
 ```python
 train["Name"] = train["Name"].str.replace("Mr", "아저씨")
+
+train['Initial'].replace(['Mlle','Mme','Ms','Dr','Major','Lady','Countess','Jonkheer','Col','Rev','Capt','Sir','Don'],['Miss','Miss','Miss','Mr','Mr','Mrs','Mrs','Other','Other','Other','Mr','Mr','Mr'],inplace=True)
 ```
 
 </br>
@@ -549,4 +552,58 @@ pd.crosstab([train["Sex"], train["Survived"]], train["Pclass"], margins=True).st
 ```
 
 </br>
+
+### subplot에서 그래프 불필요하게 더 나올 때 제거하기
+
+```python
+# 그래프 번호. 0부터 시작
+plt.close(2)
+```
+
+</br>
+
+### pandas.qcut()
+
+```python
+# 샘플 수를 비슷하게 맞춰준다
+train["Fare_Range"] = pd.qcut(train["Fare"], 4)
+```
+
+</br>
+
+### pandas.cut()
+
+```python
+# range를 일정하게 해서 4등분
+train["Fare_Range"] = pd.qcut(train["Fare"], 4)
+```
+
+</br>
+
+### drop()
+
+```python
+train.drop(["Name", "Age", "Ticket", "Fare", "Cabin", "Fare_Range", "PassengerId"], axis=1, inplace=True)
+```
+
+</br>
+
+### LabelEncoder()
+
+```python
+# String -> 숫자로 변경
+from sklearn.preprocessing import LabelEncoder
+
+for col in ["Sex", "Embarked", "Initial"]:
+    train[col] = LabelEncoder.fit_transform(train[col])
+```
+
+```python
+# factorize도 label encoding 하는 것. label encoder보다 빠르다
+indexer = {}
+
+for col in ["Sex", "Embarked", "Initial"]:
+    _, indexer[col] = pd.factorize(train[col])
+    train[col] = indexer[col].get_indexer(train[col])
+```
 
