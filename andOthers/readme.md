@@ -615,3 +615,8 @@ for col in ["Sex", "Embarked", "Initial"]:
 sns.set(font_scale=4)
 ```
 
+</br>
+
+### voting : soft vs hard
+
+![voting](./voting.jpg)
