@@ -620,3 +620,9 @@ sns.set(font_scale=4)
 ### voting : soft vs hard
 
 ![voting](./voting.jpg)
+
+</br>
+
+### variance & bias
+
+![vb](./vb.jpg)
