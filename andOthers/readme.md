@@ -634,3 +634,4 @@ sns.set(font_scale=4)
 일반적으로 RandomForest를 이용해서 확인한다. 많은 subset과 model을 이용하기 때문?
 
 아님 여러 model을 사용해서 평균을 낼 수도 있다
+
