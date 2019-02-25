@@ -635,3 +635,13 @@ sns.set(font_scale=4)
 
 아님 여러 model을 사용해서 평균을 낼 수도 있다
 
+</br>
+
+### imputer
+
+```python
+# null data 처리
+from sklearn.preprocessing Importer
+```
+
+</br>
