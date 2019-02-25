@@ -641,7 +641,25 @@ sns.set(font_scale=4)
 
 ```python
 # null data 처리
-from sklearn.preprocessing Importer
+from sklearn.preprocessing import Imputer
 ```
 
 </br>
+
+### debug때는 data set 전부 읽을 필요 없다
+
+```python
+DEBUG = True
+
+if DEBUG:
+	NROWS=10000
+else:
+	NROWS=None
+```
+
+```python
+%%time
+train = pd.read_csv("../input/train.csv", nrows=NROWS)
+test = pd.read_csv("../input/test.csv", nrows=NROWS)
+```
+
