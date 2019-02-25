@@ -663,3 +663,10 @@ train = pd.read_csv("../input/train.csv", nrows=NROWS)
 test = pd.read_csv("../input/test.csv", nrows=NROWS)
 ```
 
+잘 되면 DEBUG 값만 False로 변경 후 전체 돌린다
+
+```python
+DEBUG = False
+```
+
+</br>
