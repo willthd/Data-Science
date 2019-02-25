@@ -723,3 +723,31 @@ for train_idx, val_idx in fold.split(train, train["target"]):
 train = train.loc[train_idx]
 ```
 
+</br>
+
+### categorical 컬럼 값 몇 종류 있는지 확인
+
+```python
+col_list = categorical 컬럼 리스트
+for col in col_list:
+	print(train[col].nunique())
+```
+
+</br>
+
+### 중복된 row 없애기
+
+```python
+train.drop_duplicates()
+```
+
+</br>
+
+### 정보 보기
+
+꼭 시작 전에 해봐라
+
+```python
+train.info()
+```
+
