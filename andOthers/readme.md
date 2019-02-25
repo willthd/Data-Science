@@ -648,6 +648,8 @@ from sklearn.preprocessing import Imputer
 
 ### debug때는 data set 전부 읽을 필요 없다
 
+**방법 1**
+
 ```python
 DEBUG = True
 
@@ -670,3 +672,54 @@ DEBUG = False
 ```
 
 </br>
+
+**방법 2**
+
+```python
+DEBUG = True
+
+if DEBUG:
+	FRAC=0.2
+else:
+	FRAC=None
+```
+
+```python
+train = pd.read_csv("../input/train.csv")
+train = pd.read_csv("../input/train.csv")
+# local 환경에 맞게 비율 설정한다. random으로 추출
+train = train.sample(frac=FRAC)
+test = test.sample(frac=FRAC)
+```
+
+마찬가지로 잘 되면 DEBUG 값만 False로 변경 후 전체 돌린다
+
+```python
+DEBUG = False
+```
+
+</br>
+
+**방법 3**
+
+imbalanced data set의 경우, frac도 괜찮지만 더 정확하게 하고 싶다면
+
+```python
+from sklearn.model_selection import StratifiedKFold
+```
+
+```python
+fold = StratifiedKFold(n_splits=10, random_state=666)
+```
+
+```python
+# val_idx는 target idx말하는 것
+for train_idx, val_idx in fold.split(train, train["target"]):
+    # 딱 한번만 하겠다
+	break
+```
+
+```python
+train = train.loc[train_idx]
+```
+
