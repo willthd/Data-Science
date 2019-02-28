@@ -644,6 +644,18 @@ sns.set(font_scale=4)
 from sklearn.preprocessing import Imputer
 ```
 
+```python
+# Imputing with the mean or mode
+mean_imp = Imputer(missing_values=-1, strategy='mean', axis=0)
+mode_imp = Imputer(missing_values=-1, strategy='most_frequent', axis=0)
+```
+
+```python
+# ravel()은 shape 변경해주는 것 (8000, 1) -> (8000,), reshape(-1)과 비슷하다고 보면 된다
+train['ps_reg_03'] = mean_imp.fit_transform(train[['ps_reg_03']]).ravel()
+train['ps_car_11'] = mode_imp.fit_transform(train[['ps_car_11']]).ravel()
+```
+
 </br>
 
 ### debug때는 data set 전부 읽을 필요 없다
