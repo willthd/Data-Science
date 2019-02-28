@@ -751,3 +751,15 @@ train.drop_duplicates()
 train.info()
 ```
 
+</br>
+
+### How to sample Imbalanced DataSet
+
+1. Oversampling
+2. Undersampling
+3. SMOTE
+
+library 존재 -> imblearn
+
+![imb](./imbalanced.jpg)
+
