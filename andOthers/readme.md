@@ -775,3 +775,32 @@ library 존재 -> imblearn
 
 ![imb](./imbalanced.jpg)
 
+</br>
+
+### assert
+
+```python
+# assert 이후가 맞으면 넘어가고, 틀리면 error 발생
+assert len(trn_series) == len(target)
+```
+
+</br>
+
+### mean encoding
+
+overfitting 일어날 가능성 높다. 이를 막기 위해 noise를 추가하기도 한다. 일종의 Regularization
+
+https://medium.com/datadriveninvestor/improve-your-classification-models-using-mean-target-encoding-a3d573df31e8
+
+</br>
+
+### fequency encoding
+
+https://www.kaggle.com/youhanlee/which-encoding-is-good-for-time-validation-1-4417
+
+```python
+def frequency_encoding(frame, col):
+    freq_encoding = frame.groupby([col]).size()/frame.shape[0] 
+    freq_encoding = freq_encoding.reset_index().rename(columns={0:'{}_Frequency'.format(col)})
+    return frame.merge(freq_encoding, on=col, how='left')
+```
