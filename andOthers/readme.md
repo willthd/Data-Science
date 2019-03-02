@@ -22,6 +22,10 @@ feature가 3개면 3차원 dataSet
 
 </br>
 
+### dataframe에서 한 컬럼만 부르면 그것의 type은 series
+
+</br>
+
 ### Feature Importance
 
 이 값은 0과 1사이의 숫자로, 각 feature에 대해 0은 전혀 사용되지 않았다는 뜻이며, 1은 완벽하게 target class를 예측했다는 뜻이다. 값이 낮다고 해서 이 특성이 유용하지 않다는 뜻은 아니다. 단지 트리가 그 특성을 선택하지 않았을 뿐이며 다른 특성이 동일한 정보를 지니고 있어서일 수 있다.
@@ -336,6 +340,7 @@ my_array = train["column"].values
 
 ```python
 # list에는 .unique() 함수 없다
+# 아래 처럼 하면 값 순서대로 정렬되서 나온다
 uniqueVals = np.unique(my_array)
 
 # 바로 컬럼에 적용해서 사용할 수도 있다
