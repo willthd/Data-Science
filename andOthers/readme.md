@@ -809,11 +809,11 @@ assert len(trn_series) == len(target)
 
 overfitting 일어날 가능성 높다. 이를 막기 위해 noise를 추가하기도 한다. 일종의 Regularization
 
+참조 링크
+
 https://medium.com/datadriveninvestor/improve-your-classification-models-using-mean-target-encoding-a3d573df31e8
 
-캐글 커널 Data Preparation & Exploration(will)에서 code 참조
-
-https://www.kaggle.com/williw11/data-preparation-exploration-will/edit
+https://www.kaggle.com/vprokopev/mean-likelihood-encodings-a-comprehensive-study
 
 
 
