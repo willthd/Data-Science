@@ -793,6 +793,14 @@ assert len(trn_series) == len(target)
 
 ### mean encoding
 
+특정 컬럼의 각 속성값과 대응하는 타겟값의 곱을 전부 더한 뒤 속성값과 그 속성값의 개수를 곱해 나눠준다
+
+**ex)**
+
+![mean1](./mean1.jpg) ————> ![mean2](./mean2.jpg)
+
+
+
 overfitting 일어날 가능성 높다. 이를 막기 위해 noise를 추가하기도 한다. 일종의 Regularization
 
 https://medium.com/datadriveninvestor/improve-your-classification-models-using-mean-target-encoding-a3d573df31e8
@@ -800,6 +808,8 @@ https://medium.com/datadriveninvestor/improve-your-classification-models-using-m
 캐글 커널 Data Preparation & Exploration(will)에서 code 참조
 
 https://www.kaggle.com/williw11/data-preparation-exploration-will/edit
+
+
 
 </br>
 
