@@ -26,6 +26,14 @@ feature가 3개면 3차원 dataSet
 
 </br>
 
+### series -> dataframe
+
+```python
+df = trn_series.to_frame(trn_series.name)
+```
+
+</br>
+
 ### Feature Importance
 
 이 값은 0과 1사이의 숫자로, 각 feature에 대해 0은 전혀 사용되지 않았다는 뜻이며, 1은 완벽하게 target class를 예측했다는 뜻이다. 값이 낮다고 해서 이 특성이 유용하지 않다는 뜻은 아니다. 단지 트리가 그 특성을 선택하지 않았을 뿐이며 다른 특성이 동일한 정보를 지니고 있어서일 수 있다.
@@ -38,7 +46,7 @@ feature가 3개면 3차원 dataSet
 
 </br>
 
-## Boosting Algorithms
+### Boosting Algorithms
 
 GBM, adaboost, XGboost, light GBM, catboost (순서)
 
@@ -52,7 +60,7 @@ https://towardsdatascience.com/catboost-vs-light-gbm-vs-xgboost-5f93620723db
 
 </br>
 
-## Histogram, Distplot, Barplot, Countplot
+### Histogram, Distplot, Barplot, Countplot
 
 **Histogram, Distplot은 coutinuous feature 일때**
 
@@ -95,8 +103,6 @@ p는 hue describe가 그래프 안
 f가 더 낫다
 
 </br>
-
-## python, 기타 라이브러리들 중 자주 사용하는 code
 
 ### warning message "ignore"일 경우, 없애기
 
