@@ -107,6 +107,7 @@ f가 더 낫다
 ### warning message "ignore"일 경우, 없애기
 
 ```python
+import warnings
 warnings.filterwarnings("ignore")
 ```
 
@@ -807,7 +808,7 @@ assert len(trn_series) == len(target)
 
 
 
-overfitting 일어날 가능성 높다. 이를 막기 위해 noise를 추가하기도 한다. 일종의 Regularization
+overfitting 일어날 가능성 높다. 이를 막기 위해 noise를 추가하기도 한다(descrete한 걸 부드럽게 바꿔줌). 일종의 Regularization
 
 참조 링크
 
@@ -829,3 +830,14 @@ def frequency_encoding(frame, col):
     freq_encoding = freq_encoding.reset_index().rename(columns={0:'{}_Frequency'.format(col)})
     return frame.merge(freq_encoding, on=col, how='left')
 ```
+
+</br>
+
+### 계층이 여러개인 컬럼에서 sort_values() 적용
+
+```python
+cat_perc.sort_values(by=("target", "mean"), ascending=False, inplace=True)
+```
+
+![sort1](./sort_values1.jpg) —————> ![sort2](./sort_values2.jpg)
+
