@@ -836,8 +836,11 @@ def frequency_encoding(frame, col):
 ### 계층이 여러개인 컬럼에서 sort_values() 적용
 
 ```python
+# ("1번 계층 컬럼", "2번 계층 컬럼")
 cat_perc.sort_values(by=("target", "mean"), ascending=False, inplace=True)
 ```
 
 ![sort1](./sort_values1.jpg) —————> ![sort2](./sort_values2.jpg)
+
+</br>
 
