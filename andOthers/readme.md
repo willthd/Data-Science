@@ -844,3 +844,15 @@ cat_perc.sort_values(by=("target", "mean"), ascending=False, inplace=True)
 
 </br>
 
+### heatmap
+
+Pearson Correlation Coefficient 값 나오는데, 이것만 맹신할 순 없다. 꼭 두 feature간의 시각화 해봐야 한다.
+
+```python
+sns.lmplot(x='ps_car_12', y='ps_car_14', data=s, hue='target', palette='Set1', scatter_kws={'alpha':0.3})
+plt.show()
+```
+
+![heatmap](./heatmap_0.jpg)
+
+위와 같은 경우는 heatmap 결과 값이 0.67이 나왔지만, 시각화 결과 한 영역에 집중되어 있는 것을 확인할 수 있다. 이럴 때에는 그 선형성을 의심해야한다.
