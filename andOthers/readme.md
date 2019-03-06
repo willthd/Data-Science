@@ -535,6 +535,8 @@ reshape(-1) : 하나의 행렬로 존재한다 -> shape : (n, )
 
 ### Feature의 종류
 
+![kindesOfData](./KindsOfData.jpg)
+
 **categorical**
 
 ex) Sex - Male, Female
@@ -554,6 +556,8 @@ ex) Height - Tall, Medium, Short
 ex) Age
 
 histogram, scatterplot, distplot
+
+
 
 </br>
 
