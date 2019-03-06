@@ -543,6 +543,8 @@ ex) Sex - Male, Female
 
 -> ont hot encoding, frequency encoding, mean encoding
 
+카테고리 종류가 적으면 one hot encoding, 많으면 frequenct, mean encoding을 쓰지만 더 좋은 점수를 만들기 위해서는 하나의 feature에 대해 one hot, frequency, mean 모두 사용하기도 한다
+
 barplot
 
 **ordinal**
@@ -860,3 +862,16 @@ plt.show()
 ![heatmap](./heatmap_0.jpg)
 
 위와 같은 경우는 heatmap 결과 값이 0.67이 나왔지만, 시각화 결과 한 영역에 집중되어 있는 것을 확인할 수 있다. 이럴 때에는 그 선형성을 의심해야한다.
+
+</br>
+
+### Feature 많을 때
+
+https://scikit-learn.org/stable/modules/feature_selection.html
+
+우선 위의 링크를 참조한다
+
+추가적으로 팁은 1000개의 feature가 있을 경우, 1개씩 feature를 빼서 모델 성능을 확인하면 시간이 너무 오래 걸린다. 따라서 이럴 경우 block을 사용한다. block = 20으로 설정하면 총 1000/20 = 50번의 경우만 확인해보면 된다
+
+</br>
+
