@@ -897,3 +897,15 @@ xgb_model = xgb.train(params, d_train, nrounds, watchlist, early_stopping_rounds
 ```
 
 nrounds 많큼 weak learner 만드는데, early_stopping_rounds 이후 성능 개선 되지 않으면 학습 멈춘다
+
+</br>
+
+### DMatrix
+
+Now you will convert the dataset into an optimized data structure called `Dmatrix` that XGBoost supports and gives it acclaimed performance and efficiency gains. You will use this later in the tutorial.
+
+```python
+data_dmatrix = xgb.DMatrix(data=X,label=y)
+```
+
+</br>
