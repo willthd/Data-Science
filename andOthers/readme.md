@@ -887,3 +887,13 @@ https://scikit-learn.org/stable/modules/feature_selection.html
 
 </br>
 
+### early stopping
+
+[Early stopping](https://en.wikipedia.org/wiki/Early_stopping) is an approach to training complex machine learning models to avoid overfitting
+
+```python
+xgb_model = xgb.train(params, d_train, nrounds, watchlist, early_stopping_rounds=100, 
+                          feval=gini_xgb, maximize=True, verbose_eval=100)
+```
+
+nrounds 많큼 weak learner 만드는데, early_stopping_rounds 이후 성능 개선 되지 않으면 학습 멈춘다
