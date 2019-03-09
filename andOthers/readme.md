@@ -10,7 +10,7 @@
 
 </br>
 
-### 대회 초반에는 cs score이 leader board score와 어느정도 linear하게 움직이는지를 잘 살펴보아야 한다. lbs에 overfit되지 않게 조심
+### 대회 초반에는 cs score이 leader board score와 어느정도 linear하게 움직이는지를 잘 살펴보아야 한다. lbs에 overfit되지 않게 주의
 
 </br>
 
@@ -116,7 +116,7 @@ warnings.filterwarnings("ignore")
 ### method 설명보기
 
 ```python
-# helf(method)
+# helf(method), parameter 설명 상세하게 나온다
 help(method)
 ```
 
