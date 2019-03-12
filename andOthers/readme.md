@@ -10,7 +10,7 @@
 
 </br>
 
-### 대회 초반에는 cs score이 leader board score와 어느정도 linear하게 움직이는지를 잘 살펴보아야 한다. lbs에 overfit되지 않게 주의
+### 대회 초반에는 cv score가 leader board score와 어느정도 linear하게 움직이는지를 잘 살펴보면서 cv 시스템을 개선시킨다. lbs에 overfit되지 않게 주의
 
 </br>
 
