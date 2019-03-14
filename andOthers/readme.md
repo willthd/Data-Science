@@ -921,3 +921,13 @@ https://datascienceschool.net/view-notebook/7002e92653434bc88c8c026c3449d27b/
 #### concat
 
 key를 사용하지 않고 단순히 데이터를 세로 또는 가로 방식으로 연결한다. 따라서 인덱스 값이 중복될 수 있다
+
+</br>
+
+### PCA와 FA의 차이
+
+PCA는 선형 독립, FA는 그렇지 않다
+
+PCA는 numerical data에 사용가능하지만, categorical data에는 넌센스다. 이럴 경우 FA를 진행한다
+
+https://dogmas.tistory.com/entry/%EC%9D%B8%EC%9E%90%EB%B6%84%EC%84%9DFactor-analysis%EA%B3%BC-%EC%A3%BC%EC%84%B1%EB%B6%84%EB%B6%84%EC%84%9DPrincipal-component-analysis%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%99%80-%EB%B9%84%EC%8A%B7%ED%95%9C-%EC%A0%90-%EB%B9%84%EA%B5%90-SPSS-%EC%82%AC%EC%9A%A9%EC%84%A4%EB%AA%85%EC%84%9C-25
