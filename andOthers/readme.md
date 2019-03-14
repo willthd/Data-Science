@@ -909,3 +909,15 @@ data_dmatrix = xgb.DMatrix(data=X,label=y)
 ```
 
 </br>
+
+### 두 개의 데이터 프레임을 합칠 때
+
+https://datascienceschool.net/view-notebook/7002e92653434bc88c8c026c3449d27b/
+
+#### merge
+
+두 데이터 프레임의 공통 열 혹은 인덱스를 기준으로 두 테이블을 합친다.  이 때 기준이 되는 열, 행의 데이터를 키(key)라고 한다
+
+#### concat
+
+key를 사용하지 않고 단순히 데이터를 세로 또는 가로 방식으로 연결한다. 따라서 인덱스 값이 중복될 수 있다
