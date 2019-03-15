@@ -14,6 +14,22 @@
 
 </br>
 
+### Check data set
+
+```python
+# count, mean, std, min, max, 25%, 50%, 75%
+train.describe()
+
+# null개수, dtype(dtype은 한 열에 여러개 섞여 있어도 다 나타내지 않고 하나만 나타낸다)
+train.info()
+```
+
+</br>
+
+### null을 입력하고 싶을 때는 None을 입력한다
+
+</br>
+
 ### DataSet이 크다?
 
 sample이 크거나, feature가 많다
