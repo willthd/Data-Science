@@ -657,7 +657,7 @@ sns.set(font_scale=4)
 
 </br>
 
-### variance & bias
+### Error : variance + bias
 
 ![vb](./vb.jpg)
 
