@@ -138,11 +138,13 @@ Jqcque-Bera 검정
 
 ### box-plot(to detect outliers)
 
-
+</br>
 
 ### Bayesian Theorem
 
+https://darkpgmr.tistory.com/62?category=761008
 
+</br>
 
 ### 강의
 
