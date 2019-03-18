@@ -140,9 +140,11 @@ Jqcque-Bera 검정
 
 </br>
 
-### Bayesian Theorem
+### Bayesian Theorem, MLE, MAP
 
 https://darkpgmr.tistory.com/62?category=761008
+
+https://darkpgmr.tistory.com/119?category=761008
 
 </br>
 
