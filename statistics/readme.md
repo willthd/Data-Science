@@ -86,6 +86,15 @@ ex) 국어 원점수, 수학 원점수는 과목별 난이도가 다르기 때�
 
 ### 분포의 형태
 
+https://rucrazia.tistory.com/65
+
+https://support.minitab.com/ko-kr/minitab/18/help-and-how-to/statistics/basic-statistics/supporting-topics/data-concepts/how-skewness-and-kurtosis-affect-your-distribution/
+
+Skewed 데이터를 변환하는 이유는 꼬리에 있는 값을 모델에 제대로 학습시키기 위함이다. Skewed 되어있는 값을 그대로 학습 시키면 꼬리 부분이 상대적으로 적고 멀어서 모델에 영향이 거의 없이 학습된다. 만약 꼬리부분도 노이즈가 아닌 정말 유의미한 데이터이면 꼬리부분에 해당하는 test 데이터는 예측력이 낮아진다.
+변환을 해서 들어가게 되면 그만큼 데이터의 중간값(or 평균값)가 tail하고 가까워져서 모델에 보다 크게 들어간다. 그렇게 되면 꼬리쪽에 해당하는 test 데이터가 들어와도 예측력이 높아진다.
+
+</br>
+
 #### 왜도(Skewness)
 
 자료가 대칭적으로 분포되어 있는지, 한쪽으로 기울어져 있는지
@@ -97,6 +106,8 @@ ex) 국어 원점수, 수학 원점수는 과목별 난이도가 다르기 때�
 ![skew](./skew.jpg)
 
 루트 b1이 0에 가까울 수록 대칭
+
+</br>
 
 #### 첨도(Kurtosis)
 
@@ -110,6 +121,8 @@ ex) 국어 원점수, 수학 원점수는 과목별 난이도가 다르기 때�
 
 b2가 3에 가까울 수록 꼬리 적당
 
+</br>
+
 #### 정규성 검정
 
 왜도 = 0, 첨도 = 3에 가까울 수록 정규분포에 가까움
@@ -118,7 +131,7 @@ Jqcque-Bera 검정
 
 ![jb](./jb.jpg)
 
-
+</br>
 
 ### Gasussian
 
