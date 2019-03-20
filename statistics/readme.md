@@ -147,9 +147,7 @@ Jqcque-Bera 검정
 
 ### p value
 
-
-
-### box-plot(to detect outliers)
+http://www.databaser.net/moniwiki/wiki.php/%EC%9C%A0%EC%9D%98%ED%99%95%EB%A5%A0
 
 </br>
 
