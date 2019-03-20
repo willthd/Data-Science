@@ -959,3 +959,11 @@ pearson corr : 두 continuous 변수 사이의 상관 관계
 spearman 상관 관계 : 두 continuous 또는 ordinal 변수 사이의 상관 관계. 이상점이 있거나 표본 크기가 작을 때 유용하다. Spearman 상관 계수는 원시 데이터가 아니라 각 변수에 대해 순위를 매긴 값을 기반으로 한다
 
 </br>
+
+### Stacking + Data Leakage
+
+https://medium.com/@gurucharan_33981/stacking-a-super-learning-technique-dbed06b1156d
+
+https://ishuca.tistory.com/419
+
+</br>
