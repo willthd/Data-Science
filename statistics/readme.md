@@ -145,9 +145,15 @@ Jqcque-Bera 검정
 
 
 
-### p value
+### p-value
+
+p-value(유의 확률)는 관찰된 데이터가 귀무가설과 양립하는 정도를 0에서 1 사이의 수치로 표현한 것이다. p-value가 작을수록 그 정도가 약하다고 보며, 특정 값 (대개 0.05나 0.01 등…유의 수준) 보다 작을 경우 귀무가설을 기각하는 것이 관례이나 여기에는 여러 가지 문제들이 있다
 
 http://www.databaser.net/moniwiki/wiki.php/%EC%9C%A0%EC%9D%98%ED%99%95%EB%A5%A0
+
+https://adnoctum.tistory.com/332
+
+http://statistics4everyone.blogspot.com/2016/06/p-story-iii-p.html
 
 </br>
 
