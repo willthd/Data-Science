@@ -162,7 +162,9 @@ classifiacaton : DecisionTreeClassifier()(최종 영역의 타깃값 중 다수�
 
 ### 주요 매개변수
 
-max_depth : 최대 연속된 질문 목록(test). default는 무한정 깊어질 수 있다.(max_depth, max_leaf_nodes, min_samples_leaf 중 하나만 지정해도 overfitting을 막는데 충분하다)
+max_depth : 최대 연속된 질문 목록(test). default는 무한정 깊어질 수 있음(max_depth, max_leaf_nodes, min_samples_leaf 중 하나만 지정해도 overfitting을 막는데 충분하다)
+
+max_features : 최적의 분할을 위해 고려할 최대 feature 개수. default는 none으로 모든 feature 사용
 
 min_samples_leaf : leaf node가 되기 위한 최소한의 sample개수
 
