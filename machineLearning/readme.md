@@ -190,6 +190,14 @@ overfitting 가능성 다분하다 -> Decision Tree Ensemble
 
 </br>
 
+## Ensemble
+
+* Voting : 서로 다른 알고리즘 사용
+* Bagging : 모두 같은 유형의 알고리즘 사용하고, 데이터 샘플링(Booststrapping)을 다르게 가져가면서 학습. RandomForest
+* Boosting : 
+
+
+
 ## Random Forest(Decision Tree Ensemble)
 
 잘 작동하되 서로 다른 방향으로 overfit된 tree를 많이 만들어 그 결과의 평균을 사용해 overfitting줄인다. tree를 만들 땐 random하게 많이 만든다
