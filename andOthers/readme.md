@@ -986,3 +986,15 @@ ex) 고객이 물건을 살지 사지 않을지를 예측해야 하는데, 여�
 https://ishuca.tistory.com/419
 
 </br>
+
+### 수행 시간 측정
+
+```python
+import time
+start_time = time.time()
+# ...
+print("수행시간 : {%.1f}초".format(time.time() - start_time))
+```
+
+</br>
+
