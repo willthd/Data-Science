@@ -193,10 +193,13 @@ overfitting 가능성 다분하다 -> Decision Tree Ensemble
 ## Ensemble
 
 * Voting : 서로 다른 알고리즘 사용
+* * hard :  다수결
+  * soft : 레이블 값 결정 확률을 모두 더하고 이를 평규냏서 이들 중 확률이 가장 높은 레이블 값을 최종 보팅 결과값으로 선정. 일반적으로 소프트 보팅이 보팅 방법으로 적용됨
 * Bagging : 모두 같은 유형의 알고리즘 사용하고, 데이터 샘플링(Booststrapping)을 다르게 가져가면서 학습. RandomForest
-* Boosting : 
+* Boosting :  앞에서 학습한 모델이 예측이 틀린 데이터에 대해 올바르게 예측할 수 있도록 다음 모델에게는 가중치를 부여하면서 학습
+* Stacking : 여러 가지 다른 모델의 예측 결괏값을 다시 학습 데이터로 만들어서 다른 모델(메타 모델)로 재학습시켜서 결과를 예측하는 방법
 
-
+</br>
 
 ## Random Forest(Decision Tree Ensemble)
 
