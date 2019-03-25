@@ -932,7 +932,7 @@ True라고 한 것 중 진짜 True는 몇 얼마나 있는지
 
 </br>
 
-**recall, 재현율**
+**recall, 재현율, sensitivity**
 
 (TP) / (TP + FN)
 
@@ -943,6 +943,20 @@ True라고 한 것 중 진짜 True는 몇 얼마나 있는지
 재현율 최적화와 정밀도 최적화는 서로 상충한다
 
 거짓 음성 없다(다른 클래스)
+
+</br>
+
+**specificity**
+
+(TN) / (TN + FP)
+
+ = 1 - fall out
+
+</br>
+
+**fall out**
+
+(FP) / (TN + FP)
 
 </br>
 
