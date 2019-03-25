@@ -1,3 +1,7 @@
+> 이 기록은 "파이썬 라이브러리를 이용한 머신러닝" 내용을 정리하였고, 여기에  "파이썬 머신러닝 완벽 가이드" 내용 및 인터넷 자료가 추가되었다
+
+</br>
+
 # Models
 
 > 각 model의 특징을 이해하고, dataSet에 따라 적합한 model을 찾는 것이 목표
@@ -196,18 +200,24 @@ overfitting 가능성 다분하다 -> Decision Tree Ensemble
 * * hard :  다수결
   * soft : 레이블 값 결정 확률을 모두 더하고 이를 평규냏서 이들 중 확률이 가장 높은 레이블 값을 최종 보팅 결과값으로 선정. 일반적으로 소프트 보팅이 보팅 방법으로 적용됨
 * Bagging : 모두 같은 유형의 알고리즘 사용하고, 데이터 샘플링(Booststrapping)을 다르게 가져가면서 학습. RandomForest
-* Boosting :  앞에서 학습한 모델이 예측이 틀린 데이터에 대해 올바르게 예측할 수 있도록 다음 모델에게는 가중치를 부여하면서 학습
+* Boosting :  앞에서 학습한 모델이 예측이 틀린 데이터에 대해 올바르게 예측할 수 있도록 다음 모델에게는 가중치를 부여하면서 학습. XGboost, LightGBM. Catboost
 * Stacking : 여러 가지 다른 모델의 예측 결괏값을 다시 학습 데이터로 만들어서 다른 모델(메타 모델)로 재학습시켜서 결과를 예측하는 방법
 
 </br>
 
 ## Random Forest(Decision Tree Ensemble)
 
-잘 작동하되 서로 다른 방향으로 overfit된 tree를 많이 만들어 그 결과의 평균을 사용해 overfitting줄인다. tree를 만들 땐 random하게 많이 만든다
+같은 알고리즘으로 여러 개의 모델을 만들어서 보팅으로 최종 결정하는 알고리즘
+
+잘 작동하되 서로 다른 방향으로 overfit된 tree를 많이 만들어 그 결과의 평균을 사용해 overfitting줄인다. tree를 만들 땐 random하게 많이 만든다. 
 
 Decision Tree는 각 node에서 전체 특성을 대상으로 최선의 test를 찾지만, Random Forest는 알고리즘이 각 node에서 후보 feature를 무작위로 선택한 후(max_features로 제한) 이 후보들 중에서 최선의 test를 찾는다
 
-tree를 만들기 위해 먼저 data의 bootstrap sample을 생성한다. 즉 n_samples개의 data 포인트 중에서 무작위로 data를 n_samples 횟수만큼 반복 추출한다(중복 가능)
+tree를 만들기 위해 먼저 data의 bootstrap sample을 생성한다. 즉 n_samples개의 data 포인트 중에서 무작위로 data를 n_samples 횟수만큼 반복 추출한다(**중복 가능**)
+
+***(Booststrapping : 여러 개의 데이터 세트를 중첩되게 분리하는 것. Bagging은 Booststrap aggregating의 줄임말***
+
+서브세트의 데이터 건수는 전체 데이터 건수와 동일하지만, 개별 데이터가 중첩되어 만들어진다
 
 bootstrap sampling은 tree가 조금씩 다른 dataSet을 이용해 만들어지도록 하고, tree의 각 분기는 다른 feature 부분 집합을 사용해 모든 tree가 서로 달라지도록 돕는다
 
@@ -249,11 +259,17 @@ data scaling에 구애받지 않는다. 정규화나 표준화 같은 전처리 
 
 linear model보다 많은 메모리를 사용하며 훈련과 예측이 보다 느리다
 
+hyper parameter가 너무 많고 그로 인해 튜닝 시간이 오래 걸린다
+
 </br>
 
 </br>
 
 ## Gradient Boosting Tree(Decision Tree Ensemble)
+
+여러 개의 약한 학습기를 순차적으로 학습-예측하면서 잘못 예측한 데이터에 가중치 부여를 통해 오류를 개선해 나가는 학습 방식
+
+AdaBoost와의 차이는 가중치 업데이트를 경사 하강법을 이용한다는 것
 
 이전에 만든 tree의 예측과 타깃값 사이의 오차를 줄이는 방향으로 새로운 tree를 추가하는 알고리즘. 이를 위해 손실 함수를 정의하고 경사 하강법을 사용해 다음에 추가될 tree가 예측해야 할 값을 보정해나간다
 
@@ -890,15 +906,19 @@ print("오차 행렬:\n{}".format(confusion))
 
 </br>
 
-**정확도**
+**accuracy, 정확도**
+
+전체 중에서 얼마나 맞췄는지
 
 (TP + TN) / (TP + TN + FP + FN)
 
 </br>
 
-**정밀도(양성 예측도)**
+**precision, 정밀도(양성 예측도)**
 
 (TP) / (TP + FP)
+
+True라고 한 것 중 진짜 True는 몇 얼마나 있는지
 
 거짓 양성의 수(FP)를 줄이는 것이 목표일 때 사용한다
 
@@ -906,9 +926,11 @@ print("오차 행렬:\n{}".format(confusion))
 
 </br>
 
-**재현율**
+**recall, 재현율**
 
 (TP) / (TP + FN)
+
+진짜 True 중 내가 얼마나 True라고 맞췄는지
 
 모든 양성 샘플을 식별해야 할 때 사용한다. 즉 거짓 음성(FN)을 피하는 것이 중요한 경우로서 암 진단 사례가 하나의 예이다
 
