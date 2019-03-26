@@ -870,6 +870,8 @@ https://datascienceschool.net/view-notebook/731e0d2ef52c41c686ba53dcaf346f32/
 
 #### 불균형 데이터셋(Imbalanced DataSet)
 
+andOthers에 관련 링크 및 내용 확인
+
 한 클래스가 다른 것보다 훨씬 많은 데이터셋
 
 불균형 데이터셋의 경우 모델이 정확히 예측을 못할 경우가 많기 때문에 평가 지표가 필요하다
