@@ -934,7 +934,7 @@ True라고 한 것 중 진짜 True는 몇 얼마나 있는지
 
 </br>
 
-**recall, 재현율, sensitivity**
+**recall, 재현율, sensitivity, 민감도**
 
 (TP) / (TP + FN)
 
@@ -948,7 +948,7 @@ True라고 한 것 중 진짜 True는 몇 얼마나 있는지
 
 </br>
 
-**specificity**
+**specificity, 특이도**
 
 (TN) / (TN + FP)
 
