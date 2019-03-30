@@ -285,6 +285,8 @@ train["datetime-second"] = train["datetime"].dt.second
 
 ### Lambda 에서 elif 사용하고 싶을 때, else 여러번
 
+row 별로 적용할 때는?
+
 ```python
 train["Pclass"] = train["Pclass"].apply(lambda x: "A" if x == 1 else ("B" if x == 2 else "C"))
 ```
