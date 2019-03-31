@@ -1000,3 +1000,8 @@ print("수행시간 : {%.1f}초".format(time.time() - start_time))
 
 </br>
 
+### get_clf_eval(y_test, predict)
+
+accuracy, 정밀도, 재현율, F1, AUC 값 한 번에 나타낸다
+
+</br>
