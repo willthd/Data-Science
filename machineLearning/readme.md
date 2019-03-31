@@ -170,7 +170,7 @@ max_depth : 최대 연속된 질문 목록(test). default는 무한정 깊어질
 
 max_features : 최적의 분할을 위해 고려할 최대 feature 개수. default는 none으로 모든 feature 사용
 
-min_samples_leaf : leaf node가 되기 위한 최소한의 sample개수
+min_samples_leaf : leaf node가 되기 위한 최소한의 sample개수. 불균형 데이터의경우 특정 클래스의 데이터가 극도로 작을 수 있으므로 이 경우는 작게 설정 필요
 
 min_samples_split : 매개변수를 사용해 node가 분기할 수 있는 최소 sample 개수
 
@@ -299,13 +299,13 @@ max_depth : 일반적으로 작게 설정하며, tree의 깊이가 **5**보다 �
 
 ### 장점
 
-</br>
-
 random forest보다 성능이 좋다
 
 random forest보다 메모리를 적게 사용하고 예측도 빠르다 
 
 data scaling에 구애받지 않는다. 정규화나 표준화 같은 전처리 과정 필요없다
+
+</br>
 
 ### 단점
 
@@ -316,6 +316,88 @@ random forest보다 학습시간은 더 길다
 희소한 고차원 데이터에는 잘 작동하지 않는다
 
 </br>
+
+</br>
+
+## XGboost(eXtra Gradient Boost)
+
+GBM에 기반을 하고 있다. 하지만, GBM의 단점인 느린 수행 시간 및 과적합 규제(Regrularization) 부재 등의 문제를 해결하며, 특히 병렬 CPU 환경에서 병렬 학습이 가능해 빠르게 학습 가능하다. 파이썬 래퍼 XGboost와 사이킷런 래퍼 XGboost 두 가지가 있다. 사이킷런 래퍼 모듈은 사이킷런의 다른 estimator와 사용법이 같은 데 반해 파이썬 래퍼는 고유의 API와 하이퍼 파라미터를 사용한다. 여기선 사이킷런 래퍼 모듈을 기본으로 설명
+
+</br>
+
+파라미터의 경우 titanic code도 함께 보면 도움됨
+
+### 주요 일반 파라미터
+
+nthread : CPU의 실행 스레드 개수. 디폴트는 CPU의 전체 스레드를 다 사용하는 것
+
+</br>
+
+### 주요 부스터 파라미터
+
+> bold체는 과적합 막기 위한 parameter
+
+**learning_rate**(default=0.1) : learning rate. 보통 0.01 ~ 0.02 값을 사용한다
+
+num_boost_rounds : 트리의 개수(GBM의 n_estimators와 같은 파라미터)
+
+**min_child_weight**(default=1) : GBM의 min_child_leaf와 유사. 과적합을 조절하기 위해 사용
+
+**gamma**(default=0) : 트리의 리프 노드를 추가적으로 나눌지를 결정할 최소 손실 감소 값. 해당 값보다 큰 손실이 감소된 경우에 리프 노드를 분리한다. 값이 클수록 과적합 감소 효과가 있다
+
+**max_depth**(default=6) : 0으로 지정하면 깊이 제한 없음. 보통 3~10 값을 적용
+
+**sub_sample**(default=1) : 데이터를 샘플링하는 비율. 보통 0.5 ~ 1 적용
+
+**colsample_bytree**(default=1) : 트리 생성에 필요한 feature를 임의로 샘플링 하는 데 사용. 매우 많은 feature가 있는 경우 과적합을 조정하는 데 적용
+
+lambda(default=1) : L2 regularization 적용 값. feature 개수가 많을 경우 적용을 검토하며 값이 클수록 과적합 감소 효과
+
+alpha(default=0) : L1 regularization 적용 값. feature 개수가 많을 경우 적용을 검토하며 값이 클수록 과적합 감소 효과
+
+scale_pos_weight(default=1) : 불균형 데이터 셋의 균형을 유지하기 위함
+
+</br>
+
+### 학습 태스크 파라미터
+
+objective : 최솟값을 가져야할 손실 함수를 정의한다. XGboost는 많은 유형의 손실 함수를 사용할 수 있다. 주로 사용되는 손실함수는 이진 분류인지 다중분류인지에 따라 달라진다
+
+binary:logistic : 이진 분류일 때 적용
+
+multi:softmax : 다중 분류일 때 적용. 이 때는 레이블 클래스의 개수인 num_class를 적용해야 한다
+
+eval_metric : 검증에 사용되는 함수. 기본값은 회귀인 경우 rmse, 분류일 경우 error
+
+* rmse : root mean square error
+* mae : mean absolute error
+* logloss : negative log-likelyhood
+* error : binary classification error rate(0.5 threshold)
+* merror : multicast classifiaction error rate
+* mlogloss : multiclass logloss
+* auc : area under the curve
+
+</br>
+
+### 장점
+
+GBM이 갖는 장점
+
+규제 가능하다(GBM은 불가능)
+
+수행 시간 빠르다(CPU 병렬 사용해 GBM보다 빠르다. 뿐만 아니라 early stopping 기능 추가. Random forest보다는 느림)
+
+**early stopping 예시**
+
+n_estimators : 200, early_stopping : 50
+
+100회에서 학습 오류 값이 0.8인데, 101~150회 반복하는 동안 예측 오류가 0.8보다 작은 값이 하나도 없으면 boosting 종료
+
+</br>
+
+### 단점
+
+GBM이 갖는 단점
 
 </br>
 
