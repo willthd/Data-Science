@@ -196,7 +196,7 @@ overfitting 가능성 다분하다 -> Decision Tree Ensemble
 
 ## Ensemble
 
-> 전통적으로 voting, bagging, boosting 으로 나눌 수 있으며, 이외에도 stacking을 포함한 다양한 앙상블 방법이 있다. Voting은 일반적으로 여러 모델을 사용하고, bagging과 boosting은 동일 모델을 사용한다. bagging은 데이터를 boostsrap aggregating 방식으로 취합해 각 모델간 독립적이며, boosting은 특정 데이터 샘플에 가중치를 부여해 학습하기에 모델간 연속적이라고 할 수 있다
+> 전통적으로 voting, bagging, boosting 으로 나눌 수 있으며, 이외에도 stacking을 포함한 다양한 앙상블 방법이 있다. Voting은 일반적으로 여러 모델을 사용하고, bagging과 boosting은 동일 모델을 사용한다. bagging은 데이터를 boostsrap aggregating 방식으로 취합해 각 모델간 독립적이며, boosting은 잘못 예측한 데이터에 가중치를 부여해 학습하며, 모델(weak-learner)은 서로 연속적이라고 할 수 있다
 
 * Voting : 서로 다른 알고리즘 사용
 * * hard :  다수결
