@@ -347,13 +347,13 @@ num_boost_rounds : 트리의 개수(GBM의 n_estimators와 같은 파라미터)
 
 **max_depth**(default=6) : 0으로 지정하면 깊이 제한 없음. 보통 3~10 값을 적용
 
-**sub_sample**(default=1) : 데이터를 샘플링하는 비율. 보통 0.5 ~ 1 적용
+**subsample**(default=1) : 데이터를 샘플링하는 비율. 보통 0.5 ~ 1 적용
 
 **colsample_bytree**(default=1) : 트리 생성에 필요한 feature를 임의로 샘플링 하는 데 사용. 매우 많은 feature가 있는 경우 과적합을 조정하는 데 적용
 
-lambda(default=1) : L2 regularization 적용 값. feature 개수가 많을 경우 적용을 검토하며 값이 클수록 과적합 감소 효과
+**reg_lambda**(default=1) : L2 regularization 적용 값. feature 개수가 많을 경우 적용을 검토하며 값이 클수록 과적합 감소 효과
 
-alpha(default=0) : L1 regularization 적용 값. feature 개수가 많을 경우 적용을 검토하며 값이 클수록 과적합 감소 효과
+**reg_alpha**(default=0) : L1 regularization 적용 값. feature 개수가 많을 경우 적용을 검토하며 값이 클수록 과적합 감소 효과
 
 scale_pos_weight(default=1) : 불균형 데이터 셋의 균형을 유지하기 위함
 
@@ -387,11 +387,11 @@ GBM이 갖는 장점
 
 수행 시간 빠르다(CPU 병렬 사용해 GBM보다 빠르다. 뿐만 아니라 early stopping 기능 추가. Random forest보다는 느림)
 
-**early stopping 예시**
+**early_stopping_rounds 예시**
 
-n_estimators : 200, early_stopping : 50
+n_estimators : 400, early_stopping_rounds : 100
 
-100회에서 학습 오류 값이 0.8인데, 101~150회 반복하는 동안 예측 오류가 0.8보다 작은 값이 하나도 없으면 boosting 종료
+400번 반복 수행하지 않고 311번 반복한 후 학습을 완료한다. 이유는 211번 반복 시 logloss가 0.085이고 311번 반복 시 logloss가 0.086인데, 211번에서 311번까지 early_stopping_rounds=100으로 지정된 100번의 반복 동안 성능 평가 지수가 향상되지 않았기 때문. 조기 중단된 경우가 그렇지 않은 경우보다 성능 더 안좋을 수도 있다. 하지만 큰 차이는 아니다
 
 </br>
 
