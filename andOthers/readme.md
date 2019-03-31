@@ -922,7 +922,7 @@ nrounds 많큼 weak learner 만드는데, early_stopping_rounds 이후 성능 �
 
 ### DMatrix
 
-Now you will convert the dataset into an optimized data structure called `Dmatrix` that XGBoost supports and gives it acclaimed performance and efficiency gains. You will use this later in the tutorial.
+주로 넘파이 입력 파라미터를 받아서 만들어지는 XGboost만의 전용 데이터셋. 판다스의 dataFrame으로 데이터 인터페이스를 하기 위해서는 DataFrame.values를 이용해 넘파이로 일차 변환한 뒤에 이를 이용해 DMatrix 변환을 적용한다. 사용 이유는 메모리와 속도 향상. 파이썬 래퍼 사용시에는 DMatrix 사용한다. 사이킷런 래퍼는 사용 안해도 된다
 
 ```python
 data_dmatrix = xgb.DMatrix(data=X,label=y)
