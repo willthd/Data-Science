@@ -404,8 +404,7 @@ train["nextday_holiday"] = train["nextday_date"].isin(holidat_date_list).astype(
 
 ###############
 # 방법 4, 가장 좋다
-train["nextday_holiday"] = train["nextday_date"].
-(lambda x : 1 if x in holiday_date_list else 0)
+train["nextday_holiday"] = train["nextday_date"].apply(lambda x : 1 if x in holiday_date_list else 0)
 ```
 
 </br>
