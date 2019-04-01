@@ -359,7 +359,7 @@ scale_pos_weight(default=1) : 불균형 데이터 셋의 균형을 유지하기 
 
 </br>
 
-### 학습 태스크 파라미터
+### Learning Task 파라미터
 
 objective : 최솟값을 가져야할 손실 함수를 정의한다. XGboost는 많은 유형의 손실 함수를 사용할 수 있다. 주로 사용되는 손실함수는 이진 분류인지 다중분류인지에 따라 달라진다
 
@@ -398,6 +398,62 @@ n_estimators : 400, early_stopping_rounds : 100
 ### 단점
 
 GBM이 갖는 단점
+
+</br>
+
+## LightGBM
+
+기존의 대부분 트리 기반 알고리즘은 트리의 깊이를 효과적으로 줄이기 위한 **균형 트리 분할(level wise)** 방식을 사용한다. 즉, 최대한 균형 잡힌 트리를 유지하면서 분할하기 때문에 트리의 깊이가 최소화 될 수 있다. 이렇게 균형 잡힌 트리를 생성하는 이유는 오버피팅에 보다 더 강한 구조를 가질 수 있다고 알려져 있기 때문이다. 반대로 균형을 맞추기 위한 시간이 필요하다는 상대적인 단점이 있다. 하지만 LightGBM은 **리프 중심 트리 분할(leaf wise)** 방식은 트리의 균형을 맞추지 않고, 최대 손실 닶을 가지는 리프 노드를 지속적으로 분할하면서 트리의 깊이가 깊어지고 비대칭적인 규칙 트리가 생성된다. 이런 방식은 학습을 반복할수록 결국은 균형 트리 분할 방식보다 예측 오류 손실을 최소화 할 수 있다
+
+</br>
+
+### 주요 파라미터
+
+n_estimators(default=100) : 트리의 개수. 너무 많으면 과적합으로 성능 저하 될 수 있음
+
+learning_rate(default=0.1) : 학습률. 너무 작으며 과적합 이슈와 학습 시간이 길어지는 부정적 영향 발생 가능
+
+**max_depth**(default=-1) : 0보다 작으면 깊이 제한 없다. LightGBM은 leaf wise 기반이므로 싶이가 상대적으로 더 깊다
+
+**min_child_samples**(default=20) : min_samples_leaf와 동일. 리프 노드가 되기 위해 필요한 최소한의 샘플 수
+
+**num_leaves**(default=31) : 하나의 트리가 가질 수 있는 최대 리프 개수
+
+**sub_sample** : 과적합 제어하기 위해 데이터 샘플링하는 비율을 지정
+
+**colsample_bytree**(default=1) : 무작위로 선택하는 feature의 비율로 과적합을 제어
+
+**reg_lambda**(default=0) : L2 regularization. feature개수가 많을 경우 적용 검토하며 값이 클수록 과적합 감소 효과
+
+**reg_alpha**(default=0) : L1 regularization
+
+</br>
+
+### Learning Task 파라미터
+
+objective : XGboost와 동일
+
+
+
+</br>
+
+### 장점
+
+XGboost보다 빠른 학습 및 예측 시간
+
+XGboost보다 적은 메모리 사용량
+
+카테고리형 feature의 자동 변환과 최적 분할(one-hot-encoding 사용하지 않고도 카테고리형 feature를 최적으로 변환하고 이에 따른 노드 분할 수행. XGboost는 불가능)
+
+병렬 computing
+
+GPU 지원
+
+</br>
+
+### 단점
+
+일반적으로 10000개 샘플 이하의 데이터셋의 경우 overfitting이 쉽게 발생한다
 
 </br>
 
