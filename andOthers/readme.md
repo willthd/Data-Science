@@ -1014,3 +1014,6 @@ accuracy, 정밀도, 재현율, F1, AUC 값 한 번에 나타낸다
 Learning_rate를 작게 하면서 n_estimators를 크게 하는 것은 부스팅 계열 튜닝에서 가장 기본적인 튜닝 방안이다
 
 </br>
+
+### string 일치는 == 으로, dataframe 일치는 df_1.equals(df_2)
+
