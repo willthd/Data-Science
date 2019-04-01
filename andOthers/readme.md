@@ -806,9 +806,11 @@ train.info()
 
 http://freesearch.pe.kr/archives/4506
 
+일반적으로 Oversampling이 Undersampling이 좋다고 한다.
+
 1. Oversampling
 2. Undersampling
-3. SMOTE
+3. SMOTE, 일반적으로 재현율은 높아지나, 정밀도는 낮아진다
 
 library 존재 -> imblearn
 
