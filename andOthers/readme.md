@@ -942,6 +942,10 @@ https://datascienceschool.net/view-notebook/7002e92653434bc88c8c026c3449d27b/
 
 key를 사용하지 않고 단순히 데이터를 세로 또는 가로 방식으로 연결한다. 따라서 인덱스 값이 중복될 수 있다
 
+```python
+pd.concat([df_1, df_2])
+```
+
 </br>
 
 ### PCA와 FA의 차이
