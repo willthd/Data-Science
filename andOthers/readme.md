@@ -496,6 +496,8 @@ train.reset_index(inplace=True)
 
 ### 전체 data에서 train, test data 분류
 
+불균형 데이터셋을 각 클래스별 비율에 맞게 분류한다. StratifiedKFold와의 차이는 train_test_spilit의 경우 1회 시행하는데 반해 StratifiedKFold는 cv 횟수 만큼 train과 test를 분리 한다. 그리고 StratifiedShuffleSplit은 stratified하게 train과 test를 분리하지만, test에 선택된 인덱스가 cv마다 겹칠 수 있다
+
 ```python
 X_train, X_test, y_train, y_test = train_test_split(iris_dataset["data"], iris_dataset["target"], random_state=0, test_size=0.2)
 ```
@@ -1016,4 +1018,3 @@ Learning_rate를 작게 하면서 n_estimators를 크게 하는 것은 부스팅
 </br>
 
 ### string 일치는 == 으로, dataframe 일치는 df_1.equals(df_2)
-
