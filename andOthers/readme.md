@@ -841,8 +841,6 @@ https://medium.com/datadriveninvestor/improve-your-classification-models-using-m
 
 https://www.kaggle.com/vprokopev/mean-likelihood-encodings-a-comprehensive-study
 
-
-
 </br>
 
 ### fequency encoding
@@ -851,7 +849,9 @@ https://www.kaggle.com/youhanlee/which-encoding-is-good-for-time-validation-1-44
 
 ```python
 def frequency_encoding(frame, col):
+    # 각 클래스를 index로 하여 클래스별로 몇 개 씩 있는지
     freq_encoding = frame.groupby([col]).size()/frame.shape[0] 
+    # 위의 것에서 index를 없애고 개수가 있는 컬럼 이름(0)을 변경
     freq_encoding = freq_encoding.reset_index().rename(columns={0:'{}_Frequency'.format(col)})
     return frame.merge(freq_encoding, on=col, how='left')
 ```
