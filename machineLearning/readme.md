@@ -1074,7 +1074,7 @@ True라고 한 것 중 진짜 True는 몇 얼마나 있는지
 
 </br>
 
-**recall, 재현율, sensitivity, 정밀도, 참 양성 비율, TPR**
+**recall, 재현율, sensitivity, 민감도, 참 양성 비율, TPR**
 
 (TP) / (TP + FN)
 
