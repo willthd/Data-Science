@@ -1031,3 +1031,27 @@ Learning_rate를 작게 하면서 n_estimators를 크게 하는 것은 부스팅
 ### string 일치는 == 으로, dataframe 일치는 df_1.equals(df_2)
 
 </br>
+
+### groupby 좀 잘쓰자...
+
+**상황**
+
+dataframe에 id컬럼이 있고, id값은 중복되는 경우가 있다. 그리고 year 컬럼이 있다. 여기서 각 id마다 year가 무엇 무엇이 있는지 확인하고자 한다
+
+```python
+df_val = df.groupby('id')['year'].unuque().to_frame()
+df_val.reset_index(inplace=True)
+```
+
+만약 개수를 확인하고 싶다면
+
+```python
+df_val = df.groupby('id')['year'].nunuque().to_frame()
+df_val.reset_index(inplace=True)
+
+df_val = df.groupby('id')['year'].count().to_frame()
+df_val.reset_index(inplace=True)
+
+# frequency_encoding도 있다
+```
+
