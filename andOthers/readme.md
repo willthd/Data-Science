@@ -943,10 +943,13 @@ https://datascienceschool.net/view-notebook/7002e92653434bc88c8c026c3449d27b/
 
 #### concat
 
-key를 사용하지 않고 단순히 데이터를 세로 또는 가로 방식으로 연결한다. 따라서 인덱스 값이 중복될 수 있다
+key를 사용하지 않고 단순히 데이터를 세로 또는 가로 방식으로 연결한다. **따라서 인덱스 값이 중복될 수 있다**.
 
 ```python
-pd.concat([df_1, df_2])
+df = pd.concat([df_1, df_2])
+# 중복된 인덱스 없애기. 예를 들어 df_1이 0, 1, 2, 3 인덱스 있고, df_2가 0, 1, 2 있으면 df의 인덱스는 0, 1, 2, 3, 0, 1, 2 이런식으로 생성되어 버림
+df.reset_index(inplace=True)
+df.drop('index', axis=1, inplace=True)
 ```
 
 </br>
@@ -1023,5 +1026,8 @@ Learning_rate를 작게 하면서 n_estimators를 크게 하는 것은 부스팅
 
 2~3개 정도의 파라미터를 결합해 최적 파라미터르 ㄹ찾아낸 뒤에 순차적으로 이 최적 파라미터를 기반으로 다시 1~2개 정도의 파라미터를 결합해 튜닝
 
+</br>
+
 ### string 일치는 == 으로, dataframe 일치는 df_1.equals(df_2)
 
+</br>
