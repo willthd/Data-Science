@@ -1055,3 +1055,11 @@ df_val.reset_index(inplace=True)
 # frequency_encoding도 있다
 ```
 
+</br>
+
+### c for c in
+
+```python
+temp_list = [c for c in a_list if ('density' in c or 'caregory' in c)]
+```
+
