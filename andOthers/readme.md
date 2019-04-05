@@ -1077,3 +1077,31 @@ df_val.reset_index(inplace=True)
 temp_list = [c for c in a_list if ('density' in c or 'caregory' in c)]
 ```
 
+</br>
+
+### dataframe to dictionary
+
+id가 중복되는 경우 없을 때
+
+```python
+a = pd.DaraFrame({"id" : [1, 1, 3, 5, 4],
+									"YYYY" : [2001, 2002, 2003, 2004, 2004]})
+
+# 결과물
+# 중복되는 것 중 마지막 것만 입력됨
+#{1: 2002, 3: 2003, 5: 2004, 4: 2004}
+```
+
+id가 중복되는 경우 있을 때
+
+```python
+a = pd.DaraFrame({"id" : [1, 1, 3, 5, 4],
+									"YYYY" : [2001, 2002, 2003, 2004, 2004]})
+
+# 결과물
+# 중복되는 것 중 마지막 것만 입력됨
+# {1: [2001, 2002], 3: [2003], 5: [2004], 4: [2004]}
+```
+
+</br>
+
