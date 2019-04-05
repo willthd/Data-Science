@@ -1084,8 +1084,9 @@ temp_list = [c for c in a_list if ('density' in c or 'caregory' in c)]
 id가 중복되는 경우 없을 때
 
 ```python
-a = pd.DaraFrame({"id" : [1, 1, 3, 5, 4],
-									"YYYY" : [2001, 2002, 2003, 2004, 2004]})
+a = pd.DaraFrame({'id' : [1, 1, 3, 5, 4],
+									'YYYY' : [2001, 2002, 2003, 2004, 2004]})
+a_dict = a.set_index('id')['YYYY'].to_dict()
 
 # 결과물
 # 중복되는 것 중 마지막 것만 입력됨
@@ -1095,9 +1096,10 @@ a = pd.DaraFrame({"id" : [1, 1, 3, 5, 4],
 id가 중복되는 경우 있을 때
 
 ```python
-a = pd.DaraFrame({"id" : [1, 1, 3, 5, 4],
-									"YYYY" : [2001, 2002, 2003, 2004, 2004]})
+a = pd.DaraFrame({'id' : [1, 1, 3, 5, 4],
+									'YYYY' : [2001, 2002, 2003, 2004, 2004]})
 
+a_dict = {id_: yyyy['YYYY'].tolist() for id_, yyyy i ttt.groupby('id')}
 # 결과물
 # 중복되는 것 중 마지막 것만 입력됨
 # {1: [2001, 2002], 3: [2003], 5: [2004], 4: [2004]}
