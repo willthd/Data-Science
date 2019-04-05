@@ -293,9 +293,10 @@ train["Pclass"] = train["Pclass"].apply(lambda x: "A" if x == 1 else ("B" if x =
 
 </br>
 
-### lambda 에서 두 개 컬럼 사용하고 싶을 때
+### lambda 에서  여러개 컬럼 사용하고 싶을 때
 
 ```python
+# 보통 하나의 컬럼만 인자로 뽑아서 사용할 때는 X_mammo['column'].apply(lambda x : )를 진행하지만, 여러개 컬럼 이용할 때는 X_mammo만 적용한다. 하나의 로우를 다 인자로 사용하는 것
 X_mammo['target'] = X_mammo.apply(lambda x : find_year_after_last(x.id, x.YYYY, df_target), axis=1)
 ```
 
@@ -1106,4 +1107,3 @@ a_dict = {id_: yyyy['YYYY'].tolist() for id_, yyyy i ttt.groupby('id')}
 ```
 
 </br>
-
