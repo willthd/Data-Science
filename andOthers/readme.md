@@ -293,6 +293,14 @@ train["Pclass"] = train["Pclass"].apply(lambda x: "A" if x == 1 else ("B" if x =
 
 </br>
 
+### lambda 에서 두 개 컬럼 사용하고 싶을 때
+
+```python
+X_mammo['target'] = X_mammo.apply(lambda x : find_year_after_last(x.id, x.YYYY, df_target), axis=1)
+```
+
+</br>
+
 ### one-hot-encoding 한번에
 
 ```python
