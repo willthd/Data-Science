@@ -1056,9 +1056,9 @@ print("오차 행렬:\n{}".format(confusion))
 
 **accuracy, 정확도**
 
-전체 중에서 얼마나 맞췄는지
-
 (TP + TN) / (TP + TN + FP + FN)
+
+전체 중에서 얼마나 맞췄는지
 
 </br>
 
@@ -1098,7 +1098,7 @@ True라고 한 것 중 진짜 True는 몇 얼마나 있는지
 
 **fall out, FPR, 허위 양성 비율**
 
-진짜 negative 중 내가 얼마나 negative라고 맞췄는지
+진짜 음성 중 양성이라고 잘못 예측한 경우의 비율
 
 (FP) / (TN + FP)
 
