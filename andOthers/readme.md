@@ -409,7 +409,7 @@ train.loc[train["nextday_date"].isin(holiday_date_list), "nextday_holiday"] = 1
 train.loc[train["nextday_holiday"].isnull(), "nextday_holiday"] = 0
 
 # 방법 3
-train["nextday_holiday"] = train["nextday_date"].isin(holidat_date_list).astype(int)
+train["nextday_holiday"] = train["nextday_date"].isin(holiday_date_list).astype(int)
 
 ###############
 # 방법 4, 가장 좋다
