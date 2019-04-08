@@ -1107,3 +1107,21 @@ a_dict = {id_: yyyy['YYYY'].tolist() for id_, yyyy i ttt.groupby('id')}
 ```
 
 </br>
+
+### hyperparemeters tuning, optimization
+
+* grid search
+
+* random search, coarse to fine search
+
+* bayesian optimization
+
+  * 두 가지 라이브러리 있다
+
+    ```python
+    from bayes_opt import BayesianOptimization
+    from skopt import BayesSearchCV
+    ```
+
+    
+
