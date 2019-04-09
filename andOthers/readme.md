@@ -1123,5 +1123,14 @@ a_dict = {id_: yyyy['YYYY'].tolist() for id_, yyyy i ttt.groupby('id')}
     from skopt import BayesSearchCV
     ```
 
-    
+</br>
+
+### 소수점 자릿수
+
+```python
+# 39.54484700000000 -> 39.54
+print("{:.2f}".format(39.54484700000000))
+```
+
+</br>
 
