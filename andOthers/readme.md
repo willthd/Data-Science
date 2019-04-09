@@ -1061,7 +1061,7 @@ df_val.reset_index(inplace=True)
 만약 개수를 확인하고 싶다면
 
 ```python
-df_val = df.groupby('id')['year'].nunuque().to_frame()
+df_val = df.groupby('id')['year'].nunique().to_frame()
 df_val.reset_index(inplace=True)
 
 df_val = df.groupby('id')['year'].count().to_frame()
