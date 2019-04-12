@@ -1137,7 +1137,8 @@ print("{:.2f}".format(39.54484700000000))
 ### col로 sort
 
 ```python
-df = df.reindex(sorted(df.columns), axis=1)
+ttt.sort_values(by=['id'])
 ```
 
 </br>
+
