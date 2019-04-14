@@ -1137,8 +1137,7 @@ print("{:.2f}".format(39.54484700000000))
 ### col로 sort
 
 ```python
-ttt.sort_values(by=['id'])
+ttt.sort_values(by=['id', 'YYYY'])
 ```
 
 </br>
-
