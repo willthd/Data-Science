@@ -1141,3 +1141,13 @@ ttt.sort_values(by=['id', 'YYYY'])
 ```
 
 </br>
+
+### column type 확인
+
+```python
+if mammo[col].dtype == np.int64
+if mammo[col].dtype == np.float64
+# 둘 다 아니면 object
+```
+
+</br>
