@@ -50,6 +50,14 @@ df = trn_series.to_frame(trn_series.name)
 
 </br>
 
+### 배열 -> series
+
+```python
+coeff = pd.Series(data=np.round(lr.coef_, 1), index=X_data.columns)
+```
+
+</br>
+
 ### Feature Importance
 
 이 값은 0과 1사이의 숫자로, 각 feature에 대해 0은 전혀 사용되지 않았다는 뜻이며, 1은 완벽하게 target class를 예측했다는 뜻이다. 값이 낮다고 해서 이 특성이 유용하지 않다는 뜻은 아니다. 단지 트리가 그 특성을 선택하지 않았을 뿐이며 다른 특성이 동일한 정보를 지니고 있어서일 수 있다.
@@ -1155,3 +1163,16 @@ if mammo[col].dtype == np.float64
 ### 다중공선성
 
 피쳐간의 상관관계가 매우 높은 경우 분산이 매우 커져서 오류에 매우 민감해진다
+
+</br>
+
+### regplot
+
+산점도와 함께 선형 회귀 직선을 그림
+
+```python
+sns.regplot(x=feature, y='PRICE', data=bostonDF, ax=axs[row][col])
+```
+
+</br>
+
