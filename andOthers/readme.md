@@ -1180,3 +1180,14 @@ sns.regplot(x=feature, y='PRICE', data=bostonDF, ax=axs[row][col])
 
 회귀가 독립 변수의 단항식이 아닌 2차, 3차 방정식과 같은 다항식으로 표현되는 것을 다항 회귀라고 한다. 다항 회귀는 선형 회귀다. 회귀에서 선형/비선형 회귀를 나누는 기준은 회귀 계수가 선형/비선형인지에 따른 것이지 독립 변수의 선형/비선형 여부와는 무관하다. 사이킷런에서는 다항 회귀를 위한 클래스를 따로 마련해두지 않았기 때문에 PolynomialFeatures()로 feature를 변형하고, 이를 LinearRegression 클래스로 다항 회귀 구현한다. degree가 높을 수록 overfitting 위험성 높다
 
+</br>
+
+### 문자열 있는지 확인
+
+```python
+mysite = 'Site name is webisfree.'
+if 'webisfree' in myname:
+  print('Okay')
+```
+
+</br>
