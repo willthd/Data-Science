@@ -52,6 +52,8 @@ sparse dataSet의 경우 잘 안맞는다
 
 regression의 경우, 보통 Ridge()를 선호하지만 특성이 많고, 그 중 일부 feature만 중요하다면 Lasso()
 
+다항 회귀도 선형 회귀이다. 회귀에서 선형/비선형 회귀를 나누는 기준은 회귀 계수가 선형/비선형인지에 따른 것이지 독립변수의 선형/비선형 여부와는 무관하다
+
 범주형 변수가 정수로 표기되어 있는 경우 연속형 변수로 해석한다. 따라서 이 경우 one-hot-encodig을 사용한다
 
 구간 분할이나 다항식과 상호작용 특성을 새로 추가해 큰 이득을 볼 수 있다
@@ -80,19 +82,53 @@ W : variance를 낮추기 위함. (Ridge에서는 W의 제곱, Lasso에서는 W�
 
 선형 회귀에 L2규제를 추가한 회귀 모델. cost function에 회귀 계수의 제곱의 합을 추가해 penalty항을 만들어 회귀 계수가 큰 경우 더 큰 penalty를 받게 한다. 다중공선성을 방지한다. 1만개의 변수가 있다면 계속 1만개의 변수가 남는다
 
+**주요 파라미터**
+
 alpha값이 커질 수록, 회귀 계수(W)의 크기는 지속적으로 작아진다
+
+</br>
 
 ### Lasso 회귀(L1 회귀)
 
 선형 회귀에 L1규제를 추가한 회귀 모델. cost function에 회귀 계수의 절대값의 합을 추가한다. 변수들끼리 correlation 관계가 있다면 하나의 항만 남고, 전부 사라지게 된다. L2 규제가 회귀 계수 값의 크기가 커지는 것을 방지하는 데 반해, L1규제는 예측 영향력이 작은 피처의 회귀 계수를 0으로 만들어 회귀 예측 시 피처가 선택되지 않게 한다. 정보가 손실 될 우려가 있다
 
+**주요 파라미터**
+
 alpha값이 커질 수록, 회귀 계수의 크기가 0인 피처가 많아진다
 
+<https://godongyoung.github.io/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D/2018/02/07/ISL-Linear-Model-Selection-and-Regularization_ch6.html>
+
 ![RL](./ridgeLasso.png)
+
+
+
+</br>
 
 ### ElasticNet
 
 Ridge와 Lasso의 결합. L1, L2 매개변수 정해줘야한다. 주로 피처가 많은 데이터 셋에 사용된다
+
+수행 시간이 상대적으로 오래 걸린다
+
+**주요 파라미터**
+
+alpha :  a + b (a : L1 규제, b : L2 규제)
+
+l1_ratio : a / (a + b)
+
+</br>
+
+### Logistic Regression
+
+선형 회귀 방식을 기반으로 하되 시그모이드 함수를 이용해 분류를 수행하는 회귀
+
+가볍고 빠르며 예측 성능도 뛰어나기 때문에 기본 모델로 사용하는 경우 많다
+
+**주요 파라미터**
+
+penalty(default=l2) : l1 or l2
+
+C : 1/alpha, C 값이 작을 수록 규제 강도 높다
 
 </br>
 
@@ -111,6 +147,10 @@ C(classification) : regularization 강도. 클 수록 regularization 적다, mod
 solver(regression) : "sag", 더 빠르게 학습한다
 
 </br>
+
+### 데이터셋
+
+feature와 target이 종 모양의 정규분포를 이룰 수록 좋다. 특히 target
 
 ### 장점
 
