@@ -58,17 +58,43 @@ regression의 경우, 보통 Ridge()를 선호하지만 특성이 많고, 그 �
 
 </br>
 
-Ridge 회귀(L2 회귀) : 선형 회귀에 L2규제를 추가한 회귀 모델. cost function에 회귀 계수의 제곱의 합을 추가해 penalty항을 만들어 회귀 계수가 큰 경우 더 큰 penalty를 받게 한다. 다중공선성을 방지한다. 1만개의 변수가 있다면 계속 1만개의 변수가 남는다
-
-Lasso 회귀(L1 회귀) : 선형 회귀에 L1규제를 추가한 회귀 모델. cost function에 회귀 계수의 절대값의 합을 추가한다. 변수들끼리 correlation 관계가 있다면 하나의 항만 남고, 전부 사라지게 된다. L2 규제가 회귀 계수 값의 크기가 커지는 것을 방지하는 데 반해, L1규제는 예측 영향력이 작은 피처의 회귀 계수를 0으로 만들어 회귀 예측 시 피처가 선택되지 않게 한다. 정보가 손실 될 우려가 있다
-
-ElasticNet : Ridge와 Lasso의 결합. L1, L2 매개변수 정해줘야한다. 주로 피처가 많은 데이터 셋에 사용된다
-
 경사하강법 : W(new) = W - learning rate * 미분(cost(W)) 방식으로 W 갱신
 
 피쳐가 N개 있다면 그에 따른 회귀 계수도 N + 1(하나는 w0, 절편)개로 도출됨
 
 확률적 경사하강법 : 전체 X, y 데이터에서 랜덤하게 batch_size만큼 데이터를 추출해 W 갱신
+
+</br>
+
+cost function : **RSS(W)** + alpha * **W**)
+
+목표 : cost function의 최소화. Min(**RSS(W)** + alpha * **W**)
+
+RSS(W) : bias를 낮추기 위함
+
+W : variance를 낮추기 위함. (Ridge에서는 W의 제곱, Lasso에서는 W의 절대값)
+
+</br>
+
+### Ridge 회귀(L2 회귀)
+
+선형 회귀에 L2규제를 추가한 회귀 모델. cost function에 회귀 계수의 제곱의 합을 추가해 penalty항을 만들어 회귀 계수가 큰 경우 더 큰 penalty를 받게 한다. 다중공선성을 방지한다. 1만개의 변수가 있다면 계속 1만개의 변수가 남는다
+
+alpha값이 커질 수록, 회귀 계수(W)의 크기는 지속적으로 작아진다
+
+### Lasso 회귀(L1 회귀)
+
+선형 회귀에 L1규제를 추가한 회귀 모델. cost function에 회귀 계수의 절대값의 합을 추가한다. 변수들끼리 correlation 관계가 있다면 하나의 항만 남고, 전부 사라지게 된다. L2 규제가 회귀 계수 값의 크기가 커지는 것을 방지하는 데 반해, L1규제는 예측 영향력이 작은 피처의 회귀 계수를 0으로 만들어 회귀 예측 시 피처가 선택되지 않게 한다. 정보가 손실 될 우려가 있다
+
+alpha값이 커질 수록, 회귀 계수의 크기가 0인 피처가 많아진다
+
+![RL](./ridgeLasso.png)
+
+### ElasticNet
+
+Ridge와 Lasso의 결합. L1, L2 매개변수 정해줘야한다. 주로 피처가 많은 데이터 셋에 사용된다
+
+</br>
 
 regression : linearRegression(), Ridge()(L2), Lasso()(L1), ElasticNet(), SGDRegressor()(dataSet 대용량 일 때)
 
