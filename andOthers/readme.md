@@ -960,6 +960,8 @@ https://datascienceschool.net/view-notebook/7002e92653434bc88c8c026c3449d27b/
 
 key를 multi로 할 경우
 
+**df_1을 기준으로 한다**
+
 ```python
 pd.merge(df_1, df_2, on=['key1', 'key2'])
 ```
