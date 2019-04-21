@@ -882,8 +882,9 @@ def frequency_encoding(frame, col):
 ### 계층이 여러개인 컬럼에서 sort_values() 적용
 
 ```python
-# ("1번 계층 컬럼", "2번 계층 컬럼")
-cat_perc.sort_values(by=("target", "mean"), ascending=False, inplace=True)
+# ["1번 계층 컬럼", "2번 계층 컬럼"]
+# 오름차순
+cat_perc.sort_values(by=["target", "mean"], ascending=False, inplace=True)
 ```
 
 ![sort1](./sort_values1.jpg) —————> ![sort2](./sort_values2.jpg)
@@ -1062,7 +1063,7 @@ Learning_rate를 작게 하면서 n_estimators를 크게 하는 것은 부스팅
 dataframe에 id컬럼이 있고, id값은 중복되는 경우가 있다. 그리고 year 컬럼이 있다. 여기서 각 id마다 year가 무엇 무엇이 있는지 확인하고자 한다
 
 ```python
-df_val = df.groupby('id')['year'].unuque().to_frame()
+df_val = df.groupby('id')['year'].unique().to_frame()
 df_val.reset_index(inplace=True)
 ```
 
@@ -1093,7 +1094,7 @@ temp_list = [c for c in a_list if ('density' in c or 'caregory' in c)]
 id가 중복되는 경우 없을 때
 
 ```python
-a = pd.DaraFrame({'id' : [1, 1, 3, 5, 4],
+a = pd.DataFrame({'id' : [1, 1, 3, 5, 4],
 									'YYYY' : [2001, 2002, 2003, 2004, 2004]})
 a_dict = a.set_index('id')['YYYY'].to_dict()
 
