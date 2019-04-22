@@ -1253,3 +1253,27 @@ isnull_series = df[col].isnull().sum()
 
 </br>
 
+### 모델 이름 파악
+
+```python
+# model._class_.name를 사용하는 예시
+
+models = [lr_reg, ridge_reg, lasso_reg]
+
+def get_rmse(model):
+	pred = model.predict(X_test)
+	mse = mean_squared_error(y_test, pred)
+	rmse = np.sqrt(mse)
+	print(model._class_.name, ' 로그 변환된 RMSE : ', np.round(rmse, 3))
+	return rmse
+	
+get_rmses(models):
+	rmses=[]
+	for model in models:
+		rmse = get_rmse(model)
+		rmses.append(rmse)
+	return rmses
+
+```
+
+</br>
