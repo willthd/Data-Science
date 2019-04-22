@@ -1277,3 +1277,27 @@ get_rmses(models):
 ```
 
 </br>
+
+### skew()
+
+일반적으로 skew() 함수의 반환 값이 1 이상인 경우를 왜곡 정도가 높다고 판단한다. 하지만, 상황에 따라 편차는 있다. 1이상의 값을 반환하는 feature만 추출해 왜곡 정도를 완화하기 위해 변환(ex- log)을 적용한다. 이 때 주의할 점은 모든 숫자형 feature에 적용하는 것이 아니라는 점이다. one-hot-encoding된 카테고리 숫자형 feature는 제외한다
+
+* 파이썬 머신러닝 완벽 가이드 p.361 참조
+
+```python
+from scipy.stats import skew
+
+# object가 아닌 숫자형 피처의 컬럼 index 객체 추출
+features_index = house_df.dtypes[house_df.dtypes != 'object].index
+# house_df에 컬럼 index를 []로 입력하면 해당하는 컬럼 데이터 세트 반환.
+skew_features = house_df[features_index].apply(lambda x: skew(x))
+# skew 정도가 1이상인 컬럼만 추출
+skew_features_top = skew_features[skew_features > 1]
+print(skew_features_top.sort_values(ascending=False))
+                                 
+# log변환(항상 log 변환은 아닐 수 있다)                                 
+house_df[skew_features_top.index] = np.log1p(house_df[skew_features_top.index])                                 
+```
+
+</br>
+
