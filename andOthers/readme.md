@@ -1212,3 +1212,8 @@ df1.equals(df2)
 ```
 
 </br>
+
+### 회귀 트리 regressor는 feature importance를, 선형 회귀는 coef_ 회귀 계수를 확인
+
+</br>
+
