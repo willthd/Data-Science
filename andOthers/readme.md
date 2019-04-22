@@ -22,6 +22,9 @@ train.describe()
 
 # null개수, dtype(dtype은 한 열에 여러개 섞여 있어도 다 나타내지 않고 하나만 나타낸다)
 train.info()
+
+# 전체 feature의 type
+train.dtypes.value_counts()
 ```
 
 </br>
