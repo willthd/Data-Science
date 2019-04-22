@@ -1226,3 +1226,24 @@ df1.equals(df2)
 
 </br>
 
+### 데이터 복사
+
+```python
+house_df_org = pd.read_csv('./house_price.csv')
+house_df = house_df_org.copy()
+```
+
+</br>
+
+### 모든 컬럼에서 null 확인
+
+```python
+df.isnull().sum()
+print(isnull_series[isnull_series > 0].sort_values(ascending=False))
+
+# 특정 컬럼만 확인
+isnull_series = df[col].isnull().sum()
+```
+
+</br>
+
