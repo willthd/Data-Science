@@ -1203,3 +1203,12 @@ if 'webisfree' in myname:
 np.log1p()
 ```
 
+</br>
+
+### 데이터 프레임 동일한지 비교
+
+```python
+df1.equals(df2)
+```
+
+</br>
