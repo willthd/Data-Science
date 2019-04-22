@@ -287,6 +287,9 @@ train["datetime-day"] = train["datetime"].dt.day
 train["datetime-hour"] = train["datetime"].dt.hour
 train["datetime-minute"] = train["datetime"].dt.minute
 train["datetime-second"] = train["datetime"].dt.second
+
+# or
+trian['datetime-year'] = train['datetime'].apply(lambda x: x.year)
 ```
 
 </br>
@@ -1201,6 +1204,12 @@ if 'webisfree' in myname:
 
 ```python
 np.log1p()
+```
+
+log1p()로 변환된 값을 다시 원래 상태로 복구
+
+```python
+np.expm1()
 ```
 
 </br>
