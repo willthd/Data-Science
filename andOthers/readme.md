@@ -238,6 +238,9 @@ count_list = count_list.sort_values(by="a", ascending=False)
 
 ```python
 train["Age"].fillna(0, inplace=True)
+
+# 각 컬럼 별로 mean 구해서 null을 mean으로 채움
+train.fillna(train.mean(), inplace=True)
 ```
 
 </br>
