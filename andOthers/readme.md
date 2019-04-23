@@ -1301,3 +1301,12 @@ house_df[skew_features_top.index] = np.log1p(house_df[skew_features_top.index])
 
 </br>
 
+### list 원소 unique하게 변경
+
+```python
+my_set = set(my_list)
+my_list = list(my_set)
+```
+
+</br>
+
