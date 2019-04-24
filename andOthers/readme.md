@@ -518,6 +518,12 @@ https://datascienceschool.net/view-notebook/76dcd63bba2c4959af15bec41b197e7c/
 train.reset_index(inplace=True)
 ```
 
+### index 설정
+
+```python
+train.set_index('A', inplace=True)
+```
+
 </br>
 
 ### 전체 data에서 train, test data 분류
@@ -1309,4 +1315,3 @@ my_list = list(my_set)
 ```
 
 </br>
-
