@@ -717,6 +717,7 @@ from sklearn.preprocessing import Imputer
 
 ```python
 # Imputing with the mean or mode
+# missing_values에 none 입력 불가
 mean_imp = Imputer(missing_values=-1, strategy='mean', axis=0)
 mode_imp = Imputer(missing_values=-1, strategy='most_frequent', axis=0)
 ```
@@ -1308,7 +1309,9 @@ get_rmses(models):
 from scipy.stats import skew
 
 # object가 아닌 숫자형 피처의 컬럼 index 객체 추출
-features_index = house_df.dtypes[house_df.dtypes != 'object].index
+features_index = house_df.dtypes[house_df.dtypes != object].index
+# int, float로 분류 할 수 있다
+
 # house_df에 컬럼 index를 []로 입력하면 해당하는 컬럼 데이터 세트 반환.
 skew_features = house_df[features_index].apply(lambda x: skew(x))
 # skew 정도가 1이상인 컬럼만 추출
