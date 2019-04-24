@@ -188,6 +188,8 @@ np.random.rand(5)
 # 방법 1
 df = pd.DataFrame([["11","2", "6"], ["12","4", "2"], ["13","3", "4"]], columns=["a","b", "c"])
 
+pd.DataFrame(data=np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), index= [2, 'A', 4], columns=[48, 49, 50])
+
 # 방법 2
 df = pd.DataFrame({
           'A':['a','b','a'],
