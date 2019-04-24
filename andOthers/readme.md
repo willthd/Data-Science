@@ -1109,6 +1109,12 @@ df_val.reset_index(inplace=True)
 # frequency_encoding도 있다
 ```
 
+이렇게 볼 수도 있다
+
+```python
+pd.DataFrame({'count' : meta.groupby(['role', 'level'])['role'].size()})
+```
+
 </br>
 
 ### c for c in
@@ -1344,4 +1350,3 @@ df['A'] = [10, 20, 30]
 ```
 
 </br>
-
