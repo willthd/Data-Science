@@ -1329,3 +1329,16 @@ my_list = list(my_set)
 ```
 
 </br>
+
+### dataframe 행 변경 및 추가
+
+```python
+# 행
+df.loc[index번호] = [1, 2, 3]
+
+# 열
+df['A'] = [10, 20, 30]
+```
+
+</br>
+
