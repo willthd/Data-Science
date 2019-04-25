@@ -1354,3 +1354,7 @@ df['A'] = [10, 20, 30]
 ```
 
 </br>
+
+### list a - list b 없다. set a - set b 있다
+
+</br>

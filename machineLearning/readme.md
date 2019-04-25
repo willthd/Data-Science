@@ -1498,5 +1498,5 @@ print("최상의 교차 검증 점수: {:.2f}".format(grid.best_score_))
 print("테스트 세트 점수: {:.2f}".format(grid.score(X_test, y_test)))
 ```
 
-
+</br>
 
