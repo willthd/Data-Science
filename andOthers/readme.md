@@ -1320,7 +1320,7 @@ from scipy.stats import skew
 
 # object가 아닌 숫자형 피처의 컬럼 index 객체 추출
 features_index = house_df.dtypes[house_df.dtypes != object].index
-# int, float로 분류 할 수 있다
+# int, float, object로 분류 할 수 있다
 
 # house_df에 컬럼 index를 []로 입력하면 해당하는 컬럼 데이터 세트 반환.
 skew_features = house_df[features_index].apply(lambda x: skew(x))
