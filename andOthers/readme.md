@@ -300,6 +300,10 @@ train["datetime-second"] = train["datetime"].dt.second
 trian['datetime-year'] = train['datetime'].apply(lambda x: x.year)
 ```
 
+**datetime은 비교 가능하다 <, >, ==**
+
+https://inma.tistory.com/96
+
 </br>
 
 ### Lambda 에서 elif 사용하고 싶을 때, else 여러번
