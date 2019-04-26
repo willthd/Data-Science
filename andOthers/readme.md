@@ -341,6 +341,8 @@ train = pd.get_dummies(train)
 
 ```python
 def split_date(date):
+  	if date == '':
+      return None, None, None
     return date.split("-")
 ```
 
