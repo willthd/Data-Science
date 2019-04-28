@@ -341,7 +341,9 @@ train = pd.get_dummies(train)
 
 ```python
 def split_date(date):
+  # if date == None으로 처리해야 되는 경우도 있다
   	if date == '':
+      # year, month, day의 경우
       return None, None, None
     return date.split("-")
 ```
