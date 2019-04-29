@@ -1360,3 +1360,8 @@ df['A'] = [10, 20, 30]
 
 </br>
 
+### nan은 isnull()로 안잡힌다. NaN, None은 isnull()로 안잡힌다
+
+### nan, NaN, None의 타입은 각각 str, flaot, NoneType
+
+</br>
