@@ -342,7 +342,7 @@ train = pd.get_dummies(train)
 ```python
 def split_date(date):
     try: return date.split("-")
-    except: ('NaN', 'NaN', 'NaN')
+    except: (None, None, None)
 ```
 
 ```python
@@ -1362,6 +1362,7 @@ df['A'] = [10, 20, 30]
 
 ### nan은 isnull()로 안잡힌다. NaN, None은 isnull()로 안잡힌다
 
-### nan, NaN, None의 타입은 각각 str, flaot, NoneType
+### nan, NaN, None의 타입은 각각 str, float, NoneType
 
 </br>
+
