@@ -1365,3 +1365,11 @@ df['A'] = [10, 20, 30]
 ### nan, NaN, None의 타입은 각각 str, float, NoneType
 
 </br>
+
+### row별 각 컬럼값의 합, 최소값...을 sum이라는 컬럼에 넣음
+
+```python
+df['sum'] = df[numerical_fs].sum(axis=1)  
+```
+
+</br>
