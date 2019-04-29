@@ -407,6 +407,29 @@ GBM에 기반을 하고 있다. 하지만, GBM의 단점인 느린 수행 시간
 
 파라미터의 경우 titanic code도 함께 보면 도움됨
 
+</br>
+
+**sklearn API**
+
+```python
+from xgboost import XGBClassifier
+# import xgboost as xgb
+
+model = XGBClassifier()
+# model = xgb.XGBClassifier()
+```
+
+**python API**
+
+```python
+import xgboost as xgb
+
+# regressor인지 classification인지 따로 구분 안해도 된다?
+model = xgb
+```
+
+</br>
+
 ### 주요 일반 파라미터
 
 nthread : CPU의 실행 스레드 개수. 디폴트는 CPU의 전체 스레드를 다 사용하는 것
