@@ -1365,4 +1365,3 @@ df['A'] = [10, 20, 30]
 ### nan, NaN, None의 타입은 각각 str, float, NoneType
 
 </br>
-
