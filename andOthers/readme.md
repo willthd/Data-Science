@@ -1373,3 +1373,10 @@ df['sum'] = df[numerical_fs].sum(axis=1)
 ```
 
 </br>
+
+### cheatsheet
+
+https://github.com/abhat222/Data-Science--Cheat-Sheet
+
+</br>
+
