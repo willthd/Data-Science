@@ -988,7 +988,7 @@ key를 multi로 할 경우
 pd.merge(df_1, df_2, on=['key1', 'key2'])
 ```
 
-### concat
+#### concat
 
 key를 사용하지 않고 단순히 데이터를 세로 또는 가로 방식으로 연결한다. **따라서 인덱스 값이 중복될 수 있다**.
 
@@ -1362,7 +1362,7 @@ df['A'] = [10, 20, 30]
 
 ### nan은 isnull()로 안잡힌다. NaN, None은 isnull()로 안잡힌다
 
-### nan, NaN, None의 타입은 각각 str, float, NoneType
+### nan, NaN, None의 타입은 각각 str, float, NoneType…nan이 numpy.float64로 나오는 경우도 있다…math.isnan()으로 잡힐 수도 있으니 확인
 
 </br>
 
