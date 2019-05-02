@@ -1108,6 +1108,7 @@ df_val.reset_index(inplace=True)
 df_val = df.groupby('id')['year'].nunique().to_frame()
 df_val.reset_index(inplace=True)
 
+# df_val = df.groupby('id').count() 하면 각 컬럼별 count 뽑을 수 있음. to_frame()도 필요 없다
 df_val = df.groupby('id')['year'].count().to_frame()
 df_val.reset_index(inplace=True)
 
@@ -1383,3 +1384,6 @@ https://github.com/abhat222/Data-Science--Cheat-Sheet
 ### 셀 안에서 여러 줄 있으면 에러난 줄 전까지는 실행 됨
 
 </br>
+
+
+
