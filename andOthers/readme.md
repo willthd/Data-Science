@@ -1384,3 +1384,14 @@ https://github.com/abhat222/Data-Science--Cheat-Sheet
 ### 셀 안에서 여러 줄 있으면 에러난 줄 전까지는 실행 됨
 
 </br>
+
+### 최빈값 찾기
+
+```python
+from collections import Counter
+
+# n 개수만큼 가장 많은 순서대로 뽑는다
+Counter(df['A']).most_common(n)
+```
+
+</br>
