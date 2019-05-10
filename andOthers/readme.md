@@ -1396,3 +1396,12 @@ Counter(df['A']).most_common(n)
 
 </br>
 
+### 날짜 차이 구하기
+
+```python
+def get_diff_days(real_date, standard_date):
+	try: return(datetime.strptime(real_date, "%Y-%m-%d").days - datetime.strptime(standar_date, "%Y-%m-%d").days)
+	except: return None
+```
+
+</br>
