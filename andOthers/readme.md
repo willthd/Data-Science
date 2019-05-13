@@ -1435,4 +1435,14 @@ array1.sort()
 np.argsort(array1)
 # 행렬 내림차순 정렬 시 원본 행렬의 인덱스 행렬로 반환
 np.argsort(array1)[::-1]
+
+# 행렬 내적
+A = np.array([[1, 2, 3], [4, 5, 6]])
+B = np.array([[7, 8], [9, 10], [11, 12]])
+dot_product = np.dot(A, B)
+
+# 전치 행렬
+A = np.array([[1, 2], [3, 4]])
+transpose_mat = np.transpose(A)
 ```
+
