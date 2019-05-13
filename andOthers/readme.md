@@ -661,7 +661,11 @@ train["Fare_Range"] = pd.qcut(train["Fare"], 4)
 ### drop()
 
 ```python
-train.drop(["Name", "Age", "Ticket", "Fare", "Cabin", "Fare_Range", "PassengerId"], axis=1, inplace=True)
+# column drop
+train.drop(columns=["Name", "Age", "Ticket", "Fare", "Cabin", "Fare_Range", "PassengerId"], axis=1, inplace=True)
+
+# row drop, labels는 index의미
+train.drop(labels=[0, 3, 4], axis=0, inplace=True)
 ```
 
 </br>
