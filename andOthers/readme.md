@@ -553,6 +553,7 @@ X_train, X_test, y_train, y_test = train_test_split(iris_dataset["data"], iris_d
 ### 범주형 데이터 값과 해당 개수 확인하기
 
 ```python
+# Series 객체에 적용하는 method
 train["column"].value_counts()
 ```
 
@@ -1452,3 +1453,34 @@ transpose_mat = np.transpose(A)
 ### Series와 DataFrame의 차이
 
 Series는 컬럼이 하나뿐인 데이터 구조체, DataFrame은 컬럼이 여러 개인 데이터 구조체
+
+</br>
+
+### DataFrame과 list, dictionary, 넘파이 ndarray 상호 변환 가능
+
+```python 
+import numpy as np
+
+col_name = ['col1', 'col2', 'col3']
+list1 = [[1, 2, 3], [11, 12, 13]]
+array1 = np.array(list1)
+dict1 = {'col1' : [1, 11], 'col2' : [2, 22], 'col3' : [3, 33]}
+# 리스트를 이용해 DataFrame 생성
+df_list1 = pd.DataFrame(list1, columns=col_name)
+# 넘파이 ndarray를 이용해 DataFrame 생성
+df_array1 = pd.DaraFrame(array1, columns=col_name)
+# 딕셔너리를 이용해 DataFrame 생성
+df_dict1 = pd.DataFrame(dict1)
+
+# DataFrame -> ndarray
+array2 = df_array1.values
+
+# DataFrame -> list
+list2 = df_list1.values.tolsit()
+
+# DataFrame -> dictionary
+dict2 = df_dict1.to_dict()
+```
+
+</br>
+
