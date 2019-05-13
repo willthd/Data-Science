@@ -1405,3 +1405,34 @@ def get_diff_days(real_date, standard_date):
 ```
 
 </br>
+
+### numpy 단순 함수
+
+```python
+# 2부터 9까지로 구성된 ndarray 생성
+np.arange(2, 10)
+
+# (3, 2) shape의 0으로 구성된 ndarray 생성, dtype 설정하지 않으면 default는 float64
+np.zeros((3, 2), dtype='int32')
+np.ones((3, 2))
+
+# array를 해당 shape에 맞게 변형, 불가능한 경우 에러 발생. ex) (10, ) -> (3, 4) 불가능
+# -1 인자로 주면 지정된 column 또는 row에 맞게 저절로 변형. 정확히 이야기하면 row는 axis=0, columns은 axis=1
+array1.reshape(2, 3)
+array1.reshape(-1, 5)
+# 여러개의 row를 가지되, column은 한개. 아래 함수 자주 사용
+array1.reshape(-1, 1)
+
+# sort, 오름차순
+np.sort(array1)
+# sort, 내림차순
+np.sort(array1)[::-1]
+# sort, 다차원일 경우 특별 축으로 정렬
+np.sort(array1, axis=1)
+# sort, 위의 sort는 return한 행렬이 정렬될 뿐 원행렬은 변경되지 않음. 아래는 변경되지만 reutnr 값이 없음
+array1.sort()
+# 행렬 정렬 시 원본 행렬의 인덱스 행렬로 반환
+np.argsort(array1)
+# 행렬 내림차순 정렬 시 원본 행렬의 인덱스 행렬로 반환
+np.argsort(array1)[::-1]
+```
