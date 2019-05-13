@@ -18,6 +18,7 @@
 
 ```python
 # count, mean, std, min, max, 25%, 50%, 75%
+# 숫자형 데이터(int, float)만 표기
 train.describe()
 
 # null개수, dtype(dtype은 한 열에 여러개 섞여 있어도 다 나타내지 않고 하나만 나타낸다)
@@ -549,7 +550,7 @@ X_train, X_test, y_train, y_test = train_test_split(iris_dataset["data"], iris_d
 
 </br>
 
-### 범주형 데이터 문자열 확인하기
+### 범주형 데이터 값과 해당 개수 확인하기
 
 ```python
 train["column"].value_counts()
@@ -1446,3 +1447,8 @@ A = np.array([[1, 2], [3, 4]])
 transpose_mat = np.transpose(A)
 ```
 
+</br>
+
+### Series와 DataFrame의 차이
+
+Series는 컬럼이 하나뿐인 데이터 구조체, DataFrame은 컬럼이 여러 개인 데이터 구조체
