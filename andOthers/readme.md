@@ -232,6 +232,7 @@ df.rename(columns={"a" : "c", "b" : "d"}, inplace=True)
 ### dataFrame, 컬럼 기준으로 정렬하기
 
 ```python
+# reset_index 고려 해줘야한다
 count_list = count_list.sort_values(by="a", ascending=False)
 ```
 
@@ -523,13 +524,14 @@ https://datascienceschool.net/view-notebook/76dcd63bba2c4959af15bec41b197e7c/
 ### index 없애서 일반 colum으로 변경
 
 ```python
-train.reset_index(inplace=True)
+# drop 설정하면 기존의 index는 새로운 컬럼으로 추가되지 않고 삭제된다
+train.reset_index(drop=True, inplace=True)
 ```
 
 ### index 설정
 
 ```python
-train.set_index('A', inplace=True)
+train.set_index('col_name', inplace=True)
 ```
 
 </br>
@@ -665,6 +667,7 @@ train["Fare_Range"] = pd.qcut(train["Fare"], 4)
 train.drop(columns=["Name", "Age", "Ticket", "Fare", "Cabin", "Fare_Range", "PassengerId"], axis=1, inplace=True)
 
 # row drop, labels는 index의미
+# row 삭제할 때는 reset_index 해줘야 한다. 삭제된 index 건너 뛰고 index 표기됨
 train.drop(labels=[0, 3, 4], axis=0, inplace=True)
 ```
 
@@ -1488,3 +1491,15 @@ dict2 = df_dict1.to_dict()
 
 </br>
 
+### columns, index 확인
+
+```python
+df.columns.tolist()
+df.index.tolist()
+```
+
+</br>
+
+전기전자
+
+한국전기전자학회 인공지능 하드웨어 
