@@ -519,6 +519,18 @@ https://datascienceschool.net/view-notebook/76dcd63bba2c4959af15bec41b197e7c/
 
 아주 잘 설명되어 있다
 
+```python
+# 각 컬럼별로 max, min 구한다
+train.groupby('Pclass')[['PassengerId', 'Survived']].agg(['max', 'min'])
+```
+
+**aggregation의 종류**
+
+- `size`, `count`: 그룹 데이터의 갯수
+- `mean`, `median`, `min`, `max`: 그룹 데이터의 평균, 중앙값, 최소, 최대
+- `sum`, `prod`, `std`, `var`, `quantile` : 그룹 데이터의 합계, 곱, 표준편차, 분산, 사분위수
+- `first`, `last`: 그룹 데이터 중 가장 첫번째 데이터와 가장 나중 데이터
+
 </br>
 
 ### index 없애서 일반 colum으로 변경
@@ -1500,13 +1512,13 @@ df.index.tolist()
 
 </br>
 
-### loc, iloc
+### loc, iloc 비교
 
 ```python
-# loc은 명칭 기반, 따라서 인덱스가 4인 지점부터 인덱스가 8인 지점까지의 'a'컬럼 결과물 반환
+# loc은 명칭 기반, 따라서 인덱스 값이 4인 지점부터 인덱스가 8인 지점까지의 'a'컬럼 결과물 반환
 df.loc[4:8, 'a']
 
-# iloc은 위치 기반, 따라서 인덱스가 4번째부터 7번째 까지(8번째 아님)의 첫번째 컬럼 결과물 반환
+# iloc은 위치 기반, 따라서 인덱스 순서가 4번째부터 7번째 까지(8번째 아님)의 첫번째 컬럼 결과물 반환
 df.loc[4:8, 0]
 ```
 
