@@ -522,6 +522,10 @@ https://datascienceschool.net/view-notebook/76dcd63bba2c4959af15bec41b197e7c/
 ```python
 # 각 컬럼별로 max, min 구한다
 train.groupby('Pclass')[['PassengerId', 'Survived']].agg(['max', 'min'])
+
+# 각 컬럼별로 서로 다른 aggregation 적용할 경우
+agg_format = {'Age':'max', 'SibSp':'sum', 'Fare':'mean'}
+train.groupby('Pclass').agg(agg_format)
 ```
 
 **aggregation의 종류**
