@@ -1533,5 +1533,3 @@ df.loc[4:8, 0]
 
 </br>
 
-### Survival Random Forest
-
