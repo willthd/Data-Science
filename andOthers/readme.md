@@ -1385,7 +1385,7 @@ df['A'] = [10, 20, 30]
 
 </br>
 
-### nan은 isnull()로 안잡힌다. NaN, None은 isnull()로 안잡힌다
+### nan은 isnull()로 잡힌다. NaN, None은 isnull()로 안잡힌다?
 
 ### nan, NaN, None의 타입은 각각 str, float, NoneType…nan이 numpy.float64로 나오는 경우도 있다…math.isnan()으로 잡힐 수도 있으니 확인
 
