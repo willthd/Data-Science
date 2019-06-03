@@ -1017,9 +1017,12 @@ pd.merge(df_1, df_2, on=['key1', 'key2'])
 key를 사용하지 않고 단순히 데이터를 세로 또는 가로 방식으로 연결한다. **따라서 인덱스 값이 중복될 수 있다**.
 
 ```python
+# 행으로 붙이는 방식은 axis=0, default
 df = pd.concat([df_1, df_2])
 # 중복된 인덱스 없애기. 예를 들어 df_1이 0, 1, 2, 3 인덱스 있고, df_2가 0, 1, 2 있으면 df의 인덱스는 0, 1, 2, 3, 0, 1, 2 이런식으로 생성되어 버림
 df.reset_index(inplace=True)
+
+# 열로 붙이는 방식은 axis=1
 df.drop('index', axis=1, inplace=True)
 ```
 
@@ -1414,8 +1417,14 @@ https://github.com/abhat222/Data-Science--Cheat-Sheet
 ```python
 from collections import Counter
 
-# n 개수만큼 가장 많은 순서대로 뽑는다
+# n 개수만큼 가장 많은 순서대로 뽑는다. .head(n)처럼
 Counter(df['A']).most_common(n)
+
+# value 뽑기
+df['A'].value_counts()
+
+# 가장 많은 value 뽑기
+df['A'].value_counts().idxmax()
 ```
 
 </br>
@@ -1423,6 +1432,8 @@ Counter(df['A']).most_common(n)
 ### 날짜 차이 구하기
 
 ```python
+# datetime.strptime(date, '%Y-%m-%d')끼리는 비교가 가능하다
+
 def get_diff_days(real_date, standard_date):
 	try: return(datetime.strptime(real_date, "%Y-%m-%d").days - datetime.strptime(standar_date, "%Y-%m-%d").days)
 	except: return None
