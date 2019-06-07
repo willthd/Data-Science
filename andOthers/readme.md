@@ -1206,6 +1206,8 @@ a_dict = {id_: yyyy['YYYY'].tolist() for id_, yyyy i ttt.groupby('id')}
     from bayes_opt import BayesianOptimization
     from skopt import BayesSearchCV
     ```
+    
+  * http://research.sualab.com/introduction/practice/2019/02/19/bayesian-optimization-overview-1.html
 
 </br>
 
