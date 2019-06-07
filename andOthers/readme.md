@@ -1013,6 +1013,11 @@ key를 multi로 할 경우
 pd.merge(df_1, df_2, on=['key1', 'key2'])
 ```
 
+```python
+# df_1에는 id 중복되어 있고, df_2에는 id unique할 때
+pd.merge(df_1, df_2, on=['id'], how='left')
+```
+
 #### concat
 
 key를 사용하지 않고 단순히 데이터를 세로 또는 가로 방식으로 연결한다. **따라서 인덱스 값이 중복될 수 있다**.
