@@ -1283,10 +1283,18 @@ ROC 곡선의 아랫부분 면적을 계산한다(0 ~ 1). 불균형한 데이터
 
 ```python
 from sklearn.metrics import roc_auc_score
+
+# rf.predict가 아니라 rf.predict_proba임을 잊지 않는다. predict는 label에 대한 분류 결과이고, predict_proba는 분류 결과의 확률 값
 rf_auc = roc_auc_score(y_test, rf.predict_proba(X_test)[:, 1])
 svc_auc = roc_auc_score(y_test, svc.decision_function(X_test))
 print("랜덤 포레스트의 AUC: {:.3f}".format(rf_auc))
 print("SVC의 AUC: {:.3f}".format(svc_auc))
+```
+
+Cross validation 에서 평가 지표로 'roc_auc'로 사용
+
+```python
+base_score = cross_val_score(rfc, X_train_1, y_train_1, cv=20, scoring='roc_auc').mean()
 ```
 
 참조
