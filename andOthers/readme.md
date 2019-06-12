@@ -831,6 +831,9 @@ fold = StratifiedKFold(n_splits=10, random_state=666)
 for train_idx, val_idx in fold.split(train, train["target"]):
     # 딱 한번만 하겠다
 	break
+  
+# train_test_split을 이용하면 StratifiedKFold에 반해 딱 한번만 나눔
+X_train_1, X_test_1, y_train_1, y_test_1 = train_test_split(data_1[features], data_1["cancer_1"], random_state=random_state, test_size=0.2)
 ```
 
 ```python
