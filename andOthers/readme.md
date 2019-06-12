@@ -871,6 +871,8 @@ train.info()
 
 http://freesearch.pe.kr/archives/4506
 
+https://datascienceschool.net/view-notebook/c1a8dad913f74811ae8eef5d3bedc0c3/
+
 일반적으로 Oversampling이 Undersampling이 좋다고 한다.
 
 1. Oversampling
@@ -1558,10 +1560,16 @@ df.loc[4:8, 0]
 
   관찰 기간 동안 event 발생하지 않아 언제 event가 발생할지 알 수 없음
 
+  ex) 암 환자가 관찰 기간 동안 사망하지 않음
+
 * interval censored data
 
   Event 발생 시점은 정확히 모르나 관찰 기간 중 발생했다는 것은 알고 있음
 
+  ex) 암 환자가 관찰 기간 동안 사망했으나 구체적 시점 모름
+
 * left censored data
 
   시작 시점이 정확히 언제부터 인지 알 수 없음
+
+  ex) 관찰 기간 중 사망한 유방암 환자가 언제부터 유방암 있었는지 알 수 없음
