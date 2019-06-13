@@ -1028,12 +1028,12 @@ pd.merge(df_1, df_2, on=['id'], how='left')
 key를 사용하지 않고 단순히 데이터를 세로 또는 가로 방식으로 연결한다. **따라서 인덱스 값이 중복될 수 있다**.
 
 ```python
-# 행으로 붙이는 방식은 axis=0, default
+# 행으로(아래로) 붙이는 방식은 axis=0, default
 df = pd.concat([df_1, df_2])
 # 중복된 인덱스 없애기. 예를 들어 df_1이 0, 1, 2, 3 인덱스 있고, df_2가 0, 1, 2 있으면 df의 인덱스는 0, 1, 2, 3, 0, 1, 2 이런식으로 생성되어 버림
 df.reset_index(inplace=True)
 
-# 열로 붙이는 방식은 axis=1
+# 열로(옆으로) 붙이는 방식은 axis=1
 df.drop('index', axis=1, inplace=True)
 ```
 
