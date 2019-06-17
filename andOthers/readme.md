@@ -1514,7 +1514,7 @@ dict1 = {'col1' : [1, 11], 'col2' : [2, 22], 'col3' : [3, 33]}
 # 리스트를 이용해 DataFrame 생성
 df_list1 = pd.DataFrame(list1, columns=col_name)
 # 넘파이 ndarray를 이용해 DataFrame 생성
-df_array1 = pd.DaraFrame(array1, columns=col_name)
+df_array1 = pd.DataFrame(array1, columns=col_name)
 # 딕셔너리를 이용해 DataFrame 생성
 df_dict1 = pd.DataFrame(dict1)
 
