@@ -1559,6 +1559,8 @@ df.loc[4:8, 0]
 
 ### censored data
 
+> 생존분석
+
 * right censored data
 
   관찰 기간 동안 event 발생하지 않아 언제 event가 발생할지 알 수 없음
@@ -1576,3 +1578,11 @@ df.loc[4:8, 0]
   시작 시점이 정확히 언제부터 인지 알 수 없음
 
   ex) 관찰 기간 중 사망한 유방암 환자가 언제부터 유방암 있었는지 알 수 없음
+
+</br>
+
+### make_classification
+
+분류용 가상 데이터 생성
+
+https://datascienceschool.net/view-notebook/ec26c797cec646e295d737c522733b15/
