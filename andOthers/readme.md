@@ -1590,3 +1590,13 @@ df.loc[4:8, 0]
 분류용 가상 데이터 생성
 
 https://datascienceschool.net/view-notebook/ec26c797cec646e295d737c522733b15/
+
+</br>
+
+### index없이 export
+
+```python
+pd.to_csv('./submission.csv', index=False)
+```
+
+</br>
