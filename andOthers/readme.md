@@ -373,7 +373,7 @@ train["year"] = train["year"].astype(int)
 
 ```python
 figure, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 18))
-# cplt.figure(figsize=(10, 7))
+# plt.figure(figsize=(10, 7))
 sns.barplot(data=train, x="year", y="total", ax=ax1)
 sns.barplot(data=train, x="month", y="total", ax=ax2)
 ```
