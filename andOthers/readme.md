@@ -615,7 +615,7 @@ reshape(-1) : 하나의 행렬로 존재한다 -> shape : (n, )
 
 ![kindesOfData](./KindsOfData.jpg)
 
-**categorical**
+**nominal**
 
 ex) Sex - Male, Female
 
@@ -631,9 +631,13 @@ ex) Height - Tall, Medium, Short
 
 -> label encoding
 
-**continuous**
+**discrete**
 
 ex) Age
+
+**continuous**
+
+Ex)Height, Weight
 
 histogram, scatterplot, distplot
 
