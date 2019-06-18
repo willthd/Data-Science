@@ -1313,6 +1313,7 @@ df1.equals(df2)
 
 ```python
 house_df_org = pd.read_csv('./house_price.csv')
+# 그냥 house_df = house_df_org 할 경우, 둘 중 하나 변하면 다른 것도 변한다
 house_df = house_df_org.copy()
 ```
 
