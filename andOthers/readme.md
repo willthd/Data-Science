@@ -1600,3 +1600,20 @@ pd.to_csv('./submission.csv', index=False)
 ```
 
 </br>
+
+### pandas option
+
+생략되는 부분 확인할 수 있음
+
+```python
+# 행 개수
+pd.set_option('display.max_rows', 300000)
+# 열 개수
+pd.set_option('display.max_columns', 500)
+# 데이터 프레임 높이
+pd.set_option('display.height', 1000)
+# 데이터 프레임 너비
+pd.set_option('display.width', 1000)
+```
+
+</br>
