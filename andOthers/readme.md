@@ -96,9 +96,8 @@ https://towardsdatascience.com/catboost-vs-light-gbm-vs-xgboost-5f93620723db
 
 ```python
 # seaborn
-# null있으면 안된다
+# dist, kde 둘 다 null있으면 안된다
 sns.distplot(train["target"], kde=False, bins=200)
-# null있어도 된다
 sns.kdeplot(train["taget"])
 
 # pyplot
@@ -1313,7 +1312,7 @@ df1.equals(df2)
 
 ```python
 house_df_org = pd.read_csv('./house_price.csv')
-# 그냥 house_df = house_df_org 할 경우, 둘 중 하나 변하면 다른 것도 변한다
+# 그냥 house_df = house_df_org 할 경우, 둘 중 하나 변하면 다른 것도 변
 house_df = house_df_org.copy()
 ```
 
