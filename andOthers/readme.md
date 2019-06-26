@@ -1596,7 +1596,7 @@ https://datascienceschool.net/view-notebook/ec26c797cec646e295d737c522733b15/
 ### index없이 export
 
 ```python
-pd.to_csv('./submission.csv', index=False)
+df.to_csv('./submission.csv', index=False)
 ```
 
 </br>
