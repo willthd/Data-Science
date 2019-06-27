@@ -1631,3 +1631,11 @@ pandas_profiling.ProfileReport(df)
 https://nbviewer.jupyter.org/github/lksfr/TowardsDataScience/blob/master/pandas-profiling.ipynb
 
 </br>
+
+### Bokeh
+
+interactive plot 그리는데 사용
+
+https://datascienceschool.net/view-notebook/b03af554a1494f159fc94d65d70fe7b2/
+
+</br>
