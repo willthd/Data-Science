@@ -1618,3 +1618,16 @@ pd.set_option('display.width', 1000)
 ```
 
 </br>
+
+### pandas profiling
+
+pandas 변수 분석
+
+```python
+import pandas_profiling
+pandas_profiling.ProfileReport(df)
+```
+
+https://nbviewer.jupyter.org/github/lksfr/TowardsDataScience/blob/master/pandas-profiling.ipynb
+
+</br>
