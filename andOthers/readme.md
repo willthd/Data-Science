@@ -371,10 +371,11 @@ train["year"] = train["year"].astype(int)
 ### 그래프 모아서 보기
 
 ```python
-figure, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 18))
+# ncols 값이 1이면 아래 에러 난다
+figure, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 18))
 # plt.figure(figsize=(10, 7))
-sns.barplot(data=train, x="year", y="total", ax=ax1)
-sns.barplot(data=train, x="month", y="total", ax=ax2)
+sns.barplot(data=train, x="year", y="total", ax=axex[0])
+sns.barplot(data=train, x="month", y="total", ax=axex[1])
 ```
 
 </br>
