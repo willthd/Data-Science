@@ -1639,3 +1639,13 @@ interactive plot 그리는데 사용
 https://datascienceschool.net/view-notebook/b03af554a1494f159fc94d65d70fe7b2/
 
 </br>
+
+### Model 저장하기
+
+model의 weight를 문서화해 저장하고, 이후에 이를 바로 이용한다
+
+```
+model.save_weights('./model.h5')
+```
+
+</br>
