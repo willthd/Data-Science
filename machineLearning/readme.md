@@ -1544,6 +1544,65 @@ print("테스트 세트 점수: {:.2f}".format(grid.score(X_test, y_test)))
 
 </br>
 
+#### 텍스트 분석 프로세스
+
+1. **텍스트 전처리** : 클렌징(대/소문자 변경, 특수문자 삭제), 문장과 단어 등의 텍스트 토큰화 작업, 의미 없는 단어 제거 작업 및 철자 수정, 어근 추출(Stemming/Lemmatization) 등의 텍스트 정규화 작업을 수행하는 것을 통칭한다.
+2. **피쳐 벡터화/추출** : 사전 준비 작업으로 가공된 텍스트에서 피쳐를 추출하고 여기에 벡터 값을 할당한다. 대표적인 방법은 BOW와 Word2Vec이 있으며, BOW는 대표적으로 Count기반과 TF-IDF 기반 벡터화가 있다.
+3. **ML 모델 수립 및 학/예측/평가** : 피쳐 벡터화된 데이터 세트에 ML 모델을 적용해 학습/예측 및 평가를 수행한다.
+
+
+
+## 텍스트 전처리 - 텍스트 정규화
+
+**클렌징**
+
+불필요한 문자, 기호 등을 사전에 제거 하는 작업 ex) HTML, XML 태그
+
+</br>
+
+**텍스트 토큰화**
+
+* 문장 토큰화 : 마침표(.), 개행문자(\n) 등 문장의 마지막을 뜻하는 기호에 따라 분리하는 것
+
+* 단어 토큰화 : 공백, 콤마, 마침표, 개행문자 등으로 분리하는 것. 단어별로 하나씩 토큰화 할 경우 문맥적인 의미는 무시될 수 밖에 없기 때문에 이 문제를 해결하기 위해 n-gram 도입. n-gram은 연속된 n개의 단어를 하나의 토큰화 단위로 분리하는 것
+
+  ex) 2-gram : I have a dog - (I, have), (have, a), (a, dog)
+
+</br>
+
+**스톱 워드 제거**
+
+분석에 큰 의미가 없는 단어 제거
+
+```python
+import nltk
+
+nltk.download('stopwords')
+nltk.corpus.stopwords.words('english')
+```
+
+</br>
+
+**Stemmming과 Lemmatization**
+
+어근 추출. Lemmatization이 보다 정교하며 변환에 더 오랜 시간 소요
+
+```python
+from nltk.stem import WordNetLemmatizer
+from nltk.stem import LancasterStemmer
+
+lemma =  WordNetLemmatizer()
+# 단어의 품사를 입력. 'v'는 동사
+lemma.lemmatize('happier', 'v')
+
+stemmer = LanasterStemmer()
+stemmer.stem('working')
+```
+
+</br>
+
+
+
 ## 텍스트 분류(Text Classification)
 
 > 문서가 특정 분류 똫는 카테고리에 속하는 것을 예측하는 기법을 통칭한다. 예를 들어 특정 신문 기사 내용이 연애/정치/사회/문화 중 어떤 카테고리에 속하는지 자동으로 분류하거나 스팸 메일 검출 같은 프로그램이 이에 속하며, 지도 학습을 적용한다
