@@ -1233,6 +1233,8 @@ print("{:.2f}".format(39.54484700000000))
 
 ```python
 ttt.sort_values(by=['id', 'YYYY'])
+# index 순서로 sort
+ttt.sort_index()
 ```
 
 </br>
