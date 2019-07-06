@@ -1627,7 +1627,7 @@ stemmer.stem('working')
 
 </br>
 
-### 1. CxountVectorizer
+#### 1. CxountVectorizer
 
 sklearn의 count기반 벡터화 클래스. fit()과 transform()으로 활용
 
@@ -1645,9 +1645,24 @@ sklearn의 count기반 벡터화 클래스. fit()과 transform()으로 활용
 
 </br>
 
-### 2. TifidfVectorizer
+#### 2. TifidfVectorizer
 
 sklearn의 tfidf기반 벡터화 클래스. fit()과 transform()으로 활용하며, parameter 구성은 CountVectorizer와 동일
+
+</br>
+
+### BOW 벡터화를 위한 희소 행렬
+
+희소 행렬은 대규모 행렬의 대부분의 값을 0이 차지하는 행렬을 가리켜 희소 행렬이라고 한다. Scipy 패키지 활용
+
+```python
+from scipy import sparse
+```
+
+* COO : 0이 아닌 데이터만 별도의 데이터 배열에 저장하고, 그 데이터가 가리키는 행과 열의 위치를 별도의 배열로 저장하는 방식 
+* CSR : COO 문제 개선. 위치 배열의 고유한 값의 시작 위치만 표기하는 방식
+
+</br>
 
 
 
