@@ -1668,3 +1668,16 @@ from scipy import sparse
 
 > 문서가 특정 분류 똫는 카테고리에 속하는 것을 예측하는 기법을 통칭한다. 예를 들어 특정 신문 기사 내용이 연애/정치/사회/문화 중 어떤 카테고리에 속하는지 자동으로 분류하거나 스팸 메일 검출 같은 프로그램이 이에 속하며, 지도 학습을 적용한다
 
+
+
+# 추천 시스템
+
+**종류**
+
+* Content based filtering : 콘텐트 기반 필터링.
+* Collaborative filtering : 협업 필터링.
+  * Nearest Neighbor : 최근접 이웃 협업 필터링.
+    * User-User : User가 Index, Item이 Feature
+    * Item-Item : Item이 Index, User가 Feature. 일반적으로 User-User보다 더 자주 사용됨. 
+  * Latent Factor : 잠재 요인 협업 필터링.
+
