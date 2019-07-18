@@ -936,6 +936,18 @@ def frequency_encoding(frame, col):
 
 </br>
 
+### rank encoding
+
+```python
+df = pd.DataFrame({'A' : [1, 2, 1, None, 1, 6, 1, 1, 1],
+                   'B' : [0.1, 0.2, 0.6, 0.6, 1.5, 9.1, 0.5, 0.10, 0.6]})
+
+# na_option은 None을 rank의 가장 위 또는 아래로 두는 것. keep은 None으로 그대로 둔다
+df['A_ranked'] = df['A'].rank(ascending=1, method='min', na_option='top')
+```
+
+</br>
+
 ### 계층이 여러개인 컬럼에서 sort_values() 적용
 
 ```python
