@@ -1422,7 +1422,7 @@ df['A'] = [10, 20, 30]
 
 ### nan은 isnull()로 잡힌다. NaN, None은 isnull()로 안잡힌다?
 
-### nan, NaN, None의 타입은 각각 str, float, NoneType…nan이 numpy.float64로 나오는 경우도 있다…math.isnan()으로 잡힐 수도 있으니 확인
+### nan, NaN, None의 타입은 각각 str, float, NoneType…nan이 numpy.float64로 나오는 경우도 있다…math.isnan()으로 잡힐 수도 있으니 확인. 다시 정리
 
 </br>
 
@@ -1663,3 +1663,20 @@ model.save_weights('./model.h5')
 ```
 
 </br>
+
+### 피쳐가 category화 되어 있으면?
+
+어떻게 인식했는지는 모르겠지만, #1에서 age_cat 피쳐가 category 피쳐라고 인식이 되었음. 그 후에 #3을 진행하려 했지만 카테고리 값으로 존재하지 않는 13을 입력하려니 되지 않음. 따라서 #2를 추가해 해당 피쳐의 카테고리 값인 13을 추가하겠다는 입력을 함
+
+```python
+bins = np.arange(20, 85, 5)
+labels = np.arange(1, 13, 1)
+
+#1
+merge['age_cat'] = pd.cut(merge['age'], bins, labels=labels)
+#2
+merge['age_cat'] = merge['age_cat'].cat.add_categories([13])
+#3
+merge['age_cat'].fillna(13, inplace=True)
+```
+
