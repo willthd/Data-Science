@@ -368,6 +368,10 @@ train["year"] = train["year"].astype(int)
 
 </br>
 
+\
+
+ㅇㄴㄹㅇㄴ
+
 ### 그래프 모아서 보기
 
 ```python
