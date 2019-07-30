@@ -239,11 +239,19 @@ count_list = count_list.sort_values(by="a", ascending=False)
 
 ### null값 채우기
 
+https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html
+
 ```python
 train["Age"].fillna(0, inplace=True)
 
 # 각 컬럼 별로 mean 구해서 null을 mean으로 채움
 train.fillna(train.mean(), inplace=True)
+
+# 앞의 값 또는 뒤의 값으로 채울 수 있음. 앞의 값
+df.fillna(method='ffill')
+
+# 일부 컬럼만 채울 경우
+df.fillna(df[col_list].mean())
 ```
 
 </br>
@@ -1036,6 +1044,7 @@ pd.merge(df_1, df_2, on=['key1', 'key2'])
 
 ```python
 # df_1에는 id 중복되어 있고, df_2에는 id unique할 때
+# left에 있는 데이터는 그대로 
 pd.merge(df_1, df_2, on=['id'], how='left')
 ```
 
@@ -1464,10 +1473,11 @@ df['A'].value_counts().idxmax()
 ### 날짜 차이 구하기
 
 ```python
-# datetime.strptime(date, '%Y-%m-%d')끼리는 비교가 가능하다
+from datetime import datetime
 
+# datetime.strptime(date, '%Y-%m-%d')끼리는 비교가 가능하다
 def get_diff_days(real_date, standard_date):
-	try: return(datetime.strptime(real_date, "%Y-%m-%d").days - datetime.strptime(standar_date, "%Y-%m-%d").days)
+	try: return(datetime.strptime(real_date, "%Y-%m-%d") - datetime.strptime(standar_date, "%Y-%m-%d")).days
 	except: return None
 ```
 
