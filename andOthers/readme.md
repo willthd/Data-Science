@@ -1690,3 +1690,19 @@ merge['age_cat'] = merge['age_cat'].cat.add_categories([13])
 merge['age_cat'].fillna(13, inplace=True)
 ```
 
+</br>
+
+### 결측값 들어있는 행 전체 삭제
+
+```python
+df.dropna(axis=0)
+# 특정 행
+df[col].dropna(axis=0)
+
+# 결측값 들어있는 열 전체 삭제
+df.dropna(axis=1)
+# 특정 열
+df[col].dropna(axis=1)
+```
+
+</br>
