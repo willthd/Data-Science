@@ -891,7 +891,13 @@ https://datascienceschool.net/view-notebook/c1a8dad913f74811ae8eef5d3bedc0c3/
 일반적으로 Oversampling이 Undersampling이 좋다고 한다.
 
 1. Oversampling
+
 2. Undersampling
+
+   ```python
+   
+   ```
+
 3. SMOTE, 일반적으로 재현율은 높아지나, 정밀도는 낮아진다
 
 library 존재 -> imblearn
