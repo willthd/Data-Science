@@ -1718,7 +1718,13 @@ df[col].dropna(axis=1)
 ```python
 from fancyimpute import KNN
 
-data = KNN().complete(data)
+data = KNN(k=n).complete(data)
 ```
+
+</br>
+
+### keras에서 roc-auc 사용하기
+
+https://stackoverflow.com/questions/41032551/how-to-compute-receiving-operating-characteristic-roc-and-auc-in-keras
 
 </br>
