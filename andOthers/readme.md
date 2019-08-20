@@ -1712,3 +1712,13 @@ df[col].dropna(axis=1)
 ```
 
 </br>
+
+### knn 결측 처리
+
+```python
+from fancyimpute import KNN
+
+data = KNN().complete(data)
+```
+
+</br>
