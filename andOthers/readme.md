@@ -1728,3 +1728,16 @@ data = KNN(k=n).complete(data)
 https://stackoverflow.com/questions/41032551/how-to-compute-receiving-operating-characteristic-roc-and-auc-in-keras
 
 </br>
+
+### IPython 라이브러리
+
+dataframe을 print로 나타낼 경우, 프레임 형태가 사라지기 때문에 위의 라이브러리 사용. 특히 반복문으로 dataframe 출력할 때 print사용하는데, 이 때 유용
+
+```python
+from IPython.display import display
+
+display(df)
+```
+
+</br>
+
