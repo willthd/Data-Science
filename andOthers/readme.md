@@ -1741,3 +1741,13 @@ display(df)
 
 </br>
 
+### ImKit 라이브러리
+
+Data Frame을 Image 파일로 저장하는 라이브러리
+
+```python
+import imgkit
+html = styled_table.render()
+imgkit.from_string(html, 'styled_table.png')
+```
+
