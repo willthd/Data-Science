@@ -895,6 +895,10 @@ https://datascienceschool.net/view-notebook/c1a8dad913f74811ae8eef5d3bedc0c3/
 2. Undersampling
 
    ```python
+   from imblearn.under_sampling import RandomUnderSampler
+   
+   # 수는 비율이 아니라 실제 수로 지정
+   rus = RandomUnderSampler(random_state=11, ratio={1:cancer_num, 0:cancer_num*50})
    
    ```
 
@@ -1335,6 +1339,24 @@ df1.equals(df2)
 </br>
 
 ### 회귀 트리 regressor는 feature importance를, 선형 회귀는 coef_ 회귀 계수를 확인
+
+아래는 classifier로 feature importance 확인하는 경우
+
+https://scikit-learn.org/stable/auto_examples/ensemble/plot_gradient_boosting_regression.html
+
+```python
+feature_importance = clf.feature_importances_
+# make importances relative to max importance
+feature_importance = 100.0 * (feature_importance / feature_importance.max())
+sorted_idx = np.argsort(feature_importance)
+pos = np.arange(sorted_idx.shape[0]) + .5
+plt.subplot(1, 2, 2)
+plt.barh(pos, feature_importance[sorted_idx], align='center')
+plt.yticks(pos, boston.feature_names[sorted_idx])
+plt.xlabel('Relative Importance')
+plt.title('Variable Importance')
+plt.show()
+```
 
 </br>
 
