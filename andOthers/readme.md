@@ -899,7 +899,9 @@ https://datascienceschool.net/view-notebook/c1a8dad913f74811ae8eef5d3bedc0c3/
    
    # 수는 비율이 아니라 실제 수로 지정
    rus = RandomUnderSampler(random_state=11, ratio={1:cancer_num, 0:cancer_num*50})
-   
+   X_resampled, y_resampled = rus.fit_resample(X_train, y_train)
+   X_resampled_df = pd.DataFrame(data=X_resampled, columns=X_train.columns)
+   y_resampled_df = pd.DataFrame(data=y_resampled, columns=['cancer'])
    ```
 
 3. SMOTE, 일반적으로 재현율은 높아지나, 정밀도는 낮아진다
