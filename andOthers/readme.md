@@ -1742,7 +1742,9 @@ df[col].dropna(axis=1)
 ```python
 from fancyimpute import KNN
 
-data = KNN(k=n).complete(data)
+
+train = KNN(k=n).fit_transform(train)
+test = KNN
 ```
 
 </br>
