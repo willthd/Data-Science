@@ -672,6 +672,12 @@ predict_proba()의 출력은 각 클래스에 대한 확률이고, 이진 분류
 
 </br>
 
+### 학습 과정 그리기
+
+https://machinelearningmastery.com/display-deep-learning-model-training-history-in-keras/
+
+</br>
+
 </br>
 
 # 전처리
