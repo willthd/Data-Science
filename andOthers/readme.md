@@ -117,6 +117,14 @@ plt.show()
 **Barplot, Countplot은 categorical feature 일 때**
 
 * Barplot은 y축 설정 해줘야 한다. 편차 표시 있음
+
+* Barplot 가로, 세로 축 변경하면 수평되게 출력 가능
+
+  ```python
+  ax = sns.barplot(x='totalCount', y='name', data=df)
+  ax.set_xlabel('totalCount')
+  ```
+
 * Countplot은 y축이 count
 
 </br>
