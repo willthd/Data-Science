@@ -1362,11 +1362,36 @@ sorted_idx = np.argsort(feature_importance)
 pos = np.arange(sorted_idx.shape[0]) + .5
 plt.subplot(1, 2, 2)
 plt.barh(pos, feature_importance[sorted_idx], align='center')
-plt.yticks(pos, boston.feature_names[sorted_idx])
+plt.yticks(pos, X_train.feature_names[sorted_idx])
 plt.xlabel('Relative Importance')
 plt.title('Variable Importance')
 plt.show()
 ```
+
+```python
+# 모델 여러 개 또는 seed number 여러개 사용할 경우
+n = 10
+importance_list = []
+for i in range(n):
+  model = RandomForestClassifier(random_state=i, max_depth=4)
+  model.fit(X_train, y_train)
+  importance = model.feature_importances_
+	importance = 100.0 * (importance / importance.max())
+  importance_list.append(importance)
+importance_arr = np.array(importance_list)
+importance_sum = importance_arr.sum(axis=0)
+importance_mean = importance_sum / n
+sorted_idx = np.argsort(feature_importance)
+pos = np.arange(sorted_idx.shape[0]) + .5
+plt.subplot(1, 2, 2)
+plt.barh(pos, importance_mean[sorted_idx], align='center')
+plt.yticks(pos, X_train.columns[sorted_idx])
+plt.xlabel('Relative Importance')
+plt.title('Variable Importance')
+plt.show()
+```
+
+
 
 </br>
 
