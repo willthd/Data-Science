@@ -1733,7 +1733,7 @@ https://datascienceschool.net/view-notebook/b03af554a1494f159fc94d65d70fe7b2/
 
 model의 weight를 문서화해 저장하고, 이후에 이를 바로 이용한다
 
-```
+```python
 model.save_weights('./model.h5')
 ```
 
