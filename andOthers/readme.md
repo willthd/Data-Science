@@ -1812,3 +1812,9 @@ html = styled_table.render()
 imgkit.from_string(html, 'styled_table.png')
 ```
 
+### type이 number(int, float)인 컬럼만 뽑기
+
+```python
+df.select_dtypes('number')
+```
+
