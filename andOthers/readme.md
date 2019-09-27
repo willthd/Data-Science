@@ -1615,6 +1615,9 @@ df_dict1 = pd.DataFrame(dict1)
 # DataFrame -> ndarray
 array2 = df_array1.values
 
+# Series -> ndarray
+series_name.values
+
 # DataFrame -> list
 list2 = df_list1.values.tolsit()
 
