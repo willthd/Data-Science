@@ -1833,3 +1833,15 @@ y_test.loc[y_test == 1]
 ```
 
 </br>
+
+### String을 객체로 만들기
+
+```python
+from ast import literal_eval
+
+movies_df['genres'] = movies_df['genres'].apply(literal_eval)
+movies_df['keywords'] = movies_df['keywords'].apply(literal_eval)
+```
+
+</br>
+
