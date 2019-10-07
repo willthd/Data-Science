@@ -1685,9 +1685,29 @@ from scipy import sparse
 **종류**
 
 * Content based filtering : 콘텐트 기반 필터링.
-* Collaborative filtering : 협업 필터링.
+* Collaborative filtering : 협업 필터링.(사용자가 평가한 다른 아이템을 기반으로 사용자가 평가하지 않은 아이템의 예측 평가를 도출하는 방식)
   * Nearest Neighbor : 최근접 이웃 협업 필터링.
     * User-User : User가 Index, Item이 Feature
     * Item-Item : Item이 Index, User가 Feature. 일반적으로 User-User보다 더 자주 사용됨. 
   * Latent Factor : 잠재 요인 협업 필터링.
+
+
+
+이이템 기반 최근접 이웃 방식은 '아이템 간의 속성'이 얼마나 비슷한지를 기반으로 추천한다고 착각할 수 있음. 주의
+
+일반적으로 사용자 기반 보다는 아이템 기반 필터링이 정확도가 더 높다.
+
+코사인 유사도는 추천 시스템의 유사도 측정에 각장 많이 사용된다. 
+
+</br>
+
+## 잠재 요인 협업 필터링(Latent Factor C.F)
+
+원본 행렬을 SVD(Singular Vector Decomposition), NMF(Non-Negative Matrix Factorization)와 같은 차원 감소 기법으로 분해하여 잠재 요인을 추출한다(행렬 분해, 고차원 희소 행렬을 저차원 밀집 행렬 P와 Q로 분해). 분해된 데이터 세트를 다시 내적 곱으로 결합하면서 사용자가 예측하지 않은 아이템에 대한 평점을 도출하는 방식이다.
+
+행렬 분해에 의해 추출되는 ''잠재 요인''이 정확히 어떤 것인지는 알 수 없다.
+
+SVD는 Null이 없는 행렬에 적용할 수 있기 때문에 확률적 경사 하강법(SGD)이나 ALS(Alternating Least Squares) 방식을 이용해 수행한다.
+
+
 
