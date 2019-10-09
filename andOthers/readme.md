@@ -1844,4 +1844,3 @@ movies_df['keywords'] = movies_df['keywords'].apply(literal_eval)
 ```
 
 </br>
-
