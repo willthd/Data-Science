@@ -1643,7 +1643,7 @@ df.index.tolist()
 df.loc[4:8, 'a']
 
 # iloc은 위치 기반, 따라서 인덱스 순서가 4번째부터 7번째 까지(8번째 아님)의 첫번째 컬럼 결과물 반환
-df.loc[4:8, 0]
+df.iloc[4:8, 0]
 ```
 
 </br>
@@ -1844,4 +1844,3 @@ movies_df['keywords'] = movies_df['keywords'].apply(literal_eval)
 ```
 
 </br>
-
