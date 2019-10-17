@@ -1003,6 +1003,8 @@ plt.show()
 
 lmplot과 더불어 swarmplot있음. 더 보기 좋지만 시간 오래 걸림
 
+lmplot은 FIgsize 변경 불가능 하다. 따라서 대신 regplot사용한다
+
 </br>
 
 ### Feature 많을 때
