@@ -1709,5 +1709,23 @@ from scipy import sparse
 
 SVD는 Null이 없는 행렬에 적용할 수 있기 때문에 확률적 경사 하강법(SGD)이나 ALS(Alternating Least Squares) 방식을 이용해 수행한다.
 
+</br>
+
+## 생존 분석 모델
+
+https://hyperconnect.github.io/2019/08/22/survival-analysis-part2.html
+
+https://github.com/sebp/scikit-survival/blob/master/examples/survival-svm.ipynb
+
+https://scikit-survival.readthedocs.io/en/latest/api.html
 
 
+
+Sksurv 모델 사용할 때, y의 type은 numpy.void이다
+
+```python
+dt = np.dtype([('event', np.bool), ('time', np.float64)])
+y = np.array(y_train['result'].values, dtype=dt)
+```
+
+</br>
