@@ -66,7 +66,7 @@
 
 
 
-* [recommender system](./Recommender System)
+* [recommender system](./recommenderSystem)
 
 
 
