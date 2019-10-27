@@ -1684,12 +1684,12 @@ from scipy import sparse
 
 **종류**
 
-* Content based filtering : 콘텐트 기반 필터링.
-* Collaborative filtering : 협업 필터링.(사용자가 평가한 다른 아이템을 기반으로 사용자가 평가하지 않은 아이템의 예측 평가를 도출하는 방식)
-  * Nearest Neighbor : 최근접 이웃 협업 필터링.
+* Content based filtering : 콘텐트 기반 필터링
+* Collaborative filtering : 협업 필터링(사용자가 평가한 다른 아이템을 기반으로 사용자가 평가하지 않은 아이템의 예측 평가를 도출하는 방식)
+  * Nearest Neighbor : 최근접 이웃 협업 필터링(index 간의 유사도 확인)
     * User-User : User가 Index, Item이 Feature
     * Item-Item : Item이 Index, User가 Feature. 일반적으로 User-User보다 더 자주 사용됨. 
-  * Latent Factor : 잠재 요인 협업 필터링.
+  * Latent Factor : 잠재 요인 협업 필터링
 
 
 
