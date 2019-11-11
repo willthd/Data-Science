@@ -834,15 +834,57 @@ print(iris_lda.shape)
 
 ## SVD(Singular Value Decomposition, 특이값 분해)
 
-
+> SVD는 PCA와 유사한 행렬 분해 기법을 이용한다. PCA에선 공분산 행렬을 고유 벡터와 고유값 정방 행렬, 그리고 고유 벡터의 전치 행렬을 활용하지만, SVD는 특이 벡터와 특이 값 대각 행렬, 그리고 특이 벡터의 전치 행렬을 이용해 구한다.
 
 </br>
 
-### NMF(non-negative matrix factorization, 비음수 행렬 분해) - 차원 축소, 특성 추출
+<u>***특징***</u>
 
-PCA에서는 데이터의 분산이 가장 크고 수직인 성분을 찾았다면 NMF에서는 음수가 아닌 성분과 계수 값을 찾는다. 즉, 주성분과 계수가 모두 0보다 크거나 같아야 한다. 따라서 음수가 아닌 feature를 가진 데이터에만 적용할 수 있다
+* PCA의 경우, 정방행렬(즉, 행과 열의 킉가 같은 행렬)만을 고유벡터로 분해할 수 있지만, SVD는 정방행렬뿐만 아니라 행과 열의 크기가 다른 행렬에도 적용할 수 있음
+* Null이 없는 행렬에만 적용할 수 있음
+* Truncated SVD는 대각원소 중에 상위 몇 개만 추출해서 여기에 대응하는 U와 V의 원소도 함께 제거해 더욱 차원을 줄인 형태로 분해하는 것을 의미. Truncated SVD로 분해된 행렬로 다시 복원할 경우 완벽하게 복원되지 않고, 근사적으로 복원됨. Truncated SVD는 scipy에서만 지원
+* scikit-learn의 PCA는 SVD 알고리즘으로 구현됐음. 하지만 PCA는 밀집 행렬(Dense Matrix)에 대한 변환만 가능하며, SVD는 희소 행렬(Sparse Matrix)에 대한 변환도 가능
 
-데이터를 인코딩하거나 재구성하는 용도로 사용하기보다는 주로 데이터에 있는 유용한 패턴을 추출하는데 사용된다(특히 소리, 유전자 표현, 텍스트처럼 덧붙이는 구조를 가진 데이터)
+</br>
+
+<u>***code***</u>
+
+```python
+import numpy as np
+from numpy.linalg import svd
+
+# 4X4 랜덤 행렬 a 생성
+np.random.seed(21)
+a = np.random.randn(4,4)
+
+U, Sigma, Vt = svd(a)
+# 각각의 shape 확인
+print(U.shape, Sigma.shape, Vt.shape)
+# (4, 4) (4, ) (4, 4)
+
+# Sigma를 다시 0을 포함한 대칭행렬로 변환. 0이 아닌 값만 1차원으로 추출했으므로 다시 0을 포함한 대칭행렬로 변환해야 함
+Sigma_mat = np.diag(Sigma)
+a_ = np.dot(np.dot(U, Sigma_mat), Vt)
+```
+
+</br>
+
+## NMF(Non-negative Matrix Factorization, 비음수 행렬 분해)
+
+> Truncated SVD와 같이 낮은 랭크를 통한 행렬 근사 방식의 변형
+
+</br>
+
+<u>***특징***</u>
+
+* 원본 행렬 내의 모든 원소 값이 모두 양수라는게 보장될 경우 두 개의 기반 양수 행렬로 분해 될 수 있음
+* 분해 행렬 W는 원본 행에 대해서 이 잠재 요소의 값이 얼마나 되는지에 대응하며, 분해 행렬 H는 이 잠재 요소가 원본 열로 어떻게 구성됐는지를 의미
+
+</br>
+
+<u>***code***</u>
+
+
 
 </br>
 
