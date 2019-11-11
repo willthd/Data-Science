@@ -704,34 +704,6 @@ https://machinelearningmastery.com/display-deep-learning-model-training-history-
 
 # 차원 축소
 
-> 일반적으로 차원 축소는 feature 선택, feature 추출로 나눌 수 있다. feature 선택은 데이터의 특징을 잘 나타내는 주요 feature만 선택하는 것이다. Feature 추출은 기존 feature를 저차원의 중요 feature로 압축해서 추출하는 것이다. 이렇게 새롭게 추출된 중요 특성은 기존의 feature가 압축된 것이므로 기존의 feature와는 완전히 다른 값이다
-
-###사용 이유
-
-선형 모델에서는 입력 변수 간의 상관관계가 높을 경우 이로 인한 다중 공선성 문제로 모델의 예측 성능이 저하된다
-
-학습에 필요한 처리 능력을 줄일 수 있다
-
-저차원으로 변형해 직관적으로 이해할 수 있다
-
-하지만 대부분 차원 축소 이후 예측 성능 다소 떨어진다
-
-</br>
-
-# 비지도 학습
-
-> 출력값이나 정보 없이 학습 알고리즘을 가르쳐야 하는 모든 종류의 머신러닝
-
-</br>
-
-## 비지도 변환
-
->  데이터를 새롭게 표현해 사람이나 다른 머신러닝 알고리즘이 원래 데이터보다 쉽게 해석할 수 있도록 만드는 알고리즘. 시각화, data 압축, 지도 학습 등을 위해 정보가 더 잘 드러나는 feature를 찾기 위한 것
-
-</br>
-
-### 차원 축소
-
 feature 선택과 feature 추출로 나눌 수 있다.
 
 * feature 선택 : 특정 feature에 종속성이 강한 불필요한 feature는 아예 제거하고, 데이터의 특징을 잘 나타내는 주요 feature만 선택
@@ -749,7 +721,7 @@ feature 선택과 feature 추출로 나눌 수 있다.
 
 </br>
 
-### PCA(주성분 분석) - 차원 축소
+## PCA(Principal Component Analysis, 주성분 분석)
 
 > 입력 데이터의 공분산 행렬이 고유벡터와 고유값으로 분해될 수 있으며, 이렇게 분해된 고유벡터를 이용해 입력 데이터를 선형 변환하는 방식
 
@@ -764,25 +736,32 @@ feature 선택과 feature 추출로 나눌 수 있다.
 3. 새로운 축 기준으로 데이터 표현
 4. n번째 축은 (n-1)번째 축에 직각이 되는 벡터를 축으로 함
 
+<u>***원리 - 행렬***</u>
+
+1. 입력 데이터 셋의 공분산 행렬을 생성
+2. 공분산 행렬의 고유벡터와 고유값을 계산
+3. 고유값이 가장 큰 순으로 K개(PCA 변환 차수)만큼 고유벡터를 추출
+4. 고유값이 가장 큰 순으로 추출된 고유벡터를 이용해 새롭게 입력 데이터를 변환
+
 </br>
 
 **<u>*특징*</u>**
 
-feature들의 선형 결합을 통해 feature들이 가지고 있는 전체 정보를 최대한 설명할 수 있는 서로 독립적인 새로운 feature(주성분)를 유도하여 해석하는 방법
+* feature들의 선형 결합을 통해 feature들이 가지고 있는 전체 정보를 최대한 설명할 수 있는 서로 독립적인 새로운 feature(주성분)를 유도하여 해석하는 방법
 
-시각화 유리하다
+* 시각화 유리하다
 
-feature의 scale값이 서로 다르면 올바른 주성분 방향을 찾을 수 없다. 따라서 PCA를 사용할 때는 StandardScaler()를 feature의 분산이 1이 되도록 data의 스케일을 조정한 후 사용한다
+* feature의 scale값이 서로 다르면 올바른 주성분 방향을 찾을 수 없다. 따라서 PCA를 사용할 때는 StandardScaler()를 feature의 분산이 1이 되도록 data의 스케일을 조정한 후 사용한다
 
-일반적으로 원본 특성 개수만큼의 주성분이 있다
+* 일반적으로 원본 특성 개수만큼의 주성분이 있다
 
-대부분 PCA 이후 예측 성능 떨어진다
+* 대부분 PCA 이후 예측 성능 떨어진다
 
-저차원으로 변형해 직관적으로 이해 가능하다
+* 저차원으로 변형해 직관적으로 이해 가능하다
 
-새로운 변수로 생성되기 때문에 기존 변수로 이해하기 어렵다
+* 새로운 변수로 생성되기 때문에 기존 변수로 이해하기 어렵다
 
-Computer Vision 분야에서 Eigen-face라고 불리는 PCA변환 자주 사용됨
+* Computer Vision 분야에서 Eigen-face라고 불리는 PCA변환 자주 사용됨
 
 </br>
 
@@ -811,6 +790,51 @@ print("축소된 데이터 형태: {}".format(str(pca.components_.shape)))
 print(pca.explained_variance_ratio)
 # [0.765, 0.184], 이는 0.765 + 0.184 = 0.95만큼 기존 데이터를 설명할 수 있다는 의미
 ```
+
+</br>
+
+## LDA(Linear Discriminant Analysis)
+
+> 분류 모델에서 사용하기 쉽도록 개별 클래스 분리를 최대화하는 클래스 간 분산은 최대화하고, 클래스 내부 분산은 최소화하는 축을 찾는 방식
+
+</br>
+
+<u>***원리 - 행렬***</u>
+
+1. 클래스 내부와 클래스 간 분산 행렬을 구하고, 이 두 개의 행렬은 입력 데이터의 결정 값 클래스별로 개별 feature의 평균 벡터를 기반으로 구함
+2. 클래스 내부 분산 행렬과 클래스 간 분산 행렬의 곱을 고유벡터와 고유값으로 분해
+3. 고유값이 가장 큰 순으로 K개(LDA변환 차수)만큼 추출
+4. 고유값이 가장 큰 순으로 추출된 고유벡터를 이용해 새롭게 입력 데이터를 변환
+
+</br>
+
+<u>***특징***</u>
+
+* PCA와 다른 원리 이해
+* PCA는 비지도 학습인데 반해, LDA는 지도 학습(즉, 클래스의 라벨 값이 변환 시에 필요)
+
+</br>
+
+<u>***code***</u>
+
+```python
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+iris = load_iris()
+# LDA도 scaling 필수?
+iris_scaled = StandardScaler().fit_transform(iris.data)
+lda = LinearDiscriminantAnalysis(n_components=2)
+# target값 함께 활용해야 한다
+lda.fit(iris_scaled, iris.target)
+iris_lda = lda.transform(iris_scaled)
+print(iris_lda.shape)
+```
+
+</br>
+
+## SVD(Singular Value Decomposition, 특이값 분해)
+
+
 
 </br>
 
