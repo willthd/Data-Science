@@ -879,10 +879,21 @@ a_ = np.dot(np.dot(U, Sigma_mat), Vt)
 
 * 원본 행렬 내의 모든 원소 값이 모두 양수라는게 보장될 경우 두 개의 기반 양수 행렬로 분해 될 수 있음
 * 분해 행렬 W는 원본 행에 대해서 이 잠재 요소의 값이 얼마나 되는지에 대응하며, 분해 행렬 H는 이 잠재 요소가 원본 열로 어떻게 구성됐는지를 의미
+* 추천 시스템 영역에서 활발하게 적용
 
 </br>
 
 <u>***code***</u>
+
+```python
+from sklearn.decomposition import NMF
+
+iris = load_iris()
+iris_ftrs = iris.data
+nmf = NMF(n_components=2)
+nmf.fit(iris_ftrs)
+iris_nmf = nmf.transform(iris_ftrs)
+```
 
 
 
