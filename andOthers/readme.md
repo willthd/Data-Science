@@ -1083,7 +1083,7 @@ df = pd.concat([df_1, df_2])
 df.reset_index(inplace=True)
 
 # 열로(옆으로) 붙이는 방식은 axis=1
-df.drop('index', axis=1, inplace=True)
+df = pd.concat([df_1, df_2], axis=1)
 ```
 
 </br>
@@ -1846,3 +1846,15 @@ movies_df['keywords'] = movies_df['keywords'].apply(literal_eval)
 ```
 
 </br>
+
+### pyecharts
+
+시각화 라이브러리
+
+```
+import pyecharts
+```
+
+참조
+
+https://zzsza.github.io/development/2018/08/24/data-visualization-in-python/
