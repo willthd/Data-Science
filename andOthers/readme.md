@@ -1780,6 +1780,9 @@ df[col].dropna(axis=0)
 df.dropna(axis=1)
 # 특정 열
 df[col].dropna(axis=1)
+
+# 모든 컬럼 None인 행 제거
+df.dropna(how='all')
 ```
 
 </br>
