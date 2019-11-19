@@ -255,8 +255,11 @@ train["Age"].fillna(0, inplace=True)
 # 각 컬럼 별로 mean 구해서 null을 mean으로 채움
 train.fillna(train.mean(), inplace=True)
 
-# 앞의 값 또는 뒤의 값으로 채울 수 있음. 앞의 값
+# 앞의 값으로 채움
 df.fillna(method='ffill')
+
+# 뒤의 값으로 채움
+df.fillna(method='bfill')
 
 # 일부 컬럼만 채울 경우
 df.fillna(df[col_list].mean())
