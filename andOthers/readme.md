@@ -260,6 +260,13 @@ df.fillna(method='ffill')
 
 # 일부 컬럼만 채울 경우
 df.fillna(df[col_list].mean())
+
+# dictionary 활용
+# a, b, c는 컬럼명
+new_data = {'a' : 1, 'b' : 0, 'c' : -1}
+df.fillna(new_data)
+# 각 컬럼에서 2번째 None까지만 채우기
+df.fillna(new_data, limit=2)
 ```
 
 </br>
@@ -1498,7 +1505,7 @@ df['A'] = [10, 20, 30]
 
 ### nan은 isnull()로 잡힌다. NaN, None은 isnull()로 안잡힌다?
 
-### nan, NaN, None의 타입은 각각 str, float, NoneType…nan이 numpy.float64로 나오는 경우도 있다…math.isnan()으로 잡힐 수도 있으니 확인. 다시 정리
+### nan, NaN, None의 타입은 각각 str, float, NoneType…nan이 numpy.float64로 나오는 경우도 있다…math.isnan(a)으로 잡힐 수도 있으니 확인. 다시 정리
 
 </br>
 
