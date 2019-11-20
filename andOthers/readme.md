@@ -270,6 +270,17 @@ new_data = {'a' : 1, 'b' : 0, 'c' : -1}
 df.fillna(new_data)
 # 각 컬럼에서 2번째 None까지만 채우기
 df.fillna(new_data, limit=2)
+
+# default, axis=0, 열 기준 이전 데이터. ffill은 inplace=True 안된다? 문서에는 잇는데...?
+df.ffill(axis=0)
+
+# 행 기준 이전 데이터
+df.ffill(axis=1)
+
+# 동일 id끼리만 ffill 적용
+df['val'] = df.groupby('id')['val'].ffill()
+
+# bfill도 ffill과 마찬가지
 ```
 
 </br>
