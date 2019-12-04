@@ -1140,8 +1140,6 @@ scores = corss_val_score(logreg, iris.data, iris.target, cv=skf)
 
 sklearn 내에 RepeatedKFold(회귀), REpeatedStratifiedKFold(분류) 있음. KFold를 교차 검증을 여러 번 적용하되 K개의 분할로 나누기 전에 매번 데이터를 무작위로 섞는 방법
 
-훈련 세트와 검증 세트에 동일한 데이터가 중복될 수 있음. 이를 막기 위해 사용하는 것이 GroupKFold클래스를 cross_validate() 함수에 적용
-
 </br>
 
 ### LOOCV
@@ -1164,14 +1162,14 @@ suffle_split = ShuffleSplit(test_size=.5, train_size=.5, n_splits=10)
 scores = cross_val_score(logreg, iris.data, iris.target, cv=shuffle_split)
 
 # 분류의 경우
-StratifiedShuffleSplit() 사용한다
+StratifiedShuffleSplit()
 ```
 
 </br>
 
 ### Group CV
 
-한 그룹 전체가 훈련 세트 아니면 테스트 세트에 있게 분할 하는 방법이다
+한 그룹 전체가 훈련 세트 아니면 테스트 세트에 있게 분할 하는 방법이다. 훈련 세트와 검증 세트에 동일한 데이터가 중복될 수 는데, 이를 막기 위해 GroupKFold클래스를 cross_validate() 함수에 적용
 
 ```python
 groups = [0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 3, 3]
