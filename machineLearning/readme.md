@@ -1140,6 +1140,8 @@ scores = corss_val_score(logreg, iris.data, iris.target, cv=skf)
 
 sklearn 내에 RepeatedKFold(회귀), REpeatedStratifiedKFold(분류) 있음. KFold를 교차 검증을 여러 번 적용하되 K개의 분할로 나누기 전에 매번 데이터를 무작위로 섞는 방법
 
+훈련 세트와 검증 세트에 동일한 데이터가 중복될 수 있음. 이를 막기 위해 사용하는 것이 GroupKFold클래스를 cross_validate() 함수에 적용
+
 </br>
 
 ### LOOCV
