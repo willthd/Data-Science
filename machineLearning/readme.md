@@ -1850,4 +1850,6 @@ y = np.array(y_train['result'].values, dtype=dt)
 * Optimizer
   * rmsprop, adam : learning rate = 0.001(기본)
   * sgd, adagrad : learning rate = 0.01(기본)
+* 합성곱 동작 방식 : 입력 특성 맵 > 입력 패치(보통 3x3 or 5x5 활용) > 변환된 패치 > 출력 특성 맵
+* 
 
