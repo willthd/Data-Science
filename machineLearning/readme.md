@@ -1851,5 +1851,6 @@ y = np.array(y_train['result'].values, dtype=dt)
   * rmsprop, adam : learning rate = 0.001(기본)
   * sgd, adagrad : learning rate = 0.01(기본)
 * 합성곱 동작 방식 : 입력 특성 맵 > 입력 패치(보통 3x3 or 5x5 활용) > 변환된 패치 > 출력 특성 맵
+* 특성 맵의 깊이는 네트워크에서 점진적으로 증가하지만, 특성 맵의 크기는 감소한다. 이는 거의 모든 conv net에서 볼 수 있는 전형적인 패턴이다
 * 
 
