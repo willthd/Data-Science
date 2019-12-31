@@ -1762,7 +1762,7 @@ stemmer.stem('working')
 
 </br>
 
-#### 1. CxountVectorizer
+#### 1. CountVectorizer
 
 sklearn의 count기반 벡터화 클래스. fit()과 transform()으로 활용
 
