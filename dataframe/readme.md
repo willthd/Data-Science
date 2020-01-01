@@ -195,6 +195,15 @@ https://inma.tistory.com/96
 
 </br>
 
+### 백분위 수를 이용해 data 찾기
+
+```python
+# 50%에 위치하는 data, 중앙값
+np.percentile(train["col_name"], 50)
+```
+
+<br>
+
 ### Lambda 에서 elif 사용하고 싶을 때, else 여러번
 
 row 별로 적용할 때는?
@@ -442,6 +451,18 @@ X_train = train.loc[:, "a":"b"]
 
 </br>
 
+### 구간분할(binding, 이산화)
+
+```python
+# -3부터 3까지 11개의 point로 분할. 구간은 10
+bins = np.linspace(-3, 3, 11)
+
+# X를 각 구간에 맞게 1~10으로 표시
+which_bin = np.digitize(X, bins=bins)
+```
+
+</br>
+
 ### crossTab
 
 ```python
@@ -504,6 +525,49 @@ train.drop_duplicates()
 ```python
 # assert 이후가 맞으면 넘어가고, 틀리면 error 발생
 assert len(trn_series) == len(target)
+```
+
+</br>
+
+### imputer
+
+```python
+# null data 처리
+from sklearn.preprocessing import Imputer
+```
+
+```python
+# Imputing with the mean or mode
+# missing_values에 none 입력 불가
+mean_imp = Imputer(missing_values=-1, strategy='mean', axis=0)
+mode_imp = Imputer(missing_values=-1, strategy='most_frequent', axis=0)
+```
+
+```python
+# ravel()은 shape 변경해주는 것 (8000, 1) -> (8000,), reshape(-1)과 비슷하다고 보면 된다
+train['ps_reg_03'] = mean_imp.fit_transform(train[['ps_reg_03']]).ravel()
+train['ps_car_11'] = mode_imp.fit_transform(train[['ps_car_11']]).ravel()
+```
+
+</br>
+
+### LabelEncoder()
+
+```python
+# String -> 숫자로 변경
+from sklearn.preprocessing import LabelEncoder
+
+for col in ["Sex", "Embarked", "Initial"]:
+    train[col] = LabelEncoder.fit_transform(train[col])
+```
+
+```python
+# factorize도 label encoding 하는 것. label encoder보다 빠르다
+indexer = {}
+
+for col in ["Sex", "Embarked", "Initial"]:
+    _, indexer[col] = pd.factorize(train[col])
+    train[col] = indexer[col].get_indexer(train[col])
 ```
 
 </br>
