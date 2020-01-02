@@ -137,8 +137,11 @@ df.ffill(axis=0)
 # 행 기준 이전 데이터
 df.ffill(axis=1)
 
-# 동일 id끼리만 ffill 적용
+# 동일 id끼리만 ffill 적용(특정 컬럼에 대해 적용)
 df['val'] = df.groupby('id')['val'].ffill()
+
+# 전체 컬럼에 대해 적용, 여기서 features는 pid를 제외하고 선택한 컬럼
+df[features] = df.groupby('pid').ffill()
 
 # bfill도 ffill과 마찬가지
 ```
