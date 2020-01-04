@@ -337,6 +337,13 @@ train.loc[train["Name"].str.contains("Mr"), "Title"] = "Mr"
 ```python
 train["Name"] = train["Name"].str.replace("Mr", "아저씨")
 
+# 전체 컬럼
+train.replace('.', np.nan, inplace=True)
+train.replace('.', None, )
+
+# dictionary로 사용하면 변경 가능
+df.replace({'-': None})
+
 train['Initial'].replace(['Mlle','Mme','Ms','Dr','Major','Lady','Countess','Jonkheer','Col','Rev','Capt','Sir','Don'],['Miss','Miss','Miss','Mr','Mr','Mrs','Mrs','Other','Other','Other','Mr','Mr','M
                                                                                                                        
 ```
