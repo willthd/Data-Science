@@ -1882,3 +1882,4 @@ y = np.array(y_train['result'].values, dtype=dt)
 * Embedding은 특정 단어를 나타내는 정수 인덱스를 밀집 벡터로 매핑하는 딕셔너로리로 이해하는 것이 좋다. 멀리 떨어진 위치에 임베딩된 단어 의미는 서로 다른 반면에 비슷한 단어들은 가까이 임베딩된다. 이러한 임베딩 방식은 저차원의 실수형 벡터이다(밀집 벡터). 입력으로 (samples, sequence_length)인 2D 정수 텐서를 받고, (samples, sequence_length, embedding_dimensionality)인 3D 실수형 텐서를 반환한다
   * 사전 훈련된 단어 임베딩 : Word2vec(2013), Glove(2014)
 * 순서 : 토근화 - 임베딩 처리 - 임베딩 처리 값을 임베딩 레이어에 입력
+
