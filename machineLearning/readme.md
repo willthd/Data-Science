@@ -1898,3 +1898,23 @@ y = np.array(y_train['result'].values, dtype=dt)
 
 * 1D CNN도 특정 시퀀스 처리 문제에 사용된다. 일반적으로 계산 비용이 훨씬 적다. 하지만 타임스텝의 순서에 민감하지 않다(처음의 데이터와 나중의 데이터가 같은 의미를 가짐. 예를 들어 문장 번역에서 처음 단어는 나중의 단어와 동일한 의미를 같지만, 온도 예측에서는 처음 온도보다 나중의 온도가 더 큰 의미를 가질 수 있음)
 * 1D CNN + RNN을 이용하면 수 많은 스텝을 가진 시퀀스를 다룰 때 특별히 도움된다. CNN이 긴 입력 시퀀스를 더 짧은 고수준 특성의 시퀀스로 변환하고, 추출된 특성의 시퀀스는 RNN 파트의 입력이 된다
+
+</br>
+
+# 고급 도구
+
+* 다중 출력 모델에서 훈련하려면 네트워크 출력마다 다른 손실 함수를 지정해야 한다. 그리고 각각의 손실들을 하나의 값으로 합쳐야 하는데 가장 간단한 방법은 모두 더하는 것
+
+  ```python
+  model.compile(optimizer='rmsprop', loss=['mse', 'categorical_crossentropy', 'binary_crossentropy'])
+  ```
+
+  손실 값이 많이 불균형하면 모델이 개별 손실이 가장 큰 작업에 치우쳐 표현을 최적화하는데, 그 결과 다른 작업들은 손해를 입는다. 특히 손실 값의 스케일이 다를 때 그러하며 이를 위해 손실 값이 최종 손실에 기여하는 수준을 지정할 수 있다
+
+  ```python
+  model.compile(optimizer='rmsprop',
+                loss=['mse', 'categorical_crossentropy', 'binary_crossentropy'],
+                loss_weights=[0.25, 1., 10.])
+  ```
+
+* 
