@@ -1917,4 +1917,27 @@ y = np.array(y_train['result'].values, dtype=dt)
                 loss_weights=[0.25, 1., 10.])
   ```
 
+* 층 객체를 여러 번 재사용하여 층 가중치를 공유 할 수 있다. 층 객체를 두 번 호출하면 새로운 층 객체를 만들지 않고 각 호출에 동일한 가중치를 재사용한다. 아래의 코드를 샴 LSTM 또는 공유 LSTM이라고 부른다
+
+  ```python
+  from keras import layers
+  from keras import Input
+  from keras.models import Model
+  
+  lstm = layers.LSTM(32)
+  left_input = Input(shape=(None, 128))
+  left_output = lstm(left_input)
+  
+  right_input = Input(shape=(None, 128))
+  right_output = lstm(right_output)
+  
+  merged = layers.concatenate([left_output, right_output], axis=-1)
+  predictions = layers.Dense(1, activation='sigmoid')(merged)
+  
+  # 모델 객체를 만들고 훈련한다. 이런 모델을 훈련하면 LSTM 층의 가중치는 양쪽 입력을 바탕으로 업데이트된다
+  model = Model([left_input, right_output], predictions)
+  model.fit([left_output, right_output], tagets)
+  ```
+
 * 
+
