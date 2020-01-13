@@ -1939,5 +1939,5 @@ y = np.array(y_train['result'].values, dtype=dt)
   model.fit([left_output, right_output], tagets)
   ```
 
-* 
+  
 
