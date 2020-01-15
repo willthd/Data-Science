@@ -1068,3 +1068,12 @@ movies_df['keywords'] = movies_df['keywords'].apply(literal_eval)
 ```
 
 </br>
+
+### github이나 midium에서 시각화
+
+```python
+df.to_markdown()
+```
+
+</br>
+
