@@ -1939,5 +1939,62 @@ y = np.array(y_train['result'].values, dtype=dt)
   model.fit([left_output, right_output], tagets)
   ```
 
+* 콜백을 사용해 모델의 상태와 성능에 대한 모든 정보에 접근하여 훈련 중지, 모델 저장, 가중치 적재 또는 모델 상태 변경 등을 처리할 수 있다
+
+  * 모델 체크포인트 저장 : 훈련하는 동안 어떤 지점에서 모델의 현재 가중치 저장
+  * 조기 종료 : 검증 손실이 더 이상 향상되지 않을 때 훈련을 중지(가장 좋은 모델로)
+  * 하이퍼파라미터 값을 동적으로 조정 : 옵티마이저의 학습률 같은 경우
+  * 훈련과 검증 지표를 로그에 기록하거나 모델이 학습한 표현이 업데이트 될 때마다 시각화(progress bar)
+
   
 
+  ### ModelCheckpoint, EarlyStopping
+
+  ```python
+  import keras
+  
+  callbacks_list = [	# list로 전달하면 여러 개의 callback 사용 가능
+    keras.callbacks.EarlyStopping(	# 성능 향상이 멈추면 훈련을 중지
+      monitor='val_acc',	# 검증 정확도를 모니터링한다
+      patience=1,	# 1 epoch보다 더 길게 (즉 2 epoch ehddks) 정확도가 향상되지 않으면 훈련 중지
+    ),
+    keras.callbacks.ModelCheckpoint(
+      filepath='my_model.h5',
+      monitor='val_loss',
+      save_best_only=True,	# val_loss가 좋아지지 않으면 모델 파일을 덮어쓰지 않고, 가장 좋은 모델 저장
+    )
+  ]
+  
+  mopdel.complie(optimizer='rmsprop',
+                 loss='binary_crossentropy',
+                 metrics=['acc'])	# 정확도를 모니터링하므로 모델 지표에 포함되어 있어야 한다
+  
+  model.fit(x, y,
+            epochs=10,
+            batch_size=32,
+            callbacks=callbacks_list,
+            validation_data=(x_val, y_val))
+  ```
+
+  </br>
+
+  ### ReduceLROnPlateau
+
+  검증 손실이 향상되지 않을 때 학습률을 작게 할 수 있다
+
+  ```python
+  callbacks_list = [
+    keras.callbacks.ReduceLROnPlateau(
+      monitor='val_loss',	# 검증 손실을 모니터링한다
+      factor=0.1,	# 콜백이 호출 될 때 학습률을 10배로 줄인다
+      patiene=10,	# 검증 손실이 10 epoch 동안 좋아지지 않으면 콜백이 호출된다
+    )
+  ]
+  
+  model.fit(x, y,
+            batch_size=32,
+            callbacks=callbacks_list,
+            validation_data=(x_val, y_val))
+  ```
+
+* 
