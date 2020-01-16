@@ -1997,4 +1997,4 @@ y = np.array(y_train['result'].values, dtype=dt)
             validation_data=(x_val, y_val))
   ```
 
-* 
+* 배치 정규화 : 모델 학습시, 배치 단위에서 정규화 작업을 진행해 
