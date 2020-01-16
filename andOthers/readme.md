@@ -361,6 +361,7 @@ https://datascienceschool.net/view-notebook/c1a8dad913f74811ae8eef5d3bedc0c3/
    
    # 수는 비율이 아니라 실제 수로 지정
    rus = RandomUnderSampler(random_state=11, ratio={1:cancer_num, 0:cancer_num*50})
+   # 아래 코드 진행하면 numpy 배열로 return 되기 때문에 필요시 dataframe 형태로 변환
    X_resampled, y_resampled = rus.fit_resample(X_train, y_train)
    X_resampled_df = pd.DataFrame(data=X_resampled, columns=X_train.columns)
    y_resampled_df = pd.DataFrame(data=y_resampled, columns=['cancer'])
@@ -371,6 +372,18 @@ https://datascienceschool.net/view-notebook/c1a8dad913f74811ae8eef5d3bedc0c3/
 library 존재 -> imblearn
 
 ![imb](./imbalanced.jpg)
+
+</br>
+
+### Sampling
+
+```python
+# number로 sampling
+df['num_legs'].sample(n=3, random_state=1)
+
+# 비율로 sampling
+df.sample(frac=0.5, replace=True, random_state=1)
+```
 
 </br>
 
