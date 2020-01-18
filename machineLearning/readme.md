@@ -1852,6 +1852,7 @@ y = np.array(y_train['result'].values, dtype=dt)
   * rmsprop, adam : learning rate = 0.001(기본)
   * sgd, adagrad : learning rate = 0.01(기본)
 * 그래프로 손실과 정확도를 함께 나타냈을 때, 손실이 감소되지 않더라도 정확도는 향상될 수 있다. 그래프는 개별적인 손실 값의 평균을 그린 것이지만, 정확도에 영향을 미치는 것은 손실 값의 분포이지 평균이 아니기 때문이다
+* 다중 레이블 다중 분류 : 하나의 샘플이 여러 개의 클래스에 속할 수 있는 경우. 예를 들어 한 이미지에 강아지와 고양이가 둘 다 있다면 강아지 레이블과 고양이 레이블 모두 할당해야 한다. 마지막 Dense 층이 클래스 개수만큼 유닛을 가져야 하고, 시그모이드 활성화 함수를 사용해야 한다. 손실로는 binary_crossentropy를 사용하며 타깃은 k-hot-encoding 적용한다(sklearn의 MultilLabelBinarizer 클래스 사용)
 
 </br>
 
@@ -1917,8 +1918,6 @@ y = np.array(y_train['result'].values, dtype=dt)
                 loss=['mse', 'categorical_crossentropy', 'binary_crossentropy'],
                 loss_weights=[0.25, 1., 10.])
   ```
-
-  
 
 * 층 객체를 여러 번 재사용하여 층 가중치를 공유 할 수 있다. 층 객체를 두 번 호출하면 새로운 층 객체를 만들지 않고 각 호출에 동일한 가중치를 재사용한다. 아래의 코드를 샴 LSTM 또는 공유 LSTM이라고 부른다
 
