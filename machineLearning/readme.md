@@ -1906,6 +1906,7 @@ y = np.array(y_train['result'].values, dtype=dt)
 * 다중 출력 모델에서 훈련하려면 네트워크 출력마다 다른 손실 함수를 지정해야 한다. 그리고 각각의 손실들을 하나의 값으로 합쳐야 하는데 가장 간단한 방법은 모두 더하는 것
 
   ```python
+  # 다중 분류에서 타깃이 one-hot-encoding 되어 있다면 loss는 categorical_crossentropy이고, 정수 숫자라면 sparse_categorical_crossentropy로 손실을 사용한다
   model.compile(optimizer='rmsprop', loss=['mse', 'categorical_crossentropy', 'binary_crossentropy'])
   ```
 
@@ -1916,6 +1917,8 @@ y = np.array(y_train['result'].values, dtype=dt)
                 loss=['mse', 'categorical_crossentropy', 'binary_crossentropy'],
                 loss_weights=[0.25, 1., 10.])
   ```
+
+  
 
 * 층 객체를 여러 번 재사용하여 층 가중치를 공유 할 수 있다. 층 객체를 두 번 호출하면 새로운 층 객체를 만들지 않고 각 호출에 동일한 가중치를 재사용한다. 아래의 코드를 샴 LSTM 또는 공유 LSTM이라고 부른다
 
