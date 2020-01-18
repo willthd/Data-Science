@@ -2001,7 +2001,7 @@ y = np.array(y_train['result'].values, dtype=dt)
 
 * 깊이별 분리 합성곱은 공간 특성의 학습과 채널 방향 특성의 학습을 분리하는 효과를 나타낸다. 입력에서 공간상 위치는 상관관계가 크지만 채널별로는 매우 독립적이라고 가정하다면 타당하다. 일반 합성곱보다 더 효율적으로 표현을 학습하기 때문에 성능이 더 좋은 모델 만들 수 있다.
 
-* 하이퍼파라미터 튜닝 방법으로는 베이지안 최적화, 유전 알고리즘(genetic algorithms), 랜덤 탐색, coarse to fine search이 있다. 랜덤 탐색 사용시 케라스의 경우 keras.wrappers.scikit_learn 모듈 아래에 있는 KerasClassifier와 KerasRegressor 클래스를 이용하면 사이킷런의 RandomizedSearchCV를 수행할 수 있다. 베이지안 최적화 방법 중 하나는 Hyperopt 라이브러리 활용. 하이퍼파라미터 튜닝시 가장 큰 이슈는 과대적합이다. 아래 라이브러리도 있으니 참고
+* 하이퍼파라미터 튜닝 방법으로는 베이지안 최적화, 유전 알고리즘(genetic algorithms), 랜덤 탐색, coarse to fine search이 있다. 랜덤 탐색 사용시 케라스의 경우 keras.wrappers.scikit_learn 모듈 아래에 있는 KerasClassifier와 KerasRegressor 클래스를 이용하면 사이킷런의 RandomizedSearchCV를 수행할 수 있다. 베이지안 최적화 방법 중 하나는 Hyperopt 라이브러리 활용. 하이퍼파라미터 튜닝시 가장 큰 이슈는 검증 데이터 세트에 과대적합될 수 있다는 점이다. 아래 라이브러리도 있으니 참고
 
   * Hyperas
   * Auto-Keras
