@@ -66,14 +66,6 @@
 
 
 
-* [machine learning](./machineLearning)
-
-
-
-* [recommender system](./recommenderSystem)
-
-
-
 * [and_others](./andOthers)
 
 
