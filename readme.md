@@ -14,31 +14,11 @@
 
 
 
-* [House Prices: Advanced Regression Techniques](./housePrices)
-
-
-
-* [Elo Merchant Category Recommendation](./kaggle/elo)
-
-
-
 * [Porto Seguro’s Safe Driver Prediction](./kaggle/porto)
 
 
 
 * [Santander](./kaggle/santander)
-
-
-
-### Competitions
-
-
-
-* [Data Challenge 2018, Samsung Research](./dataChallenge)
-
-
-
-* [Data Visualization Challgenge, Dacon](./daconByFunda)
 
 
 
@@ -67,6 +47,5 @@
 
 
 * [and_others](./andOthers)
-
 
 
