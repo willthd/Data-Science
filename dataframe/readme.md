@@ -1077,3 +1077,8 @@ df.to_markdown()
 
 </br>
 
+### dataframe 스타일
+
+https://pandas.pydata.org/pandas-docs/stable/user_guide/style.html
+
+</br>
