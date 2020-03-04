@@ -195,7 +195,7 @@ reshape(-1) : 하나의 행렬로 존재한다 -> shape : (n, )
 
 ### Feature의 종류
 
-![kindesOfData](./KindsOfData.jpg)
+![kindsOfData](./kindsOfData.jpg)
 
 **nominal**
 
@@ -203,7 +203,7 @@ ex) Sex - Male, Female
 
 -> ont hot encoding, frequency encoding, mean encoding
 
-카테고리 종류가 적으면 one hot encoding, 많으면 frequenct, mean encoding을 쓰지만 더 좋은 점수를 만들기 위해서는 하나의 feature에 대해 one hot, frequency, mean 모두 사용하기도 한다
+카테고리 종류가 적으면 one hot encoding, 많으면 frequent, mean encoding을 쓰지만 더 좋은 점수를 만들기 위해서는 하나의 feature에 대해 one hot, frequency, mean 모두 사용하기도 한다
 
 barplot
 
@@ -350,7 +350,7 @@ http://freesearch.pe.kr/archives/4506
 
 https://datascienceschool.net/view-notebook/c1a8dad913f74811ae8eef5d3bedc0c3/
 
-일반적으로 Oversampling이 Undersampling이 좋다고 한다.
+일반적으로 Oversampling이 Undersampling이 좋다고 한다.(?)
 
 1. Oversampling
 
@@ -368,8 +368,6 @@ https://datascienceschool.net/view-notebook/c1a8dad913f74811ae8eef5d3bedc0c3/
    ```
 
 3. SMOTE, 일반적으로 재현율은 높아지나, 정밀도는 낮아진다
-
-library 존재 -> imblearn
 
 ![imb](./imbalanced.jpg)
 
@@ -451,7 +449,7 @@ data_dmatrix = xgb.DMatrix(data=X,label=y)
 
 </br>
 
-### PCA와 FA의 차이
+### PCA와 FA(Factoro Analysis)의 차이
 
 PCA는 선형 독립, FA는 그렇지 않다
 
