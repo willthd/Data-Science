@@ -837,6 +837,13 @@ df['A'] = [10, 20, 30]
 
 ### nan, NaN, None의 타입은 각각 str, float, NoneType…nan이 numpy.float64로 나오는 경우도 있다…math.isnan(a)으로 잡힐 수도 있으니 확인. 다시 정리
 
+```python
+# dataframe내의 row 돌면서 string 확인할 때, math.isnan(a)으로 확인
+if type(input_) != str:
+	if math.isnan(input_):
+		continue
+```
+
 </br>
 
 ### row별 각 컬럼값의 합, 최소값...을 sum이라는 컬럼에 넣음
