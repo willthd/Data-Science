@@ -264,6 +264,9 @@ train["year"], train["month"], train["day"] = zip(*train['date'].apply(lambda x:
 # error message : cannot convert the series to <class 'int'>
 
 train["year"] = train["year"].astype(int)
+
+# error는 NA 처리
+pd.to_numeric(df['BL2011'], errors='coerce')
 ```
 
 </br>
