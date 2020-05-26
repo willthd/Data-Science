@@ -250,7 +250,7 @@ def split_date(date):
 train["year"], train["month"], train["day"] = zip(*train['date'].apply(lambda x: split_date(x)))
 
 # zip([1, 1, 1], [2, 4, 8], [3, 9, 27]) -> (1, 2, 3), (1, 4, 9), (1, 8, 27)
-# zip(*[[1, 2, 3], [2, 3, 4], [3, 4, 5]]) -> (1, 2, 3), (1, 4, 9), (1, 8, 27)
+# zip(*[[1, 1, 1], [2, 4, 8], [3, 9, 27]]) -> (1, 2, 3), (1, 4, 9), (1, 8, 27)
 # *은 unpack을 의미한다
 # .apply(lambda x : 함수)
 ```
@@ -265,8 +265,8 @@ train["year"], train["month"], train["day"] = zip(*train['date'].apply(lambda x:
 
 train["year"] = train["year"].astype(int)
 
-# error는 NA 처리
-pd.to_numeric(df['BL2011'], errors='coerce')
+# error는 NA 처리, 소수점 가능
+df['BL2011'] = pd.to_numeric(df['BL2011'], errors='coerce')
 ```
 
 </br>
