@@ -1092,3 +1092,12 @@ df.to_markdown()
 https://pandas.pydata.org/pandas-docs/stable/user_guide/style.html
 
 </br>
+
+### json
+
+```python
+# series로 있을 때는 typ 꼭 지정. 아닌 경우는 typ를 frame으로 지정하는데, default값이기 때문에 지정하지 않아도 무관
+pd.read_json('/content/genre_gn_all.json', typ='series')
+```
+
+</br>
