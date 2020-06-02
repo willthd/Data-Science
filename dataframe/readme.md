@@ -8,6 +8,8 @@
 # count, mean, std, min, max, 25%, 50%, 75%
 # 숫자형 데이터(int, float)만 표기
 train.describe()
+# 아래처럼 보고 싶은 내용만 확인 가능
+round(train.describe().loc[['min', '25%', '50%', 'mean', '75%', 'max', 'std']].transpose(), 2)
 
 # null개수, dtype(dtype은 한 열에 여러개 섞여 있어도 다 나타내지 않고 가장 넓은 타입 하나만 나타낸다. None은 float)
 train.info()
