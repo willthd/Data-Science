@@ -30,7 +30,7 @@
 
 
 
-* [dataframe](./dataframe)
+* [pandas](./pandas)
 
 
 
