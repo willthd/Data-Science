@@ -595,6 +595,8 @@ np.expm1()
 
 아래는 classifier로 feature importance 확인하는 경우
 
+Tree 모델의 경우 feature importance를 뽑는 방식은 feature하나를 제외 시켰을 때와 포함시켰을 때 metric의 차이를 이용해 importance를 산정한다
+
 https://scikit-learn.org/stable/auto_examples/ensemble/plot_gradient_boosting_regression.html
 
 ```python
