@@ -236,6 +236,9 @@ train = pd.get_dummies(historical_transactions, columns=['category_2', 'category
 
 # 범주형 컬럼 중 값이 문자열로 되어진 것만 전부 바꿔준다. 값이 숫자로 되어 있는 범주형 컬럼은 위와 같이 컬럼명을 따로 명시해줘야하거나, 그 값을 str으로 변환한 후 get_dummies()함수를 사용해야 한다
 train = pd.get_dummies(train)
+
+# o-h-e backwards
+train = pd.get_dummies(s).idxmax(1)
 ```
 
 </br>
