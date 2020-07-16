@@ -1106,3 +1106,34 @@ pd.read_json('/content/genre_gn_all.json', typ='series')
 ```
 
 </br>
+
+### shift
+
+```python
+df = pd.DataFrame({'Col1': [10, 20, 15, 30, 45],
+                   'Col2': [13, 23, 18, 33, 48],
+                   'Col3': [17, 27, 22, 37, 52]})
+
+# periods 음수 줄 수 있음
+df.shift(periods=3)
+"""
+   Col1  Col2  Col3
+0   NaN   NaN   NaN
+1   NaN   NaN   NaN
+2   NaN   NaN   NaN
+3  10.0  13.0  17.0
+4  20.0  23.0  27.0
+"""
+df.shift(periods=1, axis='columns', fill_value=0)
+"""
+   Col1  Col2  Col3
+0    0   10.0  13.0
+1    0   20.0  23.0
+2    0   15.0  18.0
+3    0   30.0  33.0
+4    0   45.0  48.0
+"""
+
+```
+
+</br>
