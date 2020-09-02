@@ -47,5 +47,3 @@
 
 
 * [and_others](./andOthers)
-
-test
