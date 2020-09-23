@@ -200,6 +200,19 @@ https://inma.tistory.com/96
 
 </br>
 
+### relativedelta
+
+```python
+import datetime
+from dateutil.relativedelta import *
+start = datetime.datetime(2016, 4, 1, 0, 0)
+
+# 자동적으로 3개월 이후 계산해줌
+start + relativedelta(months=+3)
+```
+
+</br>
+
 ### 백분위 수를 이용해 data 찾기
 
 ```python
