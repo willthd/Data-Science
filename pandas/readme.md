@@ -98,6 +98,15 @@ df.rename(columns={"a" : "c", "b" : "d"}, inplace=True)
 
 </br>
 
+### Index 이름 변경
+
+```python
+# multi index일 때
+df.index.set_names(['Announced', 'Target'], inplace=True)
+```
+
+</br>
+
 ### dataFrame, 컬럼 기준으로 정렬하기
 
 ```python
