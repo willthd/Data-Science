@@ -556,6 +556,7 @@ for col in col_list:
 
 ```python
 train.drop_duplicates()
+train.drop_duplicates(subset=['col_name'], keep='last')
 ```
 
 </br>
