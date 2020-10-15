@@ -902,6 +902,17 @@ df['A'].value_counts().idxmax()
 
 </br>
 
+### timezone
+
+```python
+train_start_date = pd.Timestamp(2016, 4, 1, 0, 0).tz_localize('Asia/Seoul')
+
+# 이미 timezone 걸려 있을 때, tz_localize('somewhere')로 안된다
+result_df.index = result_df.index.tz_convert('Asia/Seoul')
+```
+
+</br>
+
 ### 날짜 차이 구하기
 
 ```python
