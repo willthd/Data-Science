@@ -666,6 +666,12 @@ df['A_ranked'] = df['A'].rank(ascending=1, method='min', na_option='top')
 # ["1번 계층 컬럼", "2번 계층 컬럼"]
 # 오름차순
 cat_perc.sort_values(by=["target", "mean"], ascending=False, inplace=True)
+
+# index로도 정렬 가능
+df.sort_index(ascending=True)
+
+df = pd.DataFrame({"a": [1, 2, 3, 4]}, index=['A', 'b', 'C', 'd'])
+df.sort_index(key=lambda x: x.str.lower())
 ```
 
 ![sort1](./sort_values1.jpg) —————> ![sort2](./sort_values2.jpg)
