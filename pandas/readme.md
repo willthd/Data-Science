@@ -1177,3 +1177,16 @@ df.shift(periods=1, axis='columns', fill_value=0)
 ```
 
 </br>
+
+### drop duplicate
+
+```python
+# index
+# 첫번째 값 유지
+df[~df.index.duplicated()]
+
+# column
+# subset: 특정 컬럼에 대해서만 drop duplicate 반영, keep : 첫번째 값 유지(last는 마지막)
+df.drop_duplicates(subset=['brand'], keep='first')
+```
+
