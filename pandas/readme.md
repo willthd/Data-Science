@@ -1190,3 +1190,35 @@ df[~df.index.duplicated()]
 df.drop_duplicates(subset=['brand'], keep='first')
 ```
 
+</br>
+
+### equals
+
+Dataframe, series, index의 value값 비교 가능
+
+np.nan == np.nan의 결과는 False. None == None의 결과는 True
+
+```python
+df1.equals(df2)
+
+# index를 제외하고 value만 compare할 때는 reset_index 활용
+df1.reset_index(drop=True) == df2.reset_index(drop=True)
+```
+
+</br>
+
+### comapares
+
+```python
+df.compare(df2, keep_shape=True, keep_equal=True)
+"""
+col1       col2       col3
+  self other self other self other
+0    a     c  1.0   1.0  1.0   1.0
+1    a     a  2.0   2.0  2.0   2.0
+2    b     b  3.0   3.0  3.0   4.0
+3    b     b  NaN   NaN  4.0   4.0
+4    a     a  5.0   5.0  5.0   5.0
+"""
+```
+
