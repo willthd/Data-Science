@@ -881,6 +881,12 @@ if type(input_) != str:
 		continue
 ```
 
+```python
+x[x == 'None'] = np.nan
+x[x == None] = np.nan
+x[x.isna()] = np.nan
+```
+
 </br>
 
 ### row별 각 컬럼값의 합, 최소값...을 sum이라는 컬럼에 넣음
