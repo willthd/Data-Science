@@ -401,6 +401,11 @@ train.loc[train["Age"].str.contains("세"), "Age"] = train["Age"].str.replace("�
 train["train"] = train.["Age"].astype(float)
 train["train"] = train.["Age"].astype(int)
 
+# nan이나 inf값 있으면 위의 int는 안됨.
+train["train"] = train.["Age"].astype('Int64')
+# timestamp로 변경
+train["train"] = train["train"].apply(pd.to_datetime)
+
 
 # 방법 3
 # 22.0은 220으로 바뀐다는 점 주의. 정수 표현일 때 사용
