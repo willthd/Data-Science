@@ -1233,3 +1233,30 @@ col1       col2       col3
 """
 ```
 
+</br>
+
+### pipe
+
+dataframe pipe 활용
+
+```python
+def _get_x(self, input_param: str) -> pd.DataFrame:
+        ...
+
+        transformed_df = (
+            df.pipe(self._func1)
+            .pipe(self._func2)
+            .pipe(self._func3)
+        )
+
+        return transformed_df
+      
+def _func1(self, dataframe: pd.DataFrame) -> pd.DataFrame:
+    ...
+    return transformed_df
+  
+def _func2(self, dataframe: pd.DataFrame) -> pd.DataFrame:
+    ...
+    return transformed_df
+```
+
