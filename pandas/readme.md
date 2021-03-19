@@ -191,6 +191,7 @@ train = pd.read_csv("data/bike/test.csv", parse_dates=["datetime"])
 
 # 방법 2
 train['first_active_month'] = pd.to_datetime(train['first_active_month'])
+# train['first_active_month'] = pd.Timestamp(train['first_active_month'])는 안된다. 
 
 train["datetime-year"] = train["datetime"].dt.year
 train["datetime-month"] = train["datetime"].dt.month
