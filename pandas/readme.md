@@ -404,7 +404,7 @@ train["train"] = train.["Age"].astype(int)
 
 # nan이나 inf값 있으면 위의 int는 안됨.
 train["train"] = train.["Age"].astype('Int64')
-# timestamp로 변경
+# timestamp로 변경, lambda x 따로 언급하지 않으면 row 단위로 func적용. 여기서 funcsms pd.to_datetime
 train["train"] = train["train"].apply(pd.to_datetime)
 
 
