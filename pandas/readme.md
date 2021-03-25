@@ -103,6 +103,9 @@ df.rename(columns={"a" : "c", "b" : "d"}, inplace=True)
 ```python
 # multi index일 때
 df.index.set_names(['Announced', 'Target'], inplace=True)
+
+# multi index 중에 하나만 선택할 때, ()안에 0, 1, 2 ...
+df.index.get_level_values(2)
 ```
 
 </br>
