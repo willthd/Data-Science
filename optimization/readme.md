@@ -11,10 +11,10 @@
 * **필수 요소**
   * 먼저 **Surrogate Model**은, 현재까지 조사된 입력값-함숫값 점들 (x1,f(x1)),...,(xt,f(xt))(x1,f(x1)),...,(xt,f(xt))를 바탕으로, 미지의 목적 함수의 형태에 대한 **확률적인 추정을 수행하는 모델**을 지칭합니다.
   * 그리고 **Acquisition Function**은, 목적 함수에 대한 현재까지의 확률적 추정 결과를 바탕으로, ‘최적 입력값을 찾는 데 있어 가장 유용할 만한’ **다음 입력값 후보를 추천해 주는 함수** 지칭합니다. Acquisition Function으로 가장 많이 사용되는 함수는 exploitation, exploration 전략 모두를 사용하는 **Expected Improvement** 입니다. 이는 exploitation과 exploration 전략 두 가지를 활용합니다.
-    1. exploitation
+    1. **exploitation**
        - 현재까지 조사된 점들 중 **함수값이 최대인 점** 근방을 다음 차례에 시도합니다.
        - 함수값이 가장 큰 점 근방에서 실제 최적 입력값 `x`를 찾을 가능성이 높기 때문입니다.
-    2. exploration
+    2. **exploration**
        - 현재까지 추정된 목적 함수 상에서 **표준편차가 최대인 점 근방**을 다음 차례에 시도합니다.
        - 불확실한 영역에 최적 입력값 `x`이 존재할 가능성이 높기 때문입니다.
 
