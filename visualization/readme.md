@@ -22,11 +22,13 @@ sns.kdeplot(kpx_1836['nE_1836'], ax=axes[0][0]).set(xlim=(-0.75, 0.75), ylim=(0,
 
 ```python
 plt.figure(figsize=(20, 10))
-plt.plot(df_13['prediction'], marker="o")
-plt.plot(df_13['real'], marker="*")
-plt.legend(['13 prediction', '13 real'])
+plt.plot(df_13['prediction'], marker="o", label='13 prediction')
+plt.plot(df_13['real'], marker="*", label='13 real')
 plt.ylabel('Power Generation', fontsize=16)
 plt.xlabel('Hour', fontsize=16)
+plt.tick_params(labelsize=13)
+plt.legend(fotsize=15)
+plt.grid()
 plt.title("2021-02-13", fontsize=20)
 ```
 
