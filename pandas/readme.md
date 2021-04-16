@@ -1265,3 +1265,19 @@ def _func2(self, dataframe: pd.DataFrame) -> pd.DataFrame:
     return transformed_df
 ```
 
+</br>
+
+### filter
+
+index selection 할 수 있음
+
+```python
+df = pd.DataFrame(np.array(([1, 2, 3], [4, 5, 6])),
+                  index=['mouse', 'rabbit'],
+                  columns=['one', 'two', 'three'])
+
+# axis=0, 'bbi'포함하고 있는 row
+# axis=1, 'bbi'포함하고 있는 col => index가 나오겠지.
+df.filter(like='bbi', axis=1)
+```
+
