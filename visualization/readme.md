@@ -56,7 +56,6 @@ plt.show()
 ### ex2
 
 ```python
-result_df['diff'] = result_df['daily_pattern.1'] - result_df['daily_pattern']
 plt.figure(figsize=(20,10))
 plt.scatter(result_df[result_df['diff'] <= 0].index, result_df[result_df['diff'] <= 0]['diff'], color='blue', label='before better')
 plt.scatter(result_df[result_df['diff'] > 0].index, result_df[result_df['diff'] > 0]['diff'], color='red', label='after better')
