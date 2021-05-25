@@ -56,11 +56,19 @@ plt.show()
 ### ex2
 
 ```python
+result_df['diff'] = result_df['daily_pattern.1'] - result_df['daily_pattern']
 plt.figure(figsize=(20,10))
-plt.scatter(result_df.index, result_df['js_diff'], color='blue', label='js_diff')
-plt.scatter(result_df.index, result_df['mix_diff'], color='green', label='mix_diff')
+plt.scatter(result_df[result_df['diff'] <= 0].index, result_df[result_df['diff'] <= 0]['diff'], color='blue', label='before better')
+plt.scatter(result_df[result_df['diff'] > 0].index, result_df[result_df['diff'] > 0]['diff'], color='red', label='after better')
 plt.legend(fontsize=15)
-plt.axhline(y=0, color='r', linestyle='--', lw=1)
+plt.axhline(y=0, color='black', linestyle='--', lw=1)
+plt.ylim(-0.02, 0.05)
+plt.ylabel('nAEp diff', fontsize=16)
+plt.xlabel('sites', fontsize=16)
+plt.tick_params(labelsize=13)
+plt.legend(fontsize=15)
+plt.grid()
+plt.title("After Feature Engineering", fontsize=20)
 plt.show()
 ```
 
