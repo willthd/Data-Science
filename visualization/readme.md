@@ -50,3 +50,19 @@ plt.show()
 ```
 
 ![ex1](./ex1.png)
+
+</br>
+
+### ex2
+
+```python
+plt.figure(figsize=(20,10))
+plt.scatter(result_df.index, result_df['js_diff'], color='blue', label='js_diff')
+plt.scatter(result_df.index, result_df['mix_diff'], color='green', label='mix_diff')
+plt.legend(fontsize=15)
+plt.axhline(y=0, color='r', linestyle='--', lw=1)
+plt.show()
+```
+
+![ex2](./ex2.png)
+
