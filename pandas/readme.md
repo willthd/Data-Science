@@ -1289,3 +1289,13 @@ df.filter(like='bbi', axis=1)
 df.to_dict('record')
 ```
 
+</br>
+
+### idxmax
+
+가장 큰 값의 index
+
+```python
+x.groupby(x.index.date)["HOURLY_KMA_FORECAST_WEATHER_DATA:temperature3h"].idxmax()
+```
+
