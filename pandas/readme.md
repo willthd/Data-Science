@@ -261,6 +261,9 @@ X_mammo['target'] = X_mammo.apply(lambda x : find_year_after_last(x.id, x.YYYY, 
 train = pd.get_dummies(historical_transactions, columns=['category_2', 'category_3'])
 
 # 범주형 컬럼 중 값이 문자열로 되어진 것만 전부 바꿔준다. 값이 숫자로 되어 있는 범주형 컬럼은 위와 같이 컬럼명을 따로 명시해줘야하거나, 그 값을 str으로 변환한 후 get_dummies()함수를 사용해야 한다
+# 1
+movies_df['genres'].str.get_dummies(sep='|')
+# 2
 train = pd.get_dummies(train)
 
 # o-h-e backwards
@@ -1297,5 +1300,18 @@ df.to_dict('record')
 
 ```python
 x.groupby(x.index.date)["HOURLY_KMA_FORECAST_WEATHER_DATA:temperature3h"].idxmax()
+```
+
+</br>
+
+### pivot
+
+```python
+# df에는 movieId, userId, rating 컬럼 이미 존재
+user_movie_matrix = df.pivot({
+  index='userId',
+  columns='movieId',
+  values='rating',
+}).fillna(0)
 ```
 
