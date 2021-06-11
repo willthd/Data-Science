@@ -1,22 +1,15 @@
 import pandas as pd
 
 
-def check_null(x: pd.DataFrame,
-               cols=[
-                   'site_id',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:rain_probability',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:rain_type',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:rain6h',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:humidity',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:sky_condition',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:temperature3h',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:wind_direction',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:wind_speed',
-                   'latitude',
-                   'longitude',
-                   'tzoffset',
-                   'power_generation',
-               ],) -> pd.DataFrame:
+def check_null(
+    x: pd.DataFrame,
+    cols=[
+        'col1',
+        'col2',
+        'col3',
+        'col4',
+    ],
+) -> pd.DataFrame:
     """ 
     Check null counts of columns.
     """
@@ -40,10 +33,10 @@ def check_cos_similarity(x: pd.DataFrame) -> pd.DataFrame:
     from sklearn.metrics.pairwise import cosine_similarity
     
     column_pairs = [
-        ('HOURLY_KMA_FORECAST_WEATHER_DATA:temperature3h', 'HOURLY_KMA_OBSERVATION_WEATHER_DATA:temperature'),
-        ('HOURLY_KMA_FORECAST_WEATHER_DATA:wind_speed', 'HOURLY_KMA_OBSERVATION_WEATHER_DATA:wind_speed'),
-        ('HOURLY_KMA_FORECAST_WEATHER_DATA:wind_direction', 'HOURLY_KMA_OBSERVATION_WEATHER_DATA:wind_direction'),
-        ('HOURLY_KMA_FORECAST_WEATHER_DATA:humidity', 'HOURLY_KMA_OBSERVATION_WEATHER_DATA:humidity'),
+        ('col1', 'corresponding_col1'),
+        ('col2', 'corresponding_col2'),
+        ('col3', 'corresponding_col3'),
+        ('col4', 'corresponding_col4'),
     ]
     
     df = pd.DataFrame(columns=['cos_similarity'])
@@ -60,19 +53,15 @@ def check_cos_similarity(x: pd.DataFrame) -> pd.DataFrame:
     return df.sort_values(ascending=False, by=['cos_similarity'])
 
 
-def check_outlier_iforest(x: pd.DataFrame,
-                  cols=[
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:rain_probability',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:rain_type',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:rain6h',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:humidity',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:sky_condition',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:temperature3h',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:wind_direction',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:wind_speed',
-                   'power_generation'
-                  ],
-                 ) -> pd.DataFrame:
+def check_outlier_iforest(
+    x: pd.DataFrame,
+    cols=[
+        'col1',
+        'col2',
+        'col3',
+        'col4',
+    ]
+) -> pd.DataFrame:
     """
     Check outliers with isolation forest not including null.
     """
@@ -94,19 +83,14 @@ def check_outlier_iforest(x: pd.DataFrame,
     return df.sort_values(ascending=False, by=['outlier_percent'])
 
 
-def check_outlier_IQR(x: pd.DataFrame,
-                  cols=[
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:rain_probability',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:rain_type',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:rain6h',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:humidity',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:sky_condition',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:temperature3h',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:wind_direction',
-                   'HOURLY_KMA_FORECAST_WEATHER_DATA:wind_speed',
-                   'power_generation'
-                  ],
-                 ) -> pd.DataFrame:
+def check_outlier_IQR(
+    x: pd.DataFrame,
+    cols=['col1',
+          'col2',
+          'col3',
+          'col4',
+         ],
+) -> pd.DataFrame:
     """
     Check outliers with inter quntaile range not including null.
     """
