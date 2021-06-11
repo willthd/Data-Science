@@ -1315,3 +1315,16 @@ user_movie_matrix = df.pivot({
 }).fillna(0)
 ```
 
+</br>
+
+### progress_apply
+
+```python
+# apply 작업하면서 상태 확인 가능
+from tqdm import tqdm
+tqdm.pandas()
+df['col'].progress_apply(lambda x: func(x))
+```
+
+</br>
+
