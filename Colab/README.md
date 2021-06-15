@@ -79,7 +79,20 @@ Https://colab.research.google.com/github/~
 
 #### Github에서 dataset 가져오기
 
-```
+```python
 !wget https://github.com/~
+```
+
+</br>
+
+### Google Drive에서 파일 사용
+
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+
+# Google colab: 데이터 경로 설정
+path = 'drive/MyDrive/data/'
+os.listdir(path)
 ```
 
