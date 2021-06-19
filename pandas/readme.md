@@ -1334,3 +1334,23 @@ df['col'].progress_apply(lambda x: func(x))
 
 </br>
 
+### round
+
+```python
+# 반올림
+df.round(4)
+```
+
+</br>
+
+### sum
+
+```python
+# 결과가 column별로(각 row들의 합), default
+df.sum(axis=0)
+
+# 결과가 row별로(각 column들의 합)
+df.sum(axis=1)
+```
+
+</br>
