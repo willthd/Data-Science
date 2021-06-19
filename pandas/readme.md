@@ -101,6 +101,8 @@ df.rename(columns={"a" : "c", "b" : "d"}, inplace=True)
 ### Index 이름 변경
 
 ```python
+df.rename(index={'A' : 'C'}, inplace=True)
+
 # multi index일 때
 df.index.set_names(['Announced', 'Target'], inplace=True)
 
@@ -550,6 +552,7 @@ train.drop(columns=["Name", "Age", "Ticket", "Fare", "Cabin", "Fare_Range", "Pas
 # row drop, labels는 index의미
 # row 삭제할 때는 reset_index 해줘야 한다. 삭제된 index 건너 뛰고 index 표기됨
 train.drop(labels=[0, 3, 4], axis=0, inplace=True)
+train.drop([0, 3, 4]) # default 값이 row라 이렇게 해도됨
 ```
 
 </br>
@@ -1300,6 +1303,9 @@ df.to_dict('record')
 
 ```python
 x.groupby(x.index.date)["HOURLY_KMA_FORECAST_WEATHER_DATA:temperature3h"].idxmax()
+
+# b가 가장 클 때의 a값 구하기
+temp.loc[temp['b'].idxmax()]['a']
 ```
 
 </br>
