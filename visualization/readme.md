@@ -57,8 +57,8 @@ plt.show()
 
 ```python
 plt.figure(figsize=(20,10))
-plt.scatter(result_df[result_df['diff'] <= 0].index, result_df[result_df['diff'] <= 0]['diff'], color='blue', label='before better')
-plt.scatter(result_df[result_df['diff'] > 0].index, result_df[result_df['diff'] > 0]['diff'], color='red', label='after better')
+plt.scatter(result_df[result_df['diff'] <= 0].index, result_df[result_df['diff'] <= 0]['diff'], color='blue', label='before better', alpha=0.1)
+plt.scatter(result_df[result_df['diff'] > 0].index, result_df[result_df['diff'] > 0]['diff'], color='red', label='after better', alpha=0.1)
 plt.legend(fontsize=15)
 plt.axhline(y=0, color='black', linestyle='--', lw=1)
 plt.ylim(-0.02, 0.05)
