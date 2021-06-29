@@ -73,3 +73,17 @@ plt.show()
 
 ![ex2](./ex2.png)
 
+</br>
+
+### subplots
+
+```python
+# 세로로
+fit, axes = plt.subplots(2)
+# 가로로
+fig, axes = plt.subplots(1, 2)
+fig.suptitle('Horizontally stacked subplots')
+axes[0].plot(x, y)
+axes[1].plot(x, -y)
+```
+
