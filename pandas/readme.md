@@ -1314,11 +1314,11 @@ temp.loc[temp['b'].idxmax()]['a']
 
 ```python
 # df에는 movieId, userId, rating 컬럼 이미 존재
-user_movie_matrix = df.pivot({
+user_movie_matrix = df.pivot(
   index='userId',
   columns='movieId',
   values='rating',
-}).fillna(0)
+).fillna(0)
 ```
 
 </br>
