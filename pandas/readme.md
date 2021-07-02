@@ -112,6 +112,14 @@ df.index.get_level_values(2)
 
 </br>
 
+### multi index
+
+```python
+df.columns = df.columns.droplevel(0)
+```
+
+</br>
+
 ### dataFrame, 컬럼 기준으로 정렬하기
 
 ```python
@@ -355,6 +363,8 @@ train.loc[train["nextday_holiday"].isnull(), "nextday_holiday"] = 0
 
 # 방법 3
 train["nextday_holiday"] = train["nextday_date"].isin(holiday_date_list).astype(int)
+# 반대
+train["nextday_holiday"] = ~train["nextday_date"].isin(holiday_date_list).astype(int)
 
 ###############
 # 방법 4, 가장 좋다
@@ -879,6 +889,7 @@ isnull_series = df[col].isnull().sum()
 ```python
 # 행
 df.loc[index번호] = [1, 2, 3]
+df.append({'a' : 1, 'b' : 2}, ignore_index=True)
 
 # 열
 df['A'] = [10, 20, 30]
