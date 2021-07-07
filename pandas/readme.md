@@ -471,6 +471,11 @@ train.groupby('Pclass').agg(agg_format)
 ```
 
 ```python
+# groupby한 직후의 결과만 확인
+merged.groupby('address').apply(display)
+merged.groupby('address').apply(print)
+merged.groupby('address').apply(lambda x: x)
+
 # groupby한 뒤에 dict로 값 얻음
 merged.groupby('address').groups
 
