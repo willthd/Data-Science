@@ -470,6 +470,16 @@ agg_format = {'Age':'max', 'SibSp':'sum', 'Fare':'mean'}
 train.groupby('Pclass').agg(agg_format)
 ```
 
+```python
+# groupby한 뒤에 dict로 값 얻음
+merged.groupby('address').groups
+
+# groupby한 뒤에 특정 group만 얻음
+merged.groupby('address').get_group('A')
+```
+
+
+
 **aggregation의 종류**
 
 - `size`, `count`: 그룹 데이터의 갯수
