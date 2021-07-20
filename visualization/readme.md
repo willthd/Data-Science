@@ -20,6 +20,8 @@ sns.kdeplot(kpx_1836['nE_1836'], ax=axes[0][0]).set(xlim=(-0.75, 0.75), ylim=(0,
 
 **pyplot**
 
+https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html - style options
+
 ```python
 plt.figure(figsize=(20, 10))
 plt.plot(df_13['prediction'], marker="o", label='13 prediction')
