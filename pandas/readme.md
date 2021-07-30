@@ -1381,3 +1381,13 @@ df.sum(axis=1)
 
 </br>
 
+### row 값에 맞는 column 고르기 
+
+```python
+# temp df에서 0번 idx에서 값이 1인 컬럼들
+temp.loc[0, (temp == 1).any()].index.tolist()
+
+# temp df에서 0번 idx의 값과 동일한 rows들의 dataframe. indexing
+temp[(temp[temp.columns] == temp.iloc[0].tolist()).all(True)]
+```
+
