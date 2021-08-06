@@ -58,7 +58,7 @@ Outlier : I1 ~ I2 바깥에 위치하는 data
 
   * O2 = Q3 + 3 * IQR
 
-Outlier : O1 ~ O2 바깥에 위치하는 data. 경우에 따라 Outer Fence를 기준으로 Outlier를 설정하기도 한다
+Outlier : I1 ~ I2 바깥에 위치하는 data. 경우에 따라 Outer Fence를 기준으로 Outlier를 설정하기도 한다
 
 **추가**
 
