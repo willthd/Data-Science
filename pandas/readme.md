@@ -1391,3 +1391,14 @@ temp.loc[0, (temp == 1).any()].index.tolist()
 temp[(temp[temp.columns] == temp.iloc[0].tolist()).all(True)]
 ```
 
+</br>
+
+### intersection
+
+```python
+# 1
+pd.Index.intersection(df_1.index, df_2.index)
+# 2
+df_1.index.intersection(df_2.index)
+```
+
