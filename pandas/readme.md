@@ -481,6 +481,10 @@ merged.groupby('address').groups
 
 # groupby한 뒤에 특정 group만 얻음
 merged.groupby('address').get_group('A')
+
+# groupby한 뒤에 for문 활용 가능
+groups = genres_df.groupby('movie')
+genres = [(list(set(x['movie'].values))[0], '/'.join(x['genre'].values)) for index, x in groups]
 ```
 
 
