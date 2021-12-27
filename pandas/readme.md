@@ -651,8 +651,12 @@ for col in ["Sex", "Embarked", "Initial"]:
 indexer = {}
 
 for col in ["Sex", "Embarked", "Initial"]:
-    _, indexer[col] = pd.factorize(train[col])
-    train[col] = indexer[col].get_indexer(train[col])
+  # 그냥 바로 바꿀 땐
+  train[col], _ = pd.fcatorize(train[col])
+  
+  # 다른부분 거쳐서 할 때
+  _, indexer[col] = pd.factorize(train[col])
+  train[col] = indexer[col].get_indexer(train[col])
 ```
 
 </br>
@@ -1406,3 +1410,4 @@ pd.Index.intersection(df_1.index, df_2.index)
 df_1.index.intersection(df_2.index)
 ```
 
+temp
