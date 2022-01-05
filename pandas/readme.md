@@ -1410,4 +1410,17 @@ pd.Index.intersection(df_1.index, df_2.index)
 df_1.index.intersection(df_2.index)
 ```
 
-temp
+</br>
+
+### pd.Series type 확인
+
+```python
+import numpy as np
+import pandas as pd
+from pandas.api.types import is_numeric_dtype, is_integer_dtype, is_float_dtype, is_bool_dtype
+from pandas.api.types import is_object_dtype, is_string_dtype, is_categorical_dtype, is_datetime64_dtype
+
+a = pd.Series([1, 2, 3, 4])
+is_numeric_dtype(a)
+```
+
