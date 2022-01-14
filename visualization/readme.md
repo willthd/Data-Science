@@ -89,3 +89,11 @@ axes[0].plot(x, y)
 axes[1].plot(x, -y)
 ```
 
+
+
+### pyplot
+
+```python
+plt.xticks(rotation=45)
+```
+
