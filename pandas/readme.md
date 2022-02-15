@@ -651,9 +651,9 @@ for col in ["Sex", "Embarked", "Initial"]:
 indexer = {}
 
 for col in ["Sex", "Embarked", "Initial"]:
-  # 그냥 바로 바꿀 땐
-  train[col], _ = pd.fcatorize(train[col])
-  
+  # 그냥 바로 바꿀 땐, na값 설정할 수 있다. 이 때, factorize는 0부터 채우기 때문에 na_sentinel을 0으로 하면 겹칠 수 있음을 조심
+  train[col], _ = pd.fattorize(train[col], na_sentinel=None)
+
   # 다른부분 거쳐서 할 때
   _, indexer[col] = pd.factorize(train[col])
   train[col] = indexer[col].get_indexer(train[col])
@@ -1156,6 +1156,8 @@ imgkit.from_string(html, 'styled_table.png')
 
 ```python
 df.select_dtypes('number')
+# number 아닌 놈만 뽑기
+df.select_dtypes(exclude='number')
 ```
 
 </br>
