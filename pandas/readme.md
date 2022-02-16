@@ -1291,14 +1291,14 @@ def _get_x(self, input_param: str) -> pd.DataFrame:
         ...
 
         transformed_df = (
-            df.pipe(self._func1)
+            df.pipe(self._func1, val=3)
             .pipe(self._func2)
             .pipe(self._func3)
         )
 
         return transformed_df
       
-def _func1(self, dataframe: pd.DataFrame) -> pd.DataFrame:
+def _func1(self, dataframe: pd.DataFrame, val) -> pd.DataFrame:
     ...
     return transformed_df
   
