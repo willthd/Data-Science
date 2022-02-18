@@ -209,6 +209,7 @@ train['first_active_month'] = pd.to_datetime(train['first_active_month'])
 train["datetime-year"] = train["datetime"].dt.year
 train["datetime-month"] = train["datetime"].dt.month
 train["datetime-day"] = train["datetime"].dt.day
+train["datetime-day"] = train["datetime"].dt.days
 train["datetime-hour"] = train["datetime"].dt.hour
 train["datetime-minute"] = train["datetime"].dt.minute
 train["datetime-second"] = train["datetime"].dt.second
