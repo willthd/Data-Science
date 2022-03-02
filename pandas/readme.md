@@ -1427,3 +1427,11 @@ a = pd.Series([1, 2, 3, 4])
 is_numeric_dtype(a)
 ```
 
+</br>
+
+### 특정 컬럼 제외
+
+```python
+ord_df[ord_df.columns.difference(['ORD_NO', 'CUST_ID'])]
+```
+
