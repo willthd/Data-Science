@@ -1429,6 +1429,18 @@ is_numeric_dtype(a)
 
 </br>
 
+### numeric column 찾기
+
+```python
+# 1이 더 빠름
+df._get_numeric_data()
+
+# 2
+df.select_dtypes(include=np.number)
+```
+
+</br>
+
 ### 특정 컬럼 제외
 
 ```python
