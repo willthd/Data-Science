@@ -904,6 +904,9 @@ print(isnull_series[isnull_series > 0].sort_values(ascending=False))
 
 # 특정 컬럼만 확인
 isnull_series = df[col].isnull().sum()
+
+# 모두 확인
+nan_rows  = hr[hr.isnull().any(axis=1)]
 ```
 
 </br>
