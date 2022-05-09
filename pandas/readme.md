@@ -1158,6 +1158,17 @@ df.columns[df.dtypes==object]
 
 </br>
 
+### 문자열, 숫자 혼합된 컬럼에서 문자열만 뽑기
+
+```python
+# 문자열만
+prm[prm['promo_label'].str.contains("^").notnull()]
+# 숫자만
+prm[prm['promo_label'].str.contains("^").isnull()]
+```
+
+</br>
+
 ### Series.loc
 
 ```python
