@@ -866,17 +866,7 @@ if mammo[col].dtypes == np.float64
 # 둘 다 아니면 object
 ```
 
-</br>
-
-### 문자열 있는지 확인
-
-```python
-mysite = 'Site name is webisfree.'
-if 'webisfree' in myname:
-  print('Okay')
-```
-
-</br>
+</br>j
 
 ### 데이터 프레임 동일한지 비교
 
