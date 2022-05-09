@@ -1152,6 +1152,8 @@ imgkit.from_string(html, 'styled_table.png')
 df.select_dtypes('number')
 # number 아닌 놈만 뽑기
 df.select_dtypes(exclude='number')
+# object인 놈만 뽑기
+df.columns[df.dtypes==object]
 ```
 
 </br>
