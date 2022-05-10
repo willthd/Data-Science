@@ -392,7 +392,9 @@ train.replace('.', np.nan, inplace=True)
 train.replace('.', None, )
 
 # dictionary로 사용하면 변경 가능
-df.replace({'-': None})
+_dict = {"Spark" : 'S', "PySpark" : 'P', "Hadoop": 'H', "Python" : 'P', "Pandas": 'P'}
+# Courses는 df의 column
+df = df.replace({"Courses": _dict})
 
 train['Initial'].replace(['Mlle','Mme','Ms','Dr','Major','Lady','Countess','Jonkheer','Col','Rev','Capt','Sir','Don'],['Miss','Miss','Miss','Mr','Mr','Mrs','Mrs','Other','Other','Other','Mr','Mr','M
                                                                                                                        
