@@ -625,6 +625,14 @@ train.drop_duplicates(subset=['col_name'], keep='last')
 
 </br>
 
+### 중복된 row 찾기
+
+```python
+train.loc[train.duplicated(subset=['col_name'])]
+```
+
+</br>
+
 ### assert
 
 ```python
