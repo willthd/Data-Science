@@ -1480,3 +1480,12 @@ df.select_dtypes(include=np.number)
 ord_df[ord_df.columns.difference(['ORD_NO', 'CUST_ID'])]
 ```
 
+</br>
+
+### Sparity
+
+```python
+spar_df = df.apply(pd.arrays.SparseArray)
+spar_df.sparse.density
+```
+
